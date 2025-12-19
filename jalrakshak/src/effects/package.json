@@ -1,0 +1,48 @@
+{
+  "name": "@jalrakshak/effects",
+  "version": "3.2.4",
+  "description": "jalrakshak viaual effects",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "babel",
+    "es6",
+    "react",
+    "webgl",
+    "visualization",
+    "deck.gl"
+  ],
+  "scripts": {
+    "build": "rm -fr dist && babel src --out-dir dist --source-maps inline --extensions '.ts,.tsx,.js,.jsx' --ignore '**/*.d.ts'",
+    "build:umd": "NODE_OPTIONS=--openssl-legacy-provider webpack --config ./webpack/umd.js --progress --env.prod",
+    "build:types": "tsc --project ./tsconfig.production.json",
+    "prepublishOnly": "babel-node ../../scripts/license-header/bin --license ../../FILE-HEADER && yarn build && yarn build:types",
+    "stab": "mkdir -p dist && touch dist/index.js"
+  },
+  "files": [
+    "dist",
+    "umd"
+  ],
+  "dependencies": {
+    "@deck.gl/core": "^8.9.27",
+    "@jalrakshak/common-utils": "3.2.4",
+    "@jalrakshak/constants": "3.2.4",
+    "@jalrakshak/types": "3.2.4",
+    "@jalrakshak/utils": "3.2.4",
+    "@luma.gl/core": "^8.5.20",
+    "@luma.gl/shadertools": "^8.5.20",
+    "moment-timezone": "^0.5.35",
+    "suncalc": "^1.9.0"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "18.18.2"
+  }
+}

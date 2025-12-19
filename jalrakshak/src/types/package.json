@@ -1,0 +1,29 @@
+{
+  "name": "@jalrakshak/types",
+  "version": "3.2.4",
+  "description": "jalrakshak types used by jalrakshak components, actions and reducers",
+  "license": "MIT",
+  "types": "index.d.ts",
+  "keywords": [
+    "babel",
+    "es6",
+    "react",
+    "webgl",
+    "visualization",
+    "deck.gl"
+  ],
+  "scripts": {
+    "prepublishOnly": " ",
+    "stab": " "
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "18.18.2"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@jalrakshak/common-utils",
+  "version": "3.2.4",
+  "description": "jalrakshak common utils",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "babel",
+    "es6",
+    "react",
+    "webgl",
+    "visualization",
+    "deck.gl"
+  ],
+  "scripts": {
+    "build": "rm -fr dist && babel src --out-dir dist --source-maps inline --extensions '.ts,.tsx,.js,.jsx' --ignore '**/*.d.ts'",
+    "build:umd": "NODE_OPTIONS=--openssl-legacy-provider webpack --config ./webpack/umd.js --progress --env.prod",
+    "build:types": "tsc --project ./tsconfig.production.json",
+    "prepublishOnly": "babel-node ../../scripts/license-header/bin --license ../../FILE-HEADER && yarn build && yarn build:types",
+    "stab": "mkdir -p dist && touch dist/index.js"
+  },
+  "files": [
+    "dist",
+    "umd"
+  ],
+  "dependencies": {
+    "@jalrakshak/constants": "3.2.4",
+    "@jalrakshak/types": "3.2.4",
+    "d3-array": "^2.8.0",
+    "global": "^4.3.0",
+    "h3-js": "^3.1.0",
+    "type-analyzer": "0.4.0"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "18.18.2"
+  }
+}
