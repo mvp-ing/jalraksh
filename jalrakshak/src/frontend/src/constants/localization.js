@@ -7,9 +7,7 @@
 // if translations not available for every message
 const en = {
   'modal.loadData.remote': 'Load Map using URL',
-  'sampleMapsTab.noData': 'No data ?',
-  'sampleMapsTab.trySampleData': 'Try sample data',
-  'sampleDataViewer.rowCount': ' {rowCount} rows',
+
   'loadRemoteMap.description': 'Load your map using your custom URL',
   'loadRemoteMap.message':
     'You can use the following formats: CSV | JSON | Jalrakshak.gl config json. Make sure the url contains the file extension.',
@@ -26,9 +24,7 @@ export const messages = {
   en,
   fi: {
     'modal.loadData.remote': 'Lataa kartta URL-osoitteen avulla',
-    'sampleMapsTab.noData': 'Ei aineistoja?',
-    'sampleMapsTab.trySampleData': 'Kokeile testiaineistoja',
-    'sampleDataViewer.rowCount': ' {rowCount} riviä',
+
     'loadRemoteMap.description': 'Lataa karttasi käyttämällä omaa urlia',
     'loadRemoteMap.message':
       'Voit käyttää formaatteja: CSV | JSON | Jalrakshak.gl asetus-json. Varmista, että url sisältää tiedostopäätteen nimen.',
@@ -40,9 +36,7 @@ export const messages = {
   },
   ca: {
     'modal.loadData.remote': 'Carrega mapa mitjançant URL',
-    'sampleMapsTab.noData': 'Cap dada?',
-    'sampleMapsTab.trySampleData': 'Prova dades de mostra',
-    'sampleDataViewer.rowCount': ' {rowCount} files',
+
     'loadRemoteMap.description': 'Carrega el teu mapa amb la teva URL personalitzada',
     'loadRemoteMap.message':
       "Pots emprar els següents formats: CSV | JSON | Jalrakshak.gl config json. Assegura't que la URL contingui l'extensió de l'arxiu.",
@@ -54,9 +48,7 @@ export const messages = {
   },
   es: {
     'modal.loadData.remote': 'Cargar mapa usando URL',
-    'sampleMapsTab.noData': 'Ningún dato?',
-    'sampleMapsTab.trySampleData': 'Prueba datos de muestra',
-    'sampleDataViewer.rowCount': ' {rowCount} files',
+
     'loadRemoteMap.description': 'Carga tu mapa con tu enlace personalizado',
     'loadRemoteMap.message':
       'Puedes usar los siguientes formatos: CSV | JSON | Jalrakshak.gl config json. Asegurate que el enlace contenga la extensión del archivo.',
@@ -68,9 +60,7 @@ export const messages = {
   },
   cn: {
     'modal.loadData.remote': '使用 URL 加载地图',
-    'sampleMapsTab.noData': '没有数据？',
-    'sampleMapsTab.trySampleData': '尝试样本数据',
-    'sampleDataViewer.rowCount': ' {rowCount} 行',
+
     'loadRemoteMap.description': '使用自定义 URL 加载地图',
     'loadRemoteMap.message':
       '您可以使用以下格式：CSV | JSON | Jalrakshak.gl 配置 json。 确保 url 包含文件扩展名。',
