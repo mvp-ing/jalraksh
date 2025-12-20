@@ -5,6 +5,10 @@ import asyncio
 import time
 from typing import List, Dict, Any, Optional
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+
 # import vertexai
 from google.genai import types
 from google.adk.agents.llm_agent import LlmAgent
@@ -28,33 +32,66 @@ logger = logging.getLogger(__name__)
 # ==============================================================================
 class Config:
     MAX_CLOUD_PERCENTAGE = 20 
-    TIME_STEP_DAYS = 15  
-    BASE_OUTPUT_DIR = 'river_output'
+    TIME_STEP_DAYS = 15
+    # Save images to frontend public folder for easy serving
+    # Path relative to project root: jalrakshak/src/frontend/public/satellite
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    BASE_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'jalrakshak', 'src', 'frontend', 'public', 'satellite')
     MAX_WORKERS = 32
 
 from google.oauth2 import service_account
 
 class GEEAuth:
     @staticmethod
-    def initialize(key_path='/Users/rakesh/Documents/repo/jalraksh/gee-service-key.json'):
+    def initialize(key_path=None):
+        """
+        Initialize Google Earth Engine authentication.
+        
+        Priority for key path:
+        1. Explicit key_path argument
+        2. GEE_SERVICE_KEY_PATH environment variable
+        3. Default locations in project root
+        """
         try:
-            if os.path.exists(key_path):
+            # Determine key path
+            if key_path is None:
+                key_path = os.getenv('GEE_SERVICE_KEY_PATH')
+            
+            if key_path is None:
+                # Try default locations relative to project root
+                project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                default_locations = [
+                    os.path.join(project_root, 'gee-service-key.json'),
+                    os.path.join(project_root, 'credentials', 'gee-service-key.json'),
+                    os.path.join(project_root, 'backend', 'gee-service-key.json'),
+                ]
+                for loc in default_locations:
+                    if os.path.exists(loc):
+                        key_path = loc
+                        break
+            
+            # Get project ID from environment or default
+            project_id = os.getenv('GEE_PROJECT_ID', 'gdg-hack-481417')
+            
+            if key_path and os.path.exists(key_path):
                 credentials = service_account.Credentials.from_service_account_file(
                     key_path,
                     scopes=['https://www.googleapis.com/auth/earthengine']
                 )
                 ee.Initialize(
                     credentials=credentials,
-                    project='gdg-hack-481417'
+                    project=project_id
                 )
-                print(f"✅ Auth: Service Account (Project: gdg-hack-481417)")
+                logger.info(f"✅ GEE Auth: Service Account (Project: {project_id})")
                 return True
             else:
-                print(f"⚠️ Key file not found at {key_path}, trying default...")
-                ee.Initialize()
+                # Try default authentication (user's gcloud credentials)
+                logger.warning(f"⚠️ Service key not found, trying default authentication...")
+                ee.Initialize(project=project_id)
+                logger.info(f"✅ GEE Auth: Default credentials (Project: {project_id})")
                 return True
         except Exception as e:
-            print(f"❌ Auth Failed: {e}")
+            logger.error(f"❌ GEE Auth Failed: {e}")
             return False
 
 class WaterPhysics:
