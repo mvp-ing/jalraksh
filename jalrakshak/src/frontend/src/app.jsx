@@ -42,9 +42,17 @@ import {
   toggleMapControl,
   toggleModal,
   updateMap,
+  addDataToMap,
+  setFilter,
+  addFilter,
+  setFilterAnimationWindow,
+  setFilterAnimationTime,
 } from '@jalrakshak/actions';
 import { CLOUD_PROVIDERS } from './cloud-providers';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+
+// Import sample data for pollution monitoring demo
+import { loadAllSampleData, getTimeseriesTimeRange } from './data/sample-data';
 
 const Jalrakshak = require('@jalrakshak/components').injectComponents([
   replaceLoadDataModal(),
@@ -186,23 +194,84 @@ const App = (props) => {
       dispatch(toggleModal(null));
     }
 
-    // Set initial map view to India
+    // Set initial map view to Delhi (Yamuna River)
     dispatch(
       updateMap({
-        latitude: 20.5937,
-        longitude: 78.9629,
-        zoom: 5,
+        latitude: 28.6139,
+        longitude: 77.209,
+        zoom: 11,
+        pitch: 45,
+        bearing: 0,
       })
     );
 
-    // delay zs to show the banner
-    // if (!window.localStorage.getItem(BannerKey)) {
-    //   window.setTimeout(_showBanner, 3000);
-    // }
-    // load sample data
-    // _loadSampleData();
+    // Load sample pollution monitoring demo data
+    const loadDemoData = () => {
+      try {
+        const { datasets, config, options } = loadAllSampleData();
+        const timeRange = getTimeseriesTimeRange();
 
-    // Notifications
+        // Close the load data modal
+        dispatch(toggleModal(null));
+
+        // Add sample data to map with layer configuration
+        dispatch(
+          addDataToMap({
+            datasets,
+            config,
+            options,
+          })
+        );
+
+        // Programmatically set up time filter for animation
+        // This is done via actions because kepler-config.json filter settings
+        // don't always initialize the filter value correctly
+
+        // Step 1: Add filter for the pollution_gradient dataset
+        setTimeout(() => {
+          dispatch(addFilter('pollution_segments'));
+
+          // Step 2: Set filter name to 'timestamp' to make it a time filter
+          setTimeout(() => {
+            dispatch(setFilter(0, 'name', 'timestamp'));
+
+            // Step 3: Set the animation time value with a SMALL INITIAL WINDOW
+            // For animation to work, we need to start with a small time window
+            // that will move/expand as the animation plays
+            // Using 12 hours (43200000 ms) as initial window
+            setTimeout(() => {
+              const initialWindowSize = 12 * 60 * 60 * 1000; // 12 hours in ms
+              const initialValue = [timeRange.min, timeRange.min + initialWindowSize];
+              
+              console.log("Setting initial animation window:", {
+                start: new Date(initialValue[0]).toISOString(),
+                end: new Date(initialValue[1]).toISOString()
+              });
+              
+              dispatch(setFilterAnimationTime(0, 'value', initialValue));
+
+              console.log(
+                '✅ Jalrakshak: Pollution monitoring demo data loaded successfully'
+              );
+              console.log(
+                '📊 Loaded layers: Pollution Gradient, Sensor Points, Attribution Arcs, Factory Markers'
+              );
+              console.log('⏱️ Time filter configured programmatically');
+              console.log(
+                `📅 Full time range: ${new Date(
+                  timeRange.min
+                ).toISOString()} to ${new Date(timeRange.max).toISOString()}`
+              );
+            }, 100);
+          }, 100);
+        }, 500);
+      } catch (error) {
+        console.error('❌ Jalrakshak: Error loading sample data:', error);
+      }
+    };
+
+    // Load demo data after a short delay to ensure map is ready
+    setTimeout(loadDemoData, 500);
 
     // no dependencies, as this was part of componentDidMount
     // eslint-disable-next-line react-hooks/exhaustive-deps

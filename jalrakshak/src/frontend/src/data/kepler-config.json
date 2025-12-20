@@ -1,0 +1,353 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [],
+      "layers": [
+        {
+          "id": "pollution_segments_layer",
+          "type": "geojson",
+          "config": {
+            "dataId": "pollution_segments",
+            "label": "Pollution Segments",
+            "color": [255, 0, 0],
+            "columns": {
+              "geojson": "geometry"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "opacity": 0.9,
+              "strokeOpacity": 0.9,
+              "thickness": 4,
+              "strokeColor": null,
+              "colorRange": {
+                "name": "Pollution Severity",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
+              },
+              "strokeColorRange": {
+                "name": "Pollution Severity",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
+              },
+              "radius": 10,
+              "sizeRange": [0, 10],
+              "radiusRange": [0, 50],
+              "heightRange": [0, 500],
+              "elevationScale": 5,
+              "stroked": true,
+              "filled": false,
+              "enable3d": false,
+              "wireframe": false
+            },
+            "hidden": false,
+            "textLabel": []
+          },
+          "visualChannels": {
+            "colorField": null,
+            "colorScale": "quantile",
+            "strokeColorField": {
+              "name": "severity_score",
+              "type": "real"
+            },
+            "strokeColorScale": "quantize",
+            "strokeColorDomain": [0, 1],
+            "sizeField": null,
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
+          }
+        },
+        {
+          "id": "municipal_stations_layer",
+          "type": "point",
+          "config": {
+            "dataId": "municipal_stations",
+            "label": "Municipal Monitoring Stations",
+            "color": [34, 211, 238],
+            "columns": {
+              "lat": "lat",
+              "lng": "lon",
+              "altitude": null
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 25,
+              "fixedRadius": false,
+              "opacity": 1.0,
+              "outline": true,
+              "billboard": true,
+              "thickness": 3,
+              "strokeColor": [255, 255, 255],
+              "colorRange": {
+                "name": "Cyan Markers",
+                "type": "custom",
+                "category": "Custom",
+                "colors": ["#22D3EE", "#06B6D4", "#0891B2"]
+              },
+              "radiusRange": [20, 35],
+              "filled": true
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": {
+                  "name": "station_name",
+                  "type": "string"
+                },
+                "color": [255, 255, 255],
+                "size": 15,
+                "offset": [0, 0],
+                "anchor": "start",
+                "alignment": "center"
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": null,
+            "colorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear"
+          }
+        },
+        {
+          "id": "river_monitoring_points_layer",
+          "type": "point",
+          "config": {
+            "dataId": "river_monitoring_points",
+            "label": "River Monitoring Points",
+            "color": [34, 197, 94],
+            "columns": {
+              "lat": "lat",
+              "lng": "lon",
+              "altitude": null
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 35,
+              "fixedRadius": false,
+              "opacity": 1.0,
+              "outline": true,
+              "thickness": 3,
+              "strokeColor": [255, 255, 255],
+              "colorRange": {
+                "name": "Pollution Severity",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
+              },
+              "radiusRange": [25, 45],
+              "filled": true
+            },
+            "hidden": false,
+            "textLabel": []
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "severity_score",
+              "type": "real"
+            },
+            "colorScale": "quantize",
+            "colorDomain": [0, 1],
+            "sizeField": {
+              "name": "severity_score",
+              "type": "real"
+            },
+            "sizeScale": "sqrt"
+          }
+        },
+        {
+          "id": "suspect_arcs_layer",
+          "type": "arc",
+          "config": {
+            "dataId": "suspect_links",
+            "label": "Pollution Attribution Arcs",
+            "color": [255, 0, 128],
+            "columns": {
+              "lat0": "source_lat",
+              "lng0": "source_lon",
+              "lat1": "target_lat",
+              "lng1": "target_lon"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "opacity": 0.8,
+              "thickness": 2,
+              "colorRange": {
+                "name": "Suspicion Score",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#FEF3C7", "#FCD34D", "#F59E0B", "#DC2626", "#991B1B", "#7F1D1D"]
+              },
+              "sizeRange": [1, 12],
+              "targetColor": [244, 63, 94]
+            },
+            "hidden": false,
+            "textLabel": []
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "suspicion_score",
+              "type": "real"
+            },
+            "colorScale": "quantize",
+            "sizeField": {
+              "name": "suspicion_score",
+              "type": "real"
+            },
+            "sizeScale": "linear"
+          }
+        },
+        {
+          "id": "factory_icons_layer",
+          "type": "point",
+          "config": {
+            "dataId": "suspect_links",
+            "label": "Suspected Factories",
+            "color": [239, 68, 68],
+            "columns": {
+              "lat": "target_lat",
+              "lng": "target_lon",
+              "altitude": null
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 25,
+              "fixedRadius": false,
+              "opacity": 1.0,
+              "outline": true,
+              "thickness": 3,
+              "strokeColor": [0, 0, 0],
+              "colorRange": {
+                "name": "Danger Level",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#FDE047", "#F59E0B", "#EA580C", "#DC2626", "#991B1B"]
+              },
+              "radiusRange": [18, 35],
+              "filled": true
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": {
+                  "name": "suspect_name",
+                  "type": "string"
+                },
+                "color": [255, 255, 255],
+                "size": 12,
+                "offset": [0, 0],
+                "anchor": "start",
+                "alignment": "center"
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": {
+              "name": "suspicion_score",
+              "type": "real"
+            },
+            "colorScale": "quantize",
+            "sizeField": {
+              "name": "historical_violations",
+              "type": "integer"
+            },
+            "sizeScale": "sqrt"
+          }
+        }
+      ],
+      "interactionConfig": {
+        "tooltip": {
+          "fieldsToShow": {
+            "pollution_segments": [
+              {"name": "segment_name", "format": null},
+              {"name": "timestamp", "format": null},
+              {"name": "severity_score", "format": ".2f"},
+              {"name": "pollution_category", "format": null},
+              {"name": "ph", "format": ".1f"}
+            ],
+            "municipal_stations": [
+              {"name": "station_name", "format": null},
+              {"name": "timestamp", "format": null},
+              {"name": "distance_to_river_m", "format": null},
+              {"name": "severity_score", "format": ".2f"},
+              {"name": "pollution_category", "format": null},
+              {"name": "alert_level", "format": null},
+              {"name": "ph", "format": ".1f"},
+              {"name": "conductivity", "format": null},
+              {"name": "do_level", "format": ".1f"},
+              {"name": "turbidity", "format": null},
+              {"name": "water_temp", "format": ".1f"},
+              {"name": "do_saturation", "format": ".1f"}
+            ],
+            "river_monitoring_points": [
+              {"name": "station_name", "format": null},
+              {"name": "timestamp", "format": null},
+              {"name": "severity_score", "format": ".2f"},
+              {"name": "pollution_category", "format": null},
+              {"name": "alert_level", "format": null}
+            ],
+            "suspect_links": [
+              {"name": "suspect_name", "format": null},
+              {"name": "suspect_type", "format": null},
+              {"name": "suspicion_score", "format": ".2f"},
+              {"name": "permit_status", "format": null},
+              {"name": "evidence", "format": null}
+            ]
+          },
+          "compareMode": false,
+          "compareType": "absolute",
+          "enabled": true
+        },
+        "brush": {
+          "size": 0.5,
+          "enabled": false
+        },
+        "geocoder": {
+          "enabled": true
+        },
+        "coordinate": {
+          "enabled": true
+        }
+      },
+      "layerBlending": "normal",
+      "splitMaps": [],
+      "animationConfig": {
+        "currentTime": 1704067200000,
+        "speed": 1,
+        "domain": [1704067200000, 1704672000000],
+        "defaultTimeFormat": "YYYY-MM-DD HH:mm",
+        "timeFormat": "YYYY-MM-DD HH:mm",
+        "timezone": "UTC"
+      }
+    },
+    "mapState": {
+      "bearing": 0,
+      "dragRotate": true,
+      "latitude": 28.5800,
+      "longitude": 77.2900,
+      "pitch": 45,
+      "zoom": 11,
+      "isSplit": false
+    },
+    "mapStyle": {
+      "styleType": "dark",
+      "topLayerGroups": {},
+      "visibleLayerGroups": {
+        "label": true,
+        "road": true,
+        "border": false,
+        "building": true,
+        "water": true,
+        "land": true,
+        "3d building": true
+      },
+      "threeDBuildingColor": [9.665468314072013, 17.18305478057247, 31.1442867897876],
+      "mapStyles": {}
+    }
+  }
+}
