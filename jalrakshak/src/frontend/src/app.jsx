@@ -16,7 +16,7 @@ import {
   setStartScreenCapture,
   setScreenCaptured,
   AiAssistantPanel,
-  setMapBoundary
+  setMapBoundary,
 } from '@jalrakshak/ai-assistant';
 import { panelBorderColor, theme } from '@jalrakshak/styles';
 import { getApplicationConfig } from '@jalrakshak/utils';
@@ -25,19 +25,23 @@ import { SqlPanel } from '@jalrakshak/duckdb/components';
 import { replaceLoadDataModal } from './factories/load-data-modal';
 import { replaceMapControl } from './factories/map-control';
 import { replacePanelHeader } from './factories/panel-header';
-import { CLOUD_PROVIDERS_CONFIGURATION, DEFAULT_FEATURE_FLAGS } from './constants/default-settings';
+import {
+  CLOUD_PROVIDERS_CONFIGURATION,
+  DEFAULT_FEATURE_FLAGS,
+} from './constants/default-settings';
 import { messages } from './constants/localization';
 
 import {
   loadRemoteMap,
   onExportFileSuccess,
-  onLoadCloudMapSuccess
+  onLoadCloudMapSuccess,
 } from './actions';
 
 import {
   loadCloudMap,
   toggleMapControl,
-  toggleModal
+  toggleModal,
+  updateMap,
 } from '@jalrakshak/actions';
 import { CLOUD_PROVIDERS } from './cloud-providers';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
@@ -45,12 +49,11 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 const Jalrakshak = require('@jalrakshak/components').injectComponents([
   replaceLoadDataModal(),
   replaceMapControl(),
-  replacePanelHeader()
+  replacePanelHeader(),
 ]);
 
 // Sample data
 /* eslint-disable no-unused-vars */
-
 
 /* eslint-enable no-unused-vars */
 
@@ -64,8 +67,7 @@ function shouldForwardProp(propName, target) {
   return true;
 }
 
-
-const jalrakshakGlGetState = state => state.demo.jalrakshakGl;
+const jalrakshakGlGetState = (state) => state.demo.jalrakshakGl;
 
 const GlobalStyle = styled.div`
   font-family: ff-clan-web-pro, 'Helvetica Neue', Helvetica, sans-serif;
@@ -92,7 +94,7 @@ const GlobalStyle = styled.div`
 
   a {
     text-decoration: none;
-    color: ${props => props.theme.labelColor};
+    color: ${(props) => props.theme.labelColor};
   }
 `;
 
@@ -105,7 +107,7 @@ const CONTAINER_STYLE = {
   top: 0,
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: '#333'
+  backgroundColor: '#333',
 };
 
 const StyledResizeHandle = styled(PanelResizeHandle)`
@@ -129,20 +131,25 @@ const StyledVerticalResizeHandle = styled(PanelResizeHandle)`
   }
 `;
 
-const App = props => {
-
-  const { params: { id, provider } = {}, location: { query = {} } = {} } = props;
+const App = (props) => {
+  const { params: { id, provider } = {}, location: { query = {} } = {} } =
+    props;
   const dispatch = useDispatch();
 
   // TODO find another way to check for existence of duckDb plugin
-  const duckDbPluginEnabled = (getApplicationConfig().plugins || []).some(p => p.name === 'duckdb');
+  const duckDbPluginEnabled = (getApplicationConfig().plugins || []).some(
+    (p) => p.name === 'duckdb'
+  );
 
   const isSqlPanelOpen = useSelector(
-    state => duckDbPluginEnabled && state?.demo?.jalrakshakGl?.map?.uiState.mapControls.sqlPanel?.active
+    (state) =>
+      duckDbPluginEnabled &&
+      state?.demo?.jalrakshakGl?.map?.uiState.mapControls.sqlPanel?.active
   );
 
   const isAiAssistantPanelOpen = useSelector(
-    state => state?.demo?.jalrakshakGl?.map?.uiState.mapControls.aiAssistant?.active
+    (state) =>
+      state?.demo?.jalrakshakGl?.map?.uiState.mapControls.aiAssistant?.active
   );
 
   const prevQueryRef = useRef(null);
@@ -150,7 +157,7 @@ const App = props => {
   useEffect(() => {
     // if we pass an id as part of the url
     // we try to fetch along map configurations
-    const cloudProvider = CLOUD_PROVIDERS.find(c => c.name === provider);
+    const cloudProvider = CLOUD_PROVIDERS.find((c) => c.name === provider);
     if (cloudProvider) {
       // Prevent constant reloading after change of the location
       if (isEqual(prevQueryRef.current, { provider, id, query })) {
@@ -161,14 +168,12 @@ const App = props => {
         loadCloudMap({
           loadParams: query,
           provider: cloudProvider,
-          onSuccess: onLoadCloudMapSuccess
+          onSuccess: onLoadCloudMapSuccess,
         })
       );
       prevQueryRef.current = { provider, id, query };
       return;
     }
-
-
 
     // Load map using a custom
     if (query.mapUrl) {
@@ -180,6 +185,15 @@ const App = props => {
       dispatch(toggleMapControl('sqlPanel', 0));
       dispatch(toggleModal(null));
     }
+
+    // Set initial map view to India
+    dispatch(
+      updateMap({
+        latitude: 20.5937,
+        longitude: 78.9629,
+        zoom: 5,
+      })
+    );
 
     // delay zs to show the banner
     // if (!window.localStorage.getItem(BannerKey)) {
@@ -199,7 +213,7 @@ const App = props => {
    * get data from vector tiles when map boundary changes
    */
   const onViewStateChange = useCallback(
-    viewState => {
+    (viewState) => {
       const viewport = new WebMercatorViewport(viewState);
       const nw = viewport.unproject([0, 0]);
       const se = viewport.unproject([viewport.width, viewport.height]);
@@ -209,14 +223,14 @@ const App = props => {
   );
 
   const _setStartScreenCapture = useCallback(
-    flag => {
+    (flag) => {
       dispatch(setStartScreenCapture(flag));
     },
     [dispatch]
   );
 
   const _setScreenCaptured = useCallback(
-    screenshot => {
+    (screenshot) => {
       dispatch(setScreenCaptured(screenshot));
     },
     [dispatch]
@@ -227,8 +241,6 @@ const App = props => {
     toggleShowBanner(true);
   }, [toggleShowBanner]);
   */
-
-
 
   return (
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
@@ -242,22 +254,25 @@ const App = props => {
         // }}
         >
           <ScreenshotWrapper
-            startScreenCapture={props.demo.aiAssistant.screenshotToAsk.startScreenCapture}
+            startScreenCapture={
+              props.demo.aiAssistant.screenshotToAsk.startScreenCapture
+            }
             setScreenCaptured={_setScreenCaptured}
             setStartScreenCapture={_setStartScreenCapture}
-            className="h-screen"
+            className='h-screen'
           >
-
             <div style={CONTAINER_STYLE}>
-              <PanelGroup direction="horizontal">
+              <PanelGroup direction='horizontal'>
                 <Panel defaultSize={isAiAssistantPanelOpen ? 70 : 100}>
-                  <PanelGroup direction="vertical">
+                  <PanelGroup direction='vertical'>
                     <Panel defaultSize={isSqlPanelOpen ? 60 : 100}>
                       <AutoSizer>
                         {({ height, width }) => (
                           <Jalrakshak
-                            mapboxApiAccessToken={CLOUD_PROVIDERS_CONFIGURATION.MAPBOX_TOKEN}
-                            id="map"
+                            mapboxApiAccessToken={
+                              CLOUD_PROVIDERS_CONFIGURATION.MAPBOX_TOKEN
+                            }
+                            id='map'
                             getState={jalrakshakGlGetState}
                             width={width}
                             height={height}
@@ -299,7 +314,7 @@ const App = props => {
   );
 };
 
-const mapStateToProps = state => state;
-const dispatchToProps = dispatch => ({ dispatch });
+const mapStateToProps = (state) => state;
+const dispatchToProps = (dispatch) => ({ dispatch });
 
 export default connect(mapStateToProps, dispatchToProps)(App);
