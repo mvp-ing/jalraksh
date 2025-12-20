@@ -15,7 +15,7 @@ from google.adk.sessions import InMemorySessionService
 import ee
 import requests
 from io import BytesIO
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -30,7 +30,7 @@ class Config:
     MAX_CLOUD_PERCENTAGE = 20 
     TIME_STEP_DAYS = 15  
     BASE_OUTPUT_DIR = 'river_output'
-    MAX_WORKERS = 8
+    MAX_WORKERS = 32
 
 from google.oauth2 import service_account
 
@@ -100,51 +100,101 @@ class DataFetcher:
 
 class Visualizer:
     @staticmethod
-    def fetch_image(ee_image, roi):
+    def fetch_image(ee_image, roi, title=""):
         vis_params = {
             'min': 0.0, 'max': 0.3, 
             'bands': ['B4', 'B3', 'B2'], 
-            'dimensions': 1024,
+            'dimensions': 800,  # Reduced from 1024 for speed (Strategy 1)
             'region': roi, 
             'format': 'png'
         }
         try:
             url = ee_image.getThumbURL(vis_params)
-            resp = requests.get(url, timeout=60)
+            resp = requests.get(url, timeout=30) # Short timeout for parallel retries
             if resp.status_code == 200:
-                return Image.open(BytesIO(resp.content)).convert('RGBA')
+                img = Image.open(BytesIO(resp.content)).convert('RGBA')
+                if title:
+                    draw = ImageDraw.Draw(img)
+                    try:
+                        font = ImageFont.truetype("Arial.ttf", 30) # Smaller font
+                    except:
+                        font = ImageFont.load_default()
+                    
+                    # Date Only Annotation (Black Box)
+                    draw.rectangle((10, 10, 200, 50), fill="black")
+                    draw.text((20, 15), title, font=font, fill="white")
+                return img
         except: pass
         return None
 
 # ==============================================================================
 # THE TOOL FUNCTION (Exposed to Agent)
 # ==============================================================================
-def river_simulation_tool(latitude: float, longitude: float, year: int = 2023) -> dict:
+import pandas as pd
+
+# Global Station Data Cache
+# Use relative path: agents/satellite_agent.py -> ../data/Sensor Stream/Indian_water_data.csv
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATION_DATA_PATH = os.path.join(BASE_DIR, "data", "Sensor Stream", "Indian_water_data.csv")
+_station_df = None
+
+def get_station_coords(station_code: str):
+    global _station_df
+    if _station_df is None:
+        try:
+            _station_df = pd.read_csv(STATION_DATA_PATH)
+            # Ensure STN code is string for robust matching
+            _station_df['STN code'] = _station_df['STN code'].astype(str)
+        except Exception as e:
+            logger.error(f"Failed to load CSV: {e}")
+            return None, None
+
+    # Lookup
+    row = _station_df[_station_df['STN code'] == str(station_code)]
+    if row.empty:
+        return None, None
+    
+    return row.iloc[0]['latitude'], row.iloc[0]['longitude']
+
+# ==============================================================================
+# THE TOOL FUNCTION (Exposed to Agent)
+# ==============================================================================
+def river_simulation_tool(station_code: str, year: int = 2023, simulate: bool = True) -> dict:
     """
-    Generates a FULL YEAR timeline of river simulation images (15-day intervals).
+    Generates a FULL YEAR timeline of river simulation images for a specific Station Code.
     
     Args:
-        latitude (float): Latitude of the station.
-        longitude (float): Longitude of the station.
+        station_code (str): The unique station identifier (e.g., "4085").
         year (int): Year to analyze (default 2023).
+        simulate (bool): If True, generates augmented pollution views. If False, only raw satellite.
         
     Returns:
         dict: Status and summary of generated timeline.
     """
-    logger.info(f"Tool called: river_simulation_tool({latitude}, {longitude}, {year}) [FULL TIMELINE]")
+    
+    # 1. Resolve Coordinates
+    lat, lon = get_station_coords(station_code)
+    if lat is None or lon is None:
+        return {"status": "error", "message": f"Station Code '{station_code}' not found in database."}
+
+    logger.info(f"Tool called: river_simulation_tool({station_code}, simulate={simulate}) -> ({lat}, {lon})")
     
     if not GEEAuth.initialize():
         return {"status": "error", "message": "Failed to authenticate with Earth Engine."}
 
-    # Setup output
-    run_id = f"sim_{int(time.time())}"
-    output_dir = os.path.join(Config.BASE_OUTPUT_DIR, run_id)
-    folders = ['original_raw', 'simulated_raw', 'original_masked', 'simulated_masked']
+    # Setup output folder using STATION CODE
+    output_dir = os.path.join(Config.BASE_OUTPUT_DIR, str(station_code))
+    
+    # Define required folders
+    folders = ['original_raw']
+    if simulate:
+        folders.append('simulated_raw')
+        
     for f in folders:
         os.makedirs(os.path.join(output_dir, f), exist_ok=True)
         
     # Region
-    point = ee.Geometry.Point([longitude, latitude])
+    point = ee.Geometry.Point([lon, lat])
     roi = point.buffer(6000).bounds()
     
     # 1. Generate Intervals (Jan 1 to Dec 31)
@@ -167,30 +217,31 @@ def river_simulation_tool(latitude: float, longitude: float, year: int = 2023) -
             if raw_img is None: 
                 return None
                 
-            # Physics & Simulation
-            river_mask = WaterPhysics.get_river_mask(raw_img)
-            img_sim_full = WaterPhysics.simulate_pollution_on_full_image(raw_img, river_mask, intensity=1.0)
-            img_orig_masked = raw_img.updateMask(river_mask)
-            img_sim_masked = img_sim_full.updateMask(river_mask)
+            # Physics & Simulation (Only if needed)
+            img_sim_full = None
+            if simulate:
+                river_mask = WaterPhysics.get_river_mask(raw_img)
+                img_sim_full = WaterPhysics.simulate_pollution_on_full_image(raw_img, river_mask, intensity=1.0)
             
             # Save
             label = w['start']
-            results = {} # To track what we saved
 
             # Helper to save
             def save_frame(img, subfolder, title):
-                vis = Visualizer.fetch_image(img, roi)
+                if img is None: return None
+                vis = Visualizer.fetch_image(img, roi, title)
                 if vis:
                     p = f"{output_dir}/{subfolder}/frame_{idx:03d}.png"
                     vis.save(p)
                     return p
                 return None
 
-            # Save all 4 versions
-            save_frame(raw_img, 'original_raw', f"1. Raw ({label})")
-            save_frame(img_sim_full, 'simulated_raw', f"2. Sim Full ({label})")
-            save_frame(img_orig_masked, 'original_masked', f"3. River Only ({label})")
-            save_frame(img_sim_masked, 'simulated_masked', f"4. Sim River ({label})")
+            # Save Versions
+            # Clean Labels: "2023-01-01" instead of "1. Raw (2023-01-01)"
+            save_frame(raw_img, 'original_raw', label)
+            
+            if simulate and img_sim_full:
+                save_frame(img_sim_full, 'simulated_raw', label)
             
             return f"{w['start']}"
         except Exception as e:
@@ -209,10 +260,12 @@ def river_simulation_tool(latitude: float, longitude: float, year: int = 2023) -
             
     return {
         "status": "success",
-        "run_id": run_id,
+        "station_code": station_code,
         "output_dir": output_dir,
         "total_frames": successful_frames,
-        "message": f"Successfully generated {successful_frames}/{len(windows)} frames for the year {year}."
+        "coords": {"lat": lat, "lon": lon},
+        "mode": "Simulated" if simulate else "Raw Only",
+        "message": f"Successfully generated {successful_frames}/{len(windows)} frames for station {station_code} ({year})."
     }
 
 # ==============================================================================
