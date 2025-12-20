@@ -6,12 +6,20 @@
 import esbuild from 'esbuild';
 import {replace} from 'esbuild-plugin-replace';
 import {dotenvRun} from '@dotenv-run/esbuild';
+import dotenv from 'dotenv';
 
 import process from 'node:process';
 import fs from 'node:fs';
 import {spawn} from 'node:child_process';
 import {join} from 'node:path';
 import JalrakshakPackage from '../../package.json' assert {type: 'json'};
+
+// Load .env file early so process.env is populated before config is defined
+const envPath = join(process.cwd(), '../../.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+  console.log('✅ Loaded .env from:', envPath);
+}
 
 const args = process.argv;
 
@@ -106,13 +114,14 @@ const config = {
     'process.env.FoursquareDomain': JSON.stringify(process.env.FoursquareDomain || ''),
     'process.env.FoursquareAPIURL': JSON.stringify(process.env.FoursquareAPIURL || ''),
     'process.env.FoursquareUserMapsURL': JSON.stringify(process.env.FoursquareUserMapsURL || ''),
+    'process.env.GoogleAIApiKey': JSON.stringify(process.env.GoogleAIApiKey || ''),
     'process.env.NODE_ENV': NODE_ENV
   },
   plugins: [
     dotenvRun({
       verbose: true,
       environment: NODE_ENV,
-      root: '../../.env'
+      root: '../../'
     }),
     // automatically injected jalrakshak package version into the bundle
     replace({

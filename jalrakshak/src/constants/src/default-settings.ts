@@ -109,7 +109,7 @@ export const JALRAKSHAK_NAME = 'Jalrakshak';
 // Since we are injecting this during the build process with babel
 // while developing VERSION is not defined, we capture the exception and return
 // an empty string which will allow us to retrieve the latest umd version
-export const JALRAKSHAK_VERSION = '__PACKAGE_VERSION__';
+export const JALRAKSHAK_VERSION = '1.0.0';
 export const JALRAKSHAK_WEBSITE = 'http://jalrakshak/';
 
 export const DIMENSIONS = {
@@ -156,16 +156,6 @@ export const SIDEBAR_PANELS = [
   {
     id: 'filter',
     label: 'sidebar.panels.filter',
-    onClick: null
-  },
-  {
-    id: 'interaction',
-    label: 'sidebar.panels.interaction',
-    onClick: null
-  },
-  {
-    id: 'map',
-    label: 'sidebar.panels.basemap',
     onClick: null
   }
 ];

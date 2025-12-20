@@ -46,6 +46,7 @@
     "h3-js": "^4.4.0",
     "keymirror": "^0.1.1",
     "markdown-to-jsx": "^7.7.6",
+    "pako": "^2.1.0",
     "prop-types": "^15.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

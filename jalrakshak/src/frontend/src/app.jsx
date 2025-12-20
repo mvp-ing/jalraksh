@@ -17,6 +17,7 @@ import {
   setScreenCaptured,
   AiAssistantPanel,
   setMapBoundary,
+  updateAiAssistantConfig,
 } from '@jalrakshak/ai-assistant';
 import { panelBorderColor, theme } from '@jalrakshak/styles';
 import { getApplicationConfig } from '@jalrakshak/utils';
@@ -53,6 +54,9 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 // Import sample data for pollution monitoring demo
 import { loadAllSampleData, getTimeseriesTimeRange } from './data/sample-data';
+
+// Import share URL utilities for parsing incoming share links
+import { parseShareableLink, clearShareParams, isShareUrl, SEGMENT_COORDINATES } from './utils/share-url';
 
 const Jalrakshak = require('@jalrakshak/components').injectComponents([
   replaceLoadDataModal(),
@@ -144,6 +148,9 @@ const App = (props) => {
     props;
   const dispatch = useDispatch();
 
+  // State for tracking if share data has been loaded
+  const [shareDataLoaded, setShareDataLoaded] = useState(false);
+
   // TODO find another way to check for existence of duckDb plugin
   const duckDbPluginEnabled = (getApplicationConfig().plugins || []).some(
     (p) => p.name === 'duckdb'
@@ -194,16 +201,90 @@ const App = (props) => {
       dispatch(toggleModal(null));
     }
 
-    // Set initial map view to Delhi (Yamuna River)
-    dispatch(
-      updateMap({
-        latitude: 28.6139,
-        longitude: 77.209,
-        zoom: 11,
-        pitch: 45,
-        bearing: 0,
-      })
-    );
+    // Check for share URL parameters and apply them
+    const shareData = parseShareableLink();
+    if (shareData && !shareDataLoaded) {
+      console.log('📎 Loading shared visualization:', shareData);
+      setShareDataLoaded(true);
+      
+      // Apply shared map state if available
+      if (shareData.mapState) {
+        dispatch(
+          updateMap({
+            latitude: shareData.mapState.latitude,
+            longitude: shareData.mapState.longitude,
+            zoom: shareData.mapState.zoom,
+            pitch: shareData.mapState.pitch,
+            bearing: shareData.mapState.bearing,
+          })
+        );
+      } else if (shareData.seg && SEGMENT_COORDINATES[shareData.seg]) {
+        // If only segment ID is provided, zoom to that segment
+        const coords = SEGMENT_COORDINATES[shareData.seg];
+        dispatch(
+          updateMap({
+            latitude: coords.lat,
+            longitude: coords.lng,
+            zoom: coords.zoom || 14,
+            pitch: 45,
+            bearing: 0,
+          })
+        );
+      } else {
+        // Default map view to Delhi (Yamuna River)
+        dispatch(
+          updateMap({
+            latitude: 28.6139,
+            longitude: 77.209,
+            zoom: 11,
+            pitch: 45,
+            bearing: 0,
+          })
+        );
+      }
+      
+      // Log information about the shared link
+      if (shareData.seg) {
+        console.log(`🎯 Focusing on segment: ${shareData.segmentName || shareData.seg}`);
+      }
+      if (shareData.ts) {
+        console.log(`⏰ Timestamp from share: ${shareData.ts}`);
+      }
+      
+      // Clear the share params from URL to make it cleaner
+      // (optional - comment out if you want to preserve the URL)
+      // clearShareParams();
+    } else {
+      // Set initial map view to Delhi (Yamuna River)
+      dispatch(
+        updateMap({
+          latitude: 28.6139,
+          longitude: 77.209,
+          zoom: 11,
+          pitch: 45,
+          bearing: 0,
+        })
+      );
+    }
+
+    // Set the Google AI API key from environment variable
+    console.log('🔑 Google AI API Key from env:', CLOUD_PROVIDERS_CONFIGURATION.GOOGLE_AI_API_KEY ? 'Found' : 'Not found');
+    if (CLOUD_PROVIDERS_CONFIGURATION.GOOGLE_AI_API_KEY) {
+      dispatch(
+        updateAiAssistantConfig({
+          isReady: true,
+          provider: 'google',
+          model: 'gemini-2.5-flash',
+          apiKey: CLOUD_PROVIDERS_CONFIGURATION.GOOGLE_AI_API_KEY,
+          baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
+          temperature: 0.0,
+          topP: 1.0,
+        })
+      );
+      console.log('✅ AI Assistant configured with Google Gemini');
+    } else {
+      console.warn('⚠️ Google AI API key not found in environment. Add GoogleAIApiKey to .env file.');
+    }
 
     // Load sample pollution monitoring demo data
     const loadDemoData = () => {

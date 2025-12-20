@@ -101,6 +101,13 @@ const demoReducer = combineReducers({
       },
       mapControls: {
         ...DEFAULT_MAP_CONTROLS,
+        // AI Assistant panel open by default
+        aiAssistant: {
+          active: true,
+          activeMapIndex: 0,
+          disableClose: false,
+          show: true
+        },
         // TODO find a better way not to add extra controls optionally - from plugin?
         ...((getApplicationConfig().plugins || []).some(p => p.name === 'duckdb')
           ? {

@@ -245,7 +245,7 @@ export const DEFAULT_EXPORT_MAP: ExportMap = {
 export const INITIAL_UI_STATE: UiState = {
   readOnly: false,
   activeSidePanel: DEFAULT_ACTIVE_SIDE_PANEL,
-  currentModal: DEFAULT_MODAL,
+  currentModal: null,
   datasetKeyToRemove: null,
   visibleDropdown: null,
   // export image modal ui
