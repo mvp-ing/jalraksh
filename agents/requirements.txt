@@ -1,0 +1,4 @@
+google-adk
+google-genai==1.38.0
+google-cloud-aiplatform==1.96.0
+earthengine-api==1.7.4
