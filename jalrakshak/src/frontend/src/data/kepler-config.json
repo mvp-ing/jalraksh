@@ -2,65 +2,64 @@
   "version": "v1",
   "config": {
     "visState": {
-      "filters": [
-        {
-          "dataId": ["pollution_gradient", "sensor_readings"],
-          "id": "time_filter",
-          "name": ["timestamp"],
-          "type": "timeRange",
-          "value": [1704067200000, 1704672000000],
-          "enlarged": true,
-          "plotType": {
-            "type": "histogram",
-            "interval": "day"
-          },
-          "animationWindow": "free",
-          "speed": 1,
-          "yAxis": null,
-          "isAnimating": false,
-          "view": "enlarged"
-        }
-      ],
+      "filters": [],
       "layers": [
         {
-          "id": "pollution_gradient_layer",
-          "type": "point",
+          "id": "pollution_segments_layer",
+          "type": "geojson",
           "config": {
-            "dataId": "pollution_gradient",
-            "label": "Pollution Gradient",
+            "dataId": "pollution_segments",
+            "label": "Pollution Segments",
             "color": [255, 0, 0],
             "columns": {
-              "lat": "lat",
-              "lng": "lon",
-              "altitude": null
+              "geojson": "geometry"
             },
             "isVisible": true,
             "visConfig": {
-              "radius": 35,
-              "fixedRadius": false,
               "opacity": 0.9,
-              "outline": false,
-              "filled": true,
+              "strokeOpacity": 0.9,
+              "thickness": 4,
+              "strokeColor": null,
               "colorRange": {
                 "name": "Pollution Severity",
                 "type": "sequential",
                 "category": "Custom",
                 "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
               },
-              "radiusRange": [30, 40]
+              "strokeColorRange": {
+                "name": "Pollution Severity",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
+              },
+              "radius": 10,
+              "sizeRange": [0, 10],
+              "radiusRange": [0, 50],
+              "heightRange": [0, 500],
+              "elevationScale": 5,
+              "stroked": true,
+              "filled": false,
+              "enable3d": false,
+              "wireframe": false
             },
             "hidden": false,
             "textLabel": []
           },
           "visualChannels": {
-            "colorField": {
+            "colorField": null,
+            "colorScale": "quantile",
+            "strokeColorField": {
               "name": "severity_score",
               "type": "real"
             },
-            "colorScale": "quantize",
-            "colorDomain": [0, 1],
+            "strokeColorScale": "quantize",
+            "strokeColorDomain": [0, 1],
             "sizeField": null,
-            "sizeScale": "linear"
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
           }
         },
         {
@@ -224,7 +223,8 @@
       "interactionConfig": {
         "tooltip": {
           "fieldsToShow": {
-            "pollution_gradient": [
+            "pollution_segments": [
+              {"name": "segment_name", "format": null},
               {"name": "timestamp", "format": null},
               {"name": "severity_score", "format": ".2f"},
               {"name": "pollution_category", "format": null},

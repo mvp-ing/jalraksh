@@ -232,9 +232,11 @@ function getPollutionCategory(severity) {
 }
 
 /**
- * Generate pollution gradient data with NARRATIVE time series
+ * Generate pollution segment data - LINE SEGMENTS between stations
+ * Each segment gets the color/severity of the starting station
+ * This maps municipal station sensor readings onto the actual river path
  */
-function generatePollutionGradientData() {
+function generatePollutionSegmentData() {
   const data = [];
   
   // 14 time steps across 7 days
@@ -263,16 +265,41 @@ function generatePollutionGradientData() {
   ];
   
   timestamps.forEach(({ ts, phase }) => {
-    for (let i = 0; i < riverRouteCoordinates.length; i++) {
-      const [lon, lat] = riverRouteCoordinates[i];
-      const severity = getInterpolatedSeverity(i, phase);
+    // Create a segment from each station to the next
+    for (let i = 0; i < sensorStations.length; i++) {
+      const station = sensorStations[i];
+      const severity = getSeverityForPhase(station, phase);
       const category = getPollutionCategory(severity);
+      
+      // Get the river coordinates for this segment
+      const startIdx = station.coordIndex;
+      const endIdx = (i < sensorStations.length - 1) 
+        ? sensorStations[i + 1].coordIndex 
+        : riverRouteCoordinates.length - 1;
+      
+      // Extract coordinates for this segment (GeoJSON format: [lon, lat])
+      const segmentCoords = riverRouteCoordinates.slice(startIdx, endIdx + 1);
+      
+      // Create GeoJSON LineString for this segment
+      const geometry = JSON.stringify({
+        type: 'LineString',
+        coordinates: segmentCoords
+      });
       
       data.push({
         timestamp: ts,
-        lat,
-        lon,
-        point_id: `P${i.toString().padStart(3, '0')}`,
+        segment_id: `SEG_${station.id}`,
+        segment_name: station.name,
+        station_id: station.id,
+        // Start point (for reference)
+        start_lat: station.lat,
+        start_lon: station.lon,
+        // End point (for reference)
+        end_lat: (i < sensorStations.length - 1) ? sensorStations[i + 1].lat : riverRouteCoordinates[riverRouteCoordinates.length - 1][1],
+        end_lon: (i < sensorStations.length - 1) ? sensorStations[i + 1].lon : riverRouteCoordinates[riverRouteCoordinates.length - 1][0],
+        // GeoJSON geometry for the line
+        geometry: geometry,
+        // Pollution metrics (same for entire segment from starting station)
         severity_score: parseFloat(severity.toFixed(3)),
         pollution_category: category,
         ph: parseFloat((7.5 - severity * 4.5).toFixed(1)),
@@ -286,7 +313,7 @@ function generatePollutionGradientData() {
   return data;
 }
 
-const pollutionGradientData = generatePollutionGradientData();
+const pollutionSegmentData = generatePollutionSegmentData();
 
 /**
  * Sensor Readings with narrative time series
@@ -363,15 +390,20 @@ export function getRiverNetworkDataset() {
   return { info: { id: 'river_network', label: 'Yamuna River Network' }, data: riverNetworkData };
 }
 
-export function getPollutionHeatmapDataset() {
+export function getPollutionSegmentsDataset() {
   return {
-    info: { id: 'pollution_gradient', label: 'Pollution Gradient' },
+    info: { id: 'pollution_segments', label: 'Pollution Segments' },
     data: {
       fields: [
         { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
-        { name: 'lat', type: 'real' },
-        { name: 'lon', type: 'real' },
-        { name: 'point_id', type: 'string' },
+        { name: 'segment_id', type: 'string' },
+        { name: 'segment_name', type: 'string' },
+        { name: 'station_id', type: 'string' },
+        { name: 'start_lat', type: 'real' },
+        { name: 'start_lon', type: 'real' },
+        { name: 'end_lat', type: 'real' },
+        { name: 'end_lon', type: 'real' },
+        { name: 'geometry', type: 'geojson' },
         { name: 'severity_score', type: 'real' },
         { name: 'pollution_category', type: 'string' },
         { name: 'ph', type: 'real' },
@@ -379,9 +411,11 @@ export function getPollutionHeatmapDataset() {
         { name: 'do_level', type: 'real' },
         { name: 'turbidity', type: 'integer' }
       ],
-      rows: pollutionGradientData.map(row => [
-        row.timestamp, row.lat, row.lon, row.point_id, row.severity_score,
-        row.pollution_category, row.ph, row.conductivity, row.do_level, row.turbidity
+      rows: pollutionSegmentData.map(row => [
+        row.timestamp, row.segment_id, row.segment_name, row.station_id,
+        row.start_lat, row.start_lon, row.end_lat, row.end_lon,
+        row.geometry, row.severity_score, row.pollution_category,
+        row.ph, row.conductivity, row.do_level, row.turbidity
       ])
     }
   };
@@ -448,10 +482,28 @@ export function getKeplerConfig() {
   return keplerConfig;
 }
 
+/**
+ * Get the time range for timeseries animation
+ * Returns timestamps in milliseconds for use with setFilterAnimationTime
+ */
+export function getTimeseriesTimeRange() {
+  // Extract unique timestamps from the pollution segment data
+  const timestamps = pollutionSegmentData.map(d => new Date(d.timestamp).getTime());
+  const minTime = Math.min(...timestamps);
+  const maxTime = Math.max(...timestamps);
+  
+  return {
+    min: minTime,
+    max: maxTime,
+    // Initial animation window - start from beginning
+    initialValue: [minTime, minTime + (maxTime - minTime) * 0.1]
+  };
+}
+
 export function loadAllSampleData() {
   // Use the imported kepler config which has proper filter settings
   return {
-    datasets: [getPollutionHeatmapDataset(), getSensorReadingsDataset(), getSuspectLinksDataset()],
+    datasets: [getPollutionSegmentsDataset(), getSensorReadingsDataset(), getSuspectLinksDataset()],
     config: keplerConfig,
     options: { autoCreateLayers: false, centerMap: false }
   };
@@ -476,10 +528,11 @@ export const ALERT_LEVEL_COLORS = {
 export default {
   loadAllSampleData,
   getRiverNetworkDataset,
-  getPollutionHeatmapDataset,
+  getPollutionSegmentsDataset,
   getSensorReadingsDataset,
   getSuspectLinksDataset,
   getKeplerConfig,
+  getTimeseriesTimeRange,
   POLLUTION_CATEGORY_COLORS,
   ALERT_LEVEL_COLORS
 };
