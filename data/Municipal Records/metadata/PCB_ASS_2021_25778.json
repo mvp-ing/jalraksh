@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "ASSA_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.737678Z",
+    "req_id": "REQ-114580"
+  },
+  "payload": {
+    "record_id": 45,
+    "license_id": "PCB/ASS/2021/25778",
+    "company_name": "Sathe Auto Parts Pvt Ltd",
+    "industry_type": "Light Engineering / Assembly",
+    "location_hint": "Diplai Beel At Silgara, Kokrajhar",
+    "station_code_ref": "3821",
+    "state": "ASSAM",
+    "status": "EXPIRED",
+    "valid_upto": "31/03/2024",
+    "authorized_limits": {
+      "max_discharge_kld": 2,
+      "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+      "lat": 26.234212,
+      "lon": 90.30341
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Oil & Grease",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "68fb0dee7af4beb2",
+    "status": "VERIFIED"
+  }
+}

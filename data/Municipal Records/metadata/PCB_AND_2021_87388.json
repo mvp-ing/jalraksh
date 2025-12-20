@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "ANDH_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.677203Z",
+    "req_id": "REQ-701614"
+  },
+  "payload": {
+    "record_id": 26,
+    "license_id": "PCB/AND/2021/87388",
+    "company_name": "Biswas Spinning Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Sea Water, Bay Of Bengal, Krishnapatnam Port",
+    "station_code_ref": "4387",
+    "state": "ANDHRA PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2029",
+    "authorized_limits": {
+      "max_discharge_kld": 650,
+      "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+      "lat": 14.257784,
+      "lon": 80.113782
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Total Dissolved Solids (TDS)",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "46909e975be27ed2",
+    "status": "VERIFIED"
+  }
+}

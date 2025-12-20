@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "GOA_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.744016Z",
+    "req_id": "REQ-746174"
+  },
+  "payload": {
+    "record_id": 47,
+    "license_id": "PCB/GOA/2021/66721",
+    "company_name": "Wagle Fabrics Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Miramar Beach",
+    "station_code_ref": "4014",
+    "state": "GOA",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2030",
+    "authorized_limits": {
+      "max_discharge_kld": 689,
+      "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+      "lat": 15.484922,
+      "lon": 73.803306
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Total Dissolved Solids (TDS)",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "c802627107af9e6c",
+    "status": "VERIFIED"
+  }
+}
