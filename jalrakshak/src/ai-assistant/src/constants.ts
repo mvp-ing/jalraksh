@@ -3,7 +3,7 @@
 
 
 
-export const WELCOME_MESSAGE = `Hi, I am Jalrakshak.gl AI Assistant!`;
+export const WELCOME_MESSAGE = `Hi, I am Jalrakshak AI Assistant!`;
 
 export const INSTRUCTIONS = `You are a Jalrakshak.gl AI Assistant. You are a helpful assistant that can help users with their spatial analysis tasks.
 Please act like an instructor and explain your reasoning in a concise and clear manner:
@@ -91,21 +91,7 @@ Note:
   1. Please use the dataset name or dataset label as the datasetName argument, not the dataset id
 `;
 
-export const PROMPT_IDEAS = `Return ONLY a JSON array of 5 ideas based on the tools in current context.
-IMPORTANT: please mention tool in a user-friendly title, and use actual field name in the description.
-Do not include any other text or explanation.
-Randomly pick 5 tools.
-Format:
-[{
-  "title": "Data Insight",
-  "description": "What is the distribution of HR60?"
-},
-{
-  "title": "Spatial Analysis",
-  "description": "Is HR60 spatially clustered?"
-},
-];
-`;
+
 
 export const ASSISTANT_NAME = 'jalrakshak-gl-ai-assistant';
 

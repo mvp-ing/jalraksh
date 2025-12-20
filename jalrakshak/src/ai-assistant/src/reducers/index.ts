@@ -12,7 +12,6 @@ import {
   SET_MAP_BOUNDARY
 } from '../actions';
 import {MessageModel} from '@openassistant/core';
-import {PROVIDER_DEFAULT_BASE_URLS} from '../config/models';
 
 export type AiAssistantConfig = {
   isReady: boolean;
@@ -25,13 +24,13 @@ export type AiAssistantConfig = {
   mapboxToken?: string;
 };
 
-// Initial state for the reducer
+// Initial state for the reducer - actual config is set via dispatch in app.jsx
 const initialConfig: AiAssistantConfig = {
   isReady: false,
-  provider: 'openai',
-  model: 'gpt-4o',
+  provider: '',
+  model: '',
   apiKey: '',
-  baseUrl: PROVIDER_DEFAULT_BASE_URLS['openai'],
+  baseUrl: '',
   temperature: 0.0,
   topP: 1.0
 };
