@@ -17,7 +17,10 @@ const en = {
   'loadRemoteMap.clickHere': 'click here',
   'loadRemoteMap.fetch': 'Fetch',
   'tooltip.hideSQLPanel': 'Hide SQL Panel',
-  'tooltip.showSQLPanel': 'Show SQL Panel'
+  'tooltip.showSQLPanel': 'Show SQL Panel',
+  
+  // Color picker translations
+  'Update color': 'Update color'
 };
 
 export const messages = {

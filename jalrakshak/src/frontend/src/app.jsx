@@ -42,9 +42,15 @@ import {
   toggleMapControl,
   toggleModal,
   updateMap,
+  addDataToMap,
+  setFilter,
+  addFilter,
 } from '@jalrakshak/actions';
 import { CLOUD_PROVIDERS } from './cloud-providers';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+
+// Import sample data for pollution monitoring demo
+import { loadAllSampleData } from './data/sample-data';
 
 const Jalrakshak = require('@jalrakshak/components').injectComponents([
   replaceLoadDataModal(),
@@ -186,23 +192,60 @@ const App = (props) => {
       dispatch(toggleModal(null));
     }
 
-    // Set initial map view to India
+    // Set initial map view to Delhi (Yamuna River)
     dispatch(
       updateMap({
-        latitude: 20.5937,
-        longitude: 78.9629,
-        zoom: 5,
+        latitude: 28.6139,
+        longitude: 77.2090,
+        zoom: 11,
+        pitch: 45,
+        bearing: 0,
       })
     );
 
-    // delay zs to show the banner
-    // if (!window.localStorage.getItem(BannerKey)) {
-    //   window.setTimeout(_showBanner, 3000);
-    // }
-    // load sample data
-    // _loadSampleData();
+    // Load sample pollution monitoring demo data
+    const loadDemoData = () => {
+      try {
+        const { datasets, config, options } = loadAllSampleData();
+        
+        // Close the load data modal
+        dispatch(toggleModal(null));
+        
+        // Add sample data to map with layer configuration
+        dispatch(
+          addDataToMap({
+            datasets,
+            config,
+            options,
+          })
+        );
+        
+        // Add time filter for animation after data is loaded
+        setTimeout(() => {
+          // Add a new filter for the pollution_gradient dataset
+          dispatch(addFilter('pollution_gradient'));
+          
+          // Set up the time filter on timestamp field
+          setTimeout(() => {
+            // Set the filter field to timestamp (field index 0)
+            dispatch(setFilter(0, 'name', 0)); // 0 is the index of 'timestamp' field
+            dispatch(setFilter(0, 'dataId', ['pollution_gradient', 'sensor_readings']));
+            dispatch(setFilter(0, 'enlarged', true));
+            dispatch(setFilter(0, 'value', [1704067200000, 1704672000000])); // Jan 1-7, 2024
+          }, 200);
+        }, 500);
+        
+        console.log('✅ Jalrakshak: Pollution monitoring demo data loaded successfully');
+        console.log('📊 Loaded layers: Pollution Gradient, Sensor Points, Attribution Arcs, Factory Markers');
+        console.log('⏱️ Time filter added for animation (Jan 1-7, 2024)');
+      } catch (error) {
+        console.error('❌ Jalrakshak: Error loading sample data:', error);
+      }
+    };
 
-    // Notifications
+    // Load demo data after a short delay to ensure map is ready
+    setTimeout(loadDemoData, 500);
+
 
     // no dependencies, as this was part of componentDidMount
     // eslint-disable-next-line react-hooks/exhaustive-deps
