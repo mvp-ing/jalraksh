@@ -11,6 +11,7 @@ import {updateLayerColor} from './layer-style-tool';
 import {loadData, LoadDataTool, LoadDataToolComponent} from './loaddata-tool';
 import {mapBoundary} from './boundary-tool';
 import {saveToolResults} from './save-data-tool';
+import {satelliteSimulation} from './satellite-tool';
 import {AiAssistantState} from '../../reducers';
 
 export function getJalrakshakTools(visState: VisState, aiAssistant: AiAssistantState) {
@@ -71,6 +72,8 @@ export function getJalrakshakTools(visState: VisState, aiAssistant: AiAssistantS
     updateLayerColor: updateLayerColorTool,
     loadData: loadDataTool,
     mapBoundary: mapBoundaryTool,
-    saveDataToMap: saveToolResults
+    saveDataToMap: saveToolResults,
+    satelliteSimulation
   };
 }
+

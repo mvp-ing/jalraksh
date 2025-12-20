@@ -67,11 +67,11 @@
           "type": "point",
           "config": {
             "dataId": "municipal_stations",
-            "label": "Municipal Monitoring Stations",
+            "label": "Water Quality Monitoring Stations",
             "color": [34, 211, 238],
             "columns": {
-              "lat": "lat",
-              "lng": "lon",
+              "lat": "latitude",
+              "lng": "longitude",
               "altitude": null
             },
             "isVisible": true,
@@ -96,7 +96,7 @@
             "textLabel": [
               {
                 "field": {
-                  "name": "station_name",
+                  "name": "monitoring_location",
                   "type": "string"
                 },
                 "color": [255, 255, 255],
@@ -122,8 +122,8 @@
             "label": "River Monitoring Points",
             "color": [34, 197, 94],
             "columns": {
-              "lat": "lat",
-              "lng": "lon",
+              "lat": "latitude",
+              "lng": "longitude",
               "altitude": null
             },
             "isVisible": true,
@@ -207,7 +207,7 @@
           "type": "point",
           "config": {
             "dataId": "suspect_links",
-            "label": "Suspected Factories",
+            "label": "Suspected Pollution Sources",
             "color": [239, 68, 68],
             "columns": {
               "lat": "target_lat",
@@ -235,7 +235,7 @@
             "textLabel": [
               {
                 "field": {
-                  "name": "suspect_name",
+                  "name": "company_name",
                   "type": "string"
                 },
                 "color": [255, 255, 255],
@@ -264,38 +264,56 @@
         "tooltip": {
           "fieldsToShow": {
             "pollution_segments": [
-              {"name": "segment_name", "format": null},
-              {"name": "timestamp", "format": null},
+              {"name": "monitoring_location", "format": null},
+              {"name": "stn_code", "format": null},
+              {"name": "date", "format": null},
               {"name": "severity_score", "format": ".2f"},
               {"name": "pollution_category", "format": null},
-              {"name": "ph", "format": ".1f"}
+              {"name": "temperature_c", "format": ".1f"},
+              {"name": "dissolved_oxygen_mg_l", "format": ".1f"},
+              {"name": "ph", "format": ".2f"},
+              {"name": "conductivity_umho_cm", "format": null},
+              {"name": "bod_mg_l", "format": ".1f"}
             ],
             "municipal_stations": [
-              {"name": "station_name", "format": null},
-              {"name": "timestamp", "format": null},
+              {"name": "monitoring_location", "format": null},
+              {"name": "stn_code", "format": null},
+              {"name": "type_water_body", "format": null},
+              {"name": "state_name", "format": null},
+              {"name": "date", "format": null},
               {"name": "distance_to_river_m", "format": null},
               {"name": "severity_score", "format": ".2f"},
               {"name": "pollution_category", "format": null},
               {"name": "alert_level", "format": null},
-              {"name": "ph", "format": ".1f"},
-              {"name": "conductivity", "format": null},
-              {"name": "do_level", "format": ".1f"},
-              {"name": "turbidity", "format": null},
-              {"name": "water_temp", "format": ".1f"},
-              {"name": "do_saturation", "format": ".1f"}
+              {"name": "temperature_c", "format": ".1f"},
+              {"name": "dissolved_oxygen_mg_l", "format": ".1f"},
+              {"name": "ph", "format": ".2f"},
+              {"name": "conductivity_umho_cm", "format": null},
+              {"name": "bod_mg_l", "format": ".1f"},
+              {"name": "nitrate_n_mg_l", "format": ".2f"},
+              {"name": "fecal_coliform_mpn", "format": null},
+              {"name": "total_coliform_mpn", "format": null}
             ],
             "river_monitoring_points": [
-              {"name": "station_name", "format": null},
-              {"name": "timestamp", "format": null},
+              {"name": "monitoring_location", "format": null},
+              {"name": "stn_code", "format": null},
+              {"name": "date", "format": null},
               {"name": "severity_score", "format": ".2f"},
               {"name": "pollution_category", "format": null},
               {"name": "alert_level", "format": null}
             ],
             "suspect_links": [
-              {"name": "suspect_name", "format": null},
-              {"name": "suspect_type", "format": null},
+              {"name": "company_name", "format": null},
+              {"name": "license_id", "format": null},
+              {"name": "industry_type", "format": null},
+              {"name": "location_hint", "format": null},
+              {"name": "status", "format": null},
+              {"name": "valid_upto", "format": null},
               {"name": "suspicion_score", "format": ".2f"},
-              {"name": "permit_status", "format": null},
+              {"name": "primary_pollutant", "format": null},
+              {"name": "max_discharge_kld", "format": null},
+              {"name": "last_inspection", "format": null},
+              {"name": "historical_violations", "format": null},
               {"name": "evidence", "format": null}
             ]
           },

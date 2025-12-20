@@ -4,6 +4,11 @@
 /**
  * Sample Data Module for Jalrakshak Pollution Monitoring Demo
  * 
+ * Data structure aligned with actual data sources:
+ * - Sensor Stream: Indian water quality data with CPCB parameters
+ * - Municipal Records: PCB license/permit metadata
+ * - Satellite Imagery: Sentinel-2 frame references
+ * 
  * NARRATIVE TIME SERIES:
  * - Day 1-2: River is clean (baseline)
  * - Day 3-4: Factories start polluting (pollution increases)
@@ -197,24 +202,105 @@ function findClosestRiverPoint(stationLat, stationLon) {
 }
 
 /**
- * Municipal monitoring stations - actual station locations on land
- * Station locations are offset ~3km from the river to show they're on land
- * The closest river point is calculated dynamically
+ * Sensor Stations - aligned with CPCB Indian Water Quality Monitoring format
+ * STN code format follows CPCB naming conventions
+ * Type Water Body: RIVER (for Yamuna river monitoring)
+ * State Name: DELHI
  */
 const stationLocations = [
-  { id: 'STN_001', name: 'Wazirabad Barrage', station_lat: 28.6700, station_lon: 77.2050, cleanSeverity: 0.08, pollutedSeverity: 0.15 },
-  { id: 'STN_002', name: 'Old Railway Bridge', station_lat: 28.6600, station_lon: 77.2280, cleanSeverity: 0.10, pollutedSeverity: 0.35 },
-  { id: 'STN_003', name: 'ITO Bridge', station_lat: 28.6530, station_lon: 77.2320, cleanSeverity: 0.12, pollutedSeverity: 0.55 },
-  { id: 'STN_004', name: 'Nizamuddin Bridge', station_lat: 28.6020, station_lon: 77.2300, cleanSeverity: 0.10, pollutedSeverity: 0.78 },
-  { id: 'STN_005', name: 'Sarai Kale Khan', station_lat: 28.5870, station_lon: 77.2500, cleanSeverity: 0.12, pollutedSeverity: 0.88 },
-  { id: 'STN_006', name: 'Okhla Barrage', station_lat: 28.5450, station_lon: 77.2850, cleanSeverity: 0.10, pollutedSeverity: 0.95 },
-  { id: 'STN_007', name: 'Kalindi Kunj', station_lat: 28.5320, station_lon: 77.3000, cleanSeverity: 0.12, pollutedSeverity: 0.90 },
-  { id: 'STN_008', name: 'Faridabad Border', station_lat: 28.4860, station_lon: 77.3280, cleanSeverity: 0.10, pollutedSeverity: 0.72 },
+  { 
+    stn_code: 'DEL_001', 
+    monitoring_location: 'RIVER YAMUNA AT WAZIRABAD BARRAGE', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.6700, 
+    longitude: 77.2050, 
+    cleanSeverity: 0.08, 
+    pollutedSeverity: 0.15,
+    sentinel_images: ['/satellite/DEL_001/original_raw/frame_000.png', '/satellite/DEL_001/original_raw/frame_001.png', '/satellite/DEL_001/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_002', 
+    monitoring_location: 'RIVER YAMUNA AT OLD RAILWAY BRIDGE', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.6600, 
+    longitude: 77.2280, 
+    cleanSeverity: 0.10, 
+    pollutedSeverity: 0.35,
+    sentinel_images: ['/satellite/DEL_002/original_raw/frame_000.png', '/satellite/DEL_002/original_raw/frame_001.png', '/satellite/DEL_002/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_003', 
+    monitoring_location: 'RIVER YAMUNA AT ITO BRIDGE', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.6530, 
+    longitude: 77.2320, 
+    cleanSeverity: 0.12, 
+    pollutedSeverity: 0.55,
+    sentinel_images: ['/satellite/DEL_003/original_raw/frame_000.png', '/satellite/DEL_003/original_raw/frame_001.png', '/satellite/DEL_003/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_004', 
+    monitoring_location: 'RIVER YAMUNA AT NIZAMUDDIN BRIDGE', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.6020, 
+    longitude: 77.2300, 
+    cleanSeverity: 0.10, 
+    pollutedSeverity: 0.78,
+    sentinel_images: ['/satellite/DEL_004/original_raw/frame_000.png', '/satellite/DEL_004/original_raw/frame_001.png', '/satellite/DEL_004/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_005', 
+    monitoring_location: 'RIVER YAMUNA AT SARAI KALE KHAN', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.5870, 
+    longitude: 77.2500, 
+    cleanSeverity: 0.12, 
+    pollutedSeverity: 0.88,
+    sentinel_images: ['/satellite/DEL_005/original_raw/frame_000.png', '/satellite/DEL_005/original_raw/frame_001.png', '/satellite/DEL_005/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_006', 
+    monitoring_location: 'RIVER YAMUNA AT OKHLA BARRAGE', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.5450, 
+    longitude: 77.2850, 
+    cleanSeverity: 0.10, 
+    pollutedSeverity: 0.95,
+    sentinel_images: ['/satellite/DEL_006/original_raw/frame_000.png', '/satellite/DEL_006/original_raw/frame_001.png', '/satellite/DEL_006/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_007', 
+    monitoring_location: 'RIVER YAMUNA AT KALINDI KUNJ', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.5320, 
+    longitude: 77.3000, 
+    cleanSeverity: 0.12, 
+    pollutedSeverity: 0.90,
+    sentinel_images: ['/satellite/DEL_007/original_raw/frame_000.png', '/satellite/DEL_007/original_raw/frame_001.png', '/satellite/DEL_007/simulated_raw/frame_000.png']
+  },
+  { 
+    stn_code: 'DEL_008', 
+    monitoring_location: 'RIVER YAMUNA AT FARIDABAD BORDER', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.4860, 
+    longitude: 77.3280, 
+    cleanSeverity: 0.10, 
+    pollutedSeverity: 0.72,
+    sentinel_images: ['/satellite/DEL_008/original_raw/frame_000.png', '/satellite/DEL_008/original_raw/frame_001.png', '/satellite/DEL_008/simulated_raw/frame_000.png']
+  },
 ];
 
 // Build sensor stations with calculated closest river points
 const sensorStations = stationLocations.map(station => {
-  const closest = findClosestRiverPoint(station.station_lat, station.station_lon);
+  const closest = findClosestRiverPoint(station.latitude, station.longitude);
   return {
     ...station,
     ...closest
@@ -284,6 +370,39 @@ function getPollutionCategory(severity) {
 }
 
 /**
+ * Generate water quality parameters based on severity
+ * Aligned with CPCB Indian Water Quality data format:
+ * - Temperature (C)
+ * - Dissolved Oxygen (mg/L) 
+ * - pH
+ * - Conductivity (µmho/cm)
+ * - BOD (mg/L)
+ * - NitrateN (mg/L)
+ * - Fecal Coliform (MPN/100ml)
+ * - Total Coliform (MPN/100ml)
+ */
+function getWaterQualityParams(severity) {
+  return {
+    // Temperature increases with pollution (thermal discharge)
+    temperature_c: parseFloat((22 + severity * 10).toFixed(1)),
+    // Dissolved oxygen decreases with pollution (organic load consumes oxygen)
+    dissolved_oxygen_mg_l: parseFloat((8.0 - severity * 7.0).toFixed(1)),
+    // pH becomes more acidic/alkaline with pollution
+    ph: parseFloat((7.5 - severity * 2.0 + (Math.random() - 0.5) * 0.5).toFixed(2)),
+    // Conductivity increases with dissolved pollutants
+    conductivity_umho_cm: Math.round(200 + severity * 3500),
+    // BOD increases with organic pollution
+    bod_mg_l: parseFloat((2 + severity * 30).toFixed(1)),
+    // Nitrate increases with agricultural/sewage runoff
+    nitrate_n_mg_l: parseFloat((0.5 + severity * 15).toFixed(2)),
+    // Fecal coliform increases with sewage contamination
+    fecal_coliform_mpn: Math.round(10 + severity * 50000),
+    // Total coliform increases with contamination
+    total_coliform_mpn: Math.round(50 + severity * 150000)
+  };
+}
+
+/**
  * Generate pollution segment data - LINE SEGMENTS between stations
  * Each segment gets the color/severity of the starting station
  * This maps municipal station sensor readings onto the actual river path
@@ -291,37 +410,38 @@ function getPollutionCategory(severity) {
 function generatePollutionSegmentData() {
   const data = [];
   
-  // 14 time steps across 7 days
+  // 14 time steps across 7 days - using ISO date format like CPCB data
   const timestamps = [
     // Day 1 - Clean
-    { ts: '2024-01-01T00:00:00Z', phase: 0.00 },
-    { ts: '2024-01-01T12:00:00Z', phase: 0.07 },
+    { ts: '2024-01-01', phase: 0.00 },
+    { ts: '2024-01-01', phase: 0.07 },
     // Day 2 - Still clean
-    { ts: '2024-01-02T00:00:00Z', phase: 0.14 },
-    { ts: '2024-01-02T12:00:00Z', phase: 0.21 },
+    { ts: '2024-01-02', phase: 0.14 },
+    { ts: '2024-01-02', phase: 0.21 },
     // Day 3 - Factories start polluting
-    { ts: '2024-01-03T00:00:00Z', phase: 0.28 },
-    { ts: '2024-01-03T12:00:00Z', phase: 0.35 },
+    { ts: '2024-01-03', phase: 0.28 },
+    { ts: '2024-01-03', phase: 0.35 },
     // Day 4 - Pollution increasing
-    { ts: '2024-01-04T00:00:00Z', phase: 0.42 },
-    { ts: '2024-01-04T12:00:00Z', phase: 0.50 },
+    { ts: '2024-01-04', phase: 0.42 },
+    { ts: '2024-01-04', phase: 0.50 },
     // Day 5 - Heavy pollution
-    { ts: '2024-01-05T00:00:00Z', phase: 0.57 },
-    { ts: '2024-01-05T12:00:00Z', phase: 0.64 },
+    { ts: '2024-01-05', phase: 0.57 },
+    { ts: '2024-01-05', phase: 0.64 },
     // Day 6 - Peak pollution
-    { ts: '2024-01-06T00:00:00Z', phase: 0.71 },
-    { ts: '2024-01-06T12:00:00Z', phase: 0.78 },
+    { ts: '2024-01-06', phase: 0.71 },
+    { ts: '2024-01-06', phase: 0.78 },
     // Day 7 - Maximum pollution
-    { ts: '2024-01-07T00:00:00Z', phase: 0.85 },
-    { ts: '2024-01-07T12:00:00Z', phase: 1.00 },
+    { ts: '2024-01-07', phase: 0.85 },
+    { ts: '2024-01-07', phase: 1.00 },
   ];
   
-  timestamps.forEach(({ ts, phase }) => {
+  timestamps.forEach(({ ts, phase }, timeIdx) => {
     // Create a segment from each station to the next
     for (let i = 0; i < sensorStations.length; i++) {
       const station = sensorStations[i];
       const severity = getSeverityForPhase(station, phase);
       const category = getPollutionCategory(severity);
+      const params = getWaterQualityParams(severity);
       
       // Get the river coordinates for this segment
       const startIdx = station.coordIndex;
@@ -338,11 +458,17 @@ function generatePollutionSegmentData() {
         coordinates: segmentCoords
       });
       
+      // Use timestamp with time component for animation
+      const fullTimestamp = `${ts}T${String(timeIdx % 2 === 0 ? 0 : 12).padStart(2, '0')}:00:00Z`;
+      
       data.push({
-        timestamp: ts,
-        segment_id: `SEG_${station.id}`,
-        segment_name: station.name,
-        station_id: station.id,
+        timestamp: fullTimestamp,
+        date: ts,
+        segment_id: `SEG_${station.stn_code}`,
+        stn_code: station.stn_code,
+        monitoring_location: station.monitoring_location,
+        type_water_body: station.type_water_body,
+        state_name: station.state_name,
         // Start point (river point for this station)
         start_lat: station.river_lat,
         start_lon: station.river_lon,
@@ -351,13 +477,11 @@ function generatePollutionSegmentData() {
         end_lon: (i < sensorStations.length - 1) ? sensorStations[i + 1].river_lon : riverRouteCoordinates[riverRouteCoordinates.length - 1][0],
         // GeoJSON geometry for the line
         geometry: geometry,
-        // Pollution metrics (same for entire segment from starting station)
+        // Pollution metrics aligned with CPCB format
         severity_score: parseFloat(severity.toFixed(3)),
         pollution_category: category,
-        ph: parseFloat((7.5 - severity * 4.5).toFixed(1)),
-        conductivity: Math.round(400 + severity * 3200),
-        do_level: parseFloat((7.5 - severity * 7.0).toFixed(1)),
-        turbidity: Math.round(10 + severity * 250)
+        // CPCB water quality parameters
+        ...params
       });
     }
   });
@@ -368,62 +492,67 @@ function generatePollutionSegmentData() {
 const pollutionSegmentData = generatePollutionSegmentData();
 
 /**
- * Municipal Station Data - station locations with all sensor readings
- * These are the actual monitoring station buildings near the river
+ * Municipal Station Data - aligned with CPCB Indian Water Quality Monitoring format
+ * Uses same field names as Indian_water_data_augmented.csv
  */
 function generateMunicipalStationData() {
   const data = [];
   
   const timestamps = [
-    { ts: '2024-01-01T00:00:00Z', phase: 0.00 },
-    { ts: '2024-01-01T12:00:00Z', phase: 0.07 },
-    { ts: '2024-01-02T00:00:00Z', phase: 0.14 },
-    { ts: '2024-01-02T12:00:00Z', phase: 0.21 },
-    { ts: '2024-01-03T00:00:00Z', phase: 0.28 },
-    { ts: '2024-01-03T12:00:00Z', phase: 0.35 },
-    { ts: '2024-01-04T00:00:00Z', phase: 0.42 },
-    { ts: '2024-01-04T12:00:00Z', phase: 0.50 },
-    { ts: '2024-01-05T00:00:00Z', phase: 0.57 },
-    { ts: '2024-01-05T12:00:00Z', phase: 0.64 },
-    { ts: '2024-01-06T00:00:00Z', phase: 0.71 },
-    { ts: '2024-01-06T12:00:00Z', phase: 0.78 },
-    { ts: '2024-01-07T00:00:00Z', phase: 0.85 },
-    { ts: '2024-01-07T12:00:00Z', phase: 1.00 },
+    { ts: '2024-01-01', phase: 0.00 },
+    { ts: '2024-01-01', phase: 0.07 },
+    { ts: '2024-01-02', phase: 0.14 },
+    { ts: '2024-01-02', phase: 0.21 },
+    { ts: '2024-01-03', phase: 0.28 },
+    { ts: '2024-01-03', phase: 0.35 },
+    { ts: '2024-01-04', phase: 0.42 },
+    { ts: '2024-01-04', phase: 0.50 },
+    { ts: '2024-01-05', phase: 0.57 },
+    { ts: '2024-01-05', phase: 0.64 },
+    { ts: '2024-01-06', phase: 0.71 },
+    { ts: '2024-01-06', phase: 0.78 },
+    { ts: '2024-01-07', phase: 0.85 },
+    { ts: '2024-01-07', phase: 1.00 },
   ];
   
-  timestamps.forEach(({ ts, phase }) => {
+  timestamps.forEach(({ ts, phase }, timeIdx) => {
     sensorStations.forEach(station => {
       const severity = getSeverityForPhase(station, phase);
       const category = getPollutionCategory(severity);
       const isAnomaly = severity > 0.60;
+      const params = getWaterQualityParams(severity);
       
       let alertLevel = 'GREEN';
       if (severity > 0.65) alertLevel = 'RED';
       else if (severity > 0.45) alertLevel = 'ORANGE';
       else if (severity > 0.25) alertLevel = 'YELLOW';
       
+      // Use timestamp with time component for animation
+      const fullTimestamp = `${ts}T${String(timeIdx % 2 === 0 ? 0 : 12).padStart(2, '0')}:00:00Z`;
+      
       data.push({
-        timestamp: ts,
-        station_id: station.id,
-        station_name: station.name,
-        // Municipal station location (near river bank)
-        lat: station.station_lat,
-        lon: station.station_lon,
+        // Timestamp fields
+        timestamp: fullTimestamp,
+        date: ts,
+        // CPCB station identification
+        stn_code: station.stn_code,
+        monitoring_location: station.monitoring_location,
+        type_water_body: station.type_water_body,
+        state_name: station.state_name,
+        // Station location
+        latitude: station.latitude,
+        longitude: station.longitude,
         // Distance to river
         distance_to_river_m: station.distance_m,
-        // All sensor readings
+        // Pollution metrics
         severity_score: parseFloat(severity.toFixed(2)),
         pollution_category: category,
         is_anomaly: isAnomaly,
         alert_level: alertLevel,
-        ph: parseFloat((7.5 - severity * 4.5).toFixed(1)),
-        conductivity: Math.round(400 + severity * 3200),
-        do_level: parseFloat((7.5 - severity * 7.0).toFixed(1)),
-        turbidity: Math.round(10 + severity * 250),
-        // Water temperature (simulated)
-        water_temp: parseFloat((22 + severity * 8).toFixed(1)),
-        // Dissolved oxygen percentage
-        do_saturation: parseFloat((95 - severity * 60).toFixed(1))
+        // CPCB water quality parameters
+        ...params,
+        // Sentinel satellite images
+        sentinel_images: station.sentinel_images || []
       });
     });
   });
@@ -439,23 +568,23 @@ function generateRiverMonitoringPointsData() {
   const data = [];
   
   const timestamps = [
-    { ts: '2024-01-01T00:00:00Z', phase: 0.00 },
-    { ts: '2024-01-01T12:00:00Z', phase: 0.07 },
-    { ts: '2024-01-02T00:00:00Z', phase: 0.14 },
-    { ts: '2024-01-02T12:00:00Z', phase: 0.21 },
-    { ts: '2024-01-03T00:00:00Z', phase: 0.28 },
-    { ts: '2024-01-03T12:00:00Z', phase: 0.35 },
-    { ts: '2024-01-04T00:00:00Z', phase: 0.42 },
-    { ts: '2024-01-04T12:00:00Z', phase: 0.50 },
-    { ts: '2024-01-05T00:00:00Z', phase: 0.57 },
-    { ts: '2024-01-05T12:00:00Z', phase: 0.64 },
-    { ts: '2024-01-06T00:00:00Z', phase: 0.71 },
-    { ts: '2024-01-06T12:00:00Z', phase: 0.78 },
-    { ts: '2024-01-07T00:00:00Z', phase: 0.85 },
-    { ts: '2024-01-07T12:00:00Z', phase: 1.00 },
+    { ts: '2024-01-01', phase: 0.00 },
+    { ts: '2024-01-01', phase: 0.07 },
+    { ts: '2024-01-02', phase: 0.14 },
+    { ts: '2024-01-02', phase: 0.21 },
+    { ts: '2024-01-03', phase: 0.28 },
+    { ts: '2024-01-03', phase: 0.35 },
+    { ts: '2024-01-04', phase: 0.42 },
+    { ts: '2024-01-04', phase: 0.50 },
+    { ts: '2024-01-05', phase: 0.57 },
+    { ts: '2024-01-05', phase: 0.64 },
+    { ts: '2024-01-06', phase: 0.71 },
+    { ts: '2024-01-06', phase: 0.78 },
+    { ts: '2024-01-07', phase: 0.85 },
+    { ts: '2024-01-07', phase: 1.00 },
   ];
   
-  timestamps.forEach(({ ts, phase }) => {
+  timestamps.forEach(({ ts, phase }, timeIdx) => {
     sensorStations.forEach(station => {
       const severity = getSeverityForPhase(station, phase);
       const category = getPollutionCategory(severity);
@@ -465,13 +594,18 @@ function generateRiverMonitoringPointsData() {
       else if (severity > 0.45) alertLevel = 'ORANGE';
       else if (severity > 0.25) alertLevel = 'YELLOW';
       
+      // Use timestamp with time component for animation
+      const fullTimestamp = `${ts}T${String(timeIdx % 2 === 0 ? 0 : 12).padStart(2, '0')}:00:00Z`;
+      
       data.push({
-        timestamp: ts,
-        point_id: `RP_${station.id}`,
-        station_name: station.name,
+        timestamp: fullTimestamp,
+        date: ts,
+        point_id: `RP_${station.stn_code}`,
+        stn_code: station.stn_code,
+        monitoring_location: station.monitoring_location,
         // River point location (ON the river)
-        lat: station.river_lat,
-        lon: station.river_lon,
+        latitude: station.river_lat,
+        longitude: station.river_lon,
         // Pollution data for coloring
         severity_score: parseFloat(severity.toFixed(2)),
         pollution_category: category,
@@ -487,16 +621,221 @@ const municipalStationData = generateMunicipalStationData();
 const riverMonitoringPointsData = generateRiverMonitoringPointsData();
 
 /**
- * Suspect Links Data - factories that cause pollution
+ * Suspect Links Data - aligned with PCB Municipal Records format
+ * Uses structure from data/Municipal Records/metadata/*.json
+ * 
+ * Format based on PCB license/permit system:
+ * - license_id: PCB license number (format: PCB/STATE/YEAR/NUMBER)
+ * - company_name: Company/factory name
+ * - industry_type: Industry category
+ * - location_hint: Description of location
+ * - station_code_ref: Reference to nearest monitoring station
+ * - status: ACTIVE, EXPIRED, SUSPENDED
+ * - geolocation: { lat, lon }
+ * - authorized_limits: { max_discharge_kld, primary_pollutant }
+ * - compliance_history: { last_inspection, bank_guarantee_amt }
+ * - sentinel_images: Empty array - populated on-demand when user generates satellite analysis
  */
 const suspectLinksData = [
-  { source_lat: 28.6591811, source_lon: 77.2582841, target_lat: 28.6640, target_lon: 77.2650, incident_id: 'INC-001', suspect_name: 'Shahdara Rubber Factory', suspect_type: 'Rubber Manufacturing', distance_upstream_m: 380, suspicion_score: 0.82, permit_status: 'EXPIRED', evidence: 'Sulfur compounds detected.', last_inspection: '2022-04-12', historical_violations: 4, sentinel_images: ['/sentinel/shahdara_rubber_2024_01_15.jpg', '/sentinel/shahdara_rubber_2024_01_22.jpg', '/sentinel/shahdara_rubber_2024_02_01.jpg', '/sentinel/shahdara_rubber_2024_02_08.jpg', '/sentinel/shahdara_rubber_2024_02_15.jpg'] },
-  { source_lat: 28.6521342, source_lon: 77.2626936, target_lat: 28.6580, target_lon: 77.2700, incident_id: 'INC-002', suspect_name: 'Sadar Bazaar Textile Market', suspect_type: 'Textile Dyeing', distance_upstream_m: 420, suspicion_score: 0.75, permit_status: 'NA', evidence: 'Multiple dyeing units.', last_inspection: '2023-06-20', historical_violations: 0, sentinel_images: ['/sentinel/sadar_textile_2024_01_10.jpg', '/sentinel/sadar_textile_2024_01_20.jpg', '/sentinel/sadar_textile_2024_02_05.jpg'] },
-  { source_lat: 28.6015255, source_lon: 77.2608054, target_lat: 28.6050, target_lon: 77.2680, incident_id: 'INC-003', suspect_name: 'Apex Dyeing Works Pvt Ltd', suspect_type: 'Textile Industry', distance_upstream_m: 450, suspicion_score: 0.92, permit_status: 'EXPIRED', evidence: 'High Conductivity matches effluent profile.', last_inspection: '2022-11-20', historical_violations: 3, sentinel_images: ['/sentinel/apex_dyeing_2024_01_05.jpg', '/sentinel/apex_dyeing_2024_01_12.jpg', '/sentinel/apex_dyeing_2024_01_19.jpg', '/sentinel/apex_dyeing_2024_01_26.jpg', '/sentinel/apex_dyeing_2024_02_02.jpg', '/sentinel/apex_dyeing_2024_02_09.jpg', '/sentinel/apex_dyeing_2024_02_16.jpg'] },
-  { source_lat: 28.5861798, source_lon: 77.2813296, target_lat: 28.5920, target_lon: 77.2880, incident_id: 'INC-004', suspect_name: 'Badarpur Power Station', suspect_type: 'Power Generation', distance_upstream_m: 680, suspicion_score: 0.78, permit_status: 'ACTIVE', evidence: 'Thermal discharge confirmed.', last_inspection: '2024-02-10', historical_violations: 2, sentinel_images: ['/sentinel/badarpur_power_2024_01_08.jpg', '/sentinel/badarpur_power_2024_01_15.jpg', '/sentinel/badarpur_power_2024_01_22.jpg', '/sentinel/badarpur_power_2024_02_01.jpg'] },
-  { source_lat: 28.5444696, source_lon: 77.3149162, target_lat: 28.5500, target_lon: 77.3220, incident_id: 'INC-005', suspect_name: 'Metro Leather Works', suspect_type: 'Leather Tanning', distance_upstream_m: 520, suspicion_score: 0.88, permit_status: 'EXPIRED', evidence: 'Chromium levels elevated.', last_inspection: '2021-05-22', historical_violations: 5, sentinel_images: ['/sentinel/metro_leather_2024_01_03.jpg', '/sentinel/metro_leather_2024_01_10.jpg', '/sentinel/metro_leather_2024_01_17.jpg', '/sentinel/metro_leather_2024_01_24.jpg', '/sentinel/metro_leather_2024_02_01.jpg', '/sentinel/metro_leather_2024_02_08.jpg', '/sentinel/metro_leather_2024_02_15.jpg', '/sentinel/metro_leather_2024_02_22.jpg'] },
-  { source_lat: 28.5444696, source_lon: 77.3149162, target_lat: 28.5470, target_lon: 77.3180, incident_id: 'INC-006', suspect_name: 'Okhla STP Outfall', suspect_type: 'Sewage Treatment Plant', distance_upstream_m: 180, suspicion_score: 0.52, permit_status: 'ACTIVE', evidence: 'Treatment capacity exceeded.', last_inspection: '2024-03-01', historical_violations: 2, sentinel_images: ['/sentinel/okhla_stp_2024_01_12.jpg', '/sentinel/okhla_stp_2024_01_26.jpg'] },
-  { source_lat: 28.5315889, source_lon: 77.3309392, target_lat: 28.5380, target_lon: 77.3380, incident_id: 'INC-007', suspect_name: 'Kalindi Industrial Estate', suspect_type: 'Chemical Manufacturing', distance_upstream_m: 350, suspicion_score: 0.85, permit_status: 'EXPIRED', evidence: 'Heavy metals in effluent.', last_inspection: '2021-09-15', historical_violations: 6, sentinel_images: ['/sentinel/kalindi_estate_2024_01_01.jpg', '/sentinel/kalindi_estate_2024_01_08.jpg', '/sentinel/kalindi_estate_2024_01_15.jpg', '/sentinel/kalindi_estate_2024_01_22.jpg', '/sentinel/kalindi_estate_2024_01_29.jpg', '/sentinel/kalindi_estate_2024_02_05.jpg', '/sentinel/kalindi_estate_2024_02_12.jpg', '/sentinel/kalindi_estate_2024_02_19.jpg', '/sentinel/kalindi_estate_2024_02_26.jpg', '/sentinel/kalindi_estate_2024_03_05.jpg'] },
+  { 
+    source_lat: 28.6591811, 
+    source_lon: 77.2582841, 
+    target_lat: 28.6640, 
+    target_lon: 77.2650, 
+    // PCB license format
+    license_id: 'PCB/DEL/2021/49869',
+    company_name: 'Shahdara Rubber Industries Pvt Ltd',
+    industry_type: 'Rubber Manufacturing',
+    location_hint: 'Near Yamuna River at Shahdara',
+    station_code_ref: 'DEL_002',
+    state: 'DELHI',
+    status: 'EXPIRED',
+    valid_upto: '31/03/2022',
+    authorized_limits: {
+      max_discharge_kld: 50,
+      primary_pollutant: 'Sulfur Compounds'
+    },
+    geolocation: { lat: 28.6640, lon: 77.2650 },
+    compliance_history: {
+      last_inspection: '12/04/2022',
+      bank_guarantee_amt: '10,00,000'
+    },
+    // Derived fields for display
+    distance_upstream_m: 380, 
+    suspicion_score: 0.82,
+    evidence: 'Sulfur compounds detected in downstream water samples.',
+    historical_violations: 4,
+    // Satellite imagery - empty by default, populated when user generates analysis
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.6521342, 
+    source_lon: 77.2626936, 
+    target_lat: 28.6580, 
+    target_lon: 77.2700, 
+    license_id: 'PCB/DEL/2021/52009',
+    company_name: 'Sadar Bazaar Textile Cluster',
+    industry_type: 'Textile Dyeing',
+    location_hint: 'Sadar Bazaar Industrial Area',
+    station_code_ref: 'DEL_003',
+    state: 'DELHI',
+    status: 'NA',
+    valid_upto: '',
+    authorized_limits: {
+      max_discharge_kld: 0,
+      primary_pollutant: 'Dyes and Chemicals'
+    },
+    geolocation: { lat: 28.6580, lon: 77.2700 },
+    compliance_history: {
+      last_inspection: '20/06/2023',
+      bank_guarantee_amt: '0'
+    },
+    distance_upstream_m: 420, 
+    suspicion_score: 0.75,
+    evidence: 'Multiple small-scale dyeing units operating without permits.',
+    historical_violations: 0,
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.6015255, 
+    source_lon: 77.2608054, 
+    target_lat: 28.6050, 
+    target_lon: 77.2680, 
+    license_id: 'PCB/DEL/2021/55853',
+    company_name: 'Apex Dyeing Works Pvt Ltd',
+    industry_type: 'Textile Industry',
+    location_hint: 'Near ITO Industrial Complex',
+    station_code_ref: 'DEL_004',
+    state: 'DELHI',
+    status: 'EXPIRED',
+    valid_upto: '30/11/2022',
+    authorized_limits: {
+      max_discharge_kld: 100,
+      primary_pollutant: 'Heavy Metals'
+    },
+    geolocation: { lat: 28.6050, lon: 77.2680 },
+    compliance_history: {
+      last_inspection: '20/11/2022',
+      bank_guarantee_amt: '15,00,000'
+    },
+    distance_upstream_m: 450, 
+    suspicion_score: 0.92,
+    evidence: 'High Conductivity matches industrial effluent profile.',
+    historical_violations: 3,
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.5861798, 
+    source_lon: 77.2813296, 
+    target_lat: 28.5920, 
+    target_lon: 77.2880, 
+    license_id: 'PCB/DEL/2023/62447',
+    company_name: 'Badarpur Thermal Power Station',
+    industry_type: 'Power Generation',
+    location_hint: 'Badarpur NTPC Complex',
+    station_code_ref: 'DEL_005',
+    state: 'DELHI',
+    status: 'ACTIVE',
+    valid_upto: '31/12/2025',
+    authorized_limits: {
+      max_discharge_kld: 5000,
+      primary_pollutant: 'Thermal Discharge'
+    },
+    geolocation: { lat: 28.5920, lon: 77.2880 },
+    compliance_history: {
+      last_inspection: '10/02/2024',
+      bank_guarantee_amt: '50,00,000'
+    },
+    distance_upstream_m: 680, 
+    suspicion_score: 0.78,
+    evidence: 'Thermal discharge confirmed - elevated water temperature downstream.',
+    historical_violations: 2,
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.5444696, 
+    source_lon: 77.3149162, 
+    target_lat: 28.5500, 
+    target_lon: 77.3220, 
+    license_id: 'PCB/DEL/2020/81397',
+    company_name: 'Metro Leather Works',
+    industry_type: 'Leather Tanning',
+    location_hint: 'Okhla Industrial Area Phase II',
+    station_code_ref: 'DEL_006',
+    state: 'DELHI',
+    status: 'EXPIRED',
+    valid_upto: '31/05/2021',
+    authorized_limits: {
+      max_discharge_kld: 75,
+      primary_pollutant: 'Chromium'
+    },
+    geolocation: { lat: 28.5500, lon: 77.3220 },
+    compliance_history: {
+      last_inspection: '22/05/2021',
+      bank_guarantee_amt: '20,00,000'
+    },
+    distance_upstream_m: 520, 
+    suspicion_score: 0.88,
+    evidence: 'Chromium levels elevated - leather tanning effluent suspected.',
+    historical_violations: 5,
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.5444696, 
+    source_lon: 77.3149162, 
+    target_lat: 28.5470, 
+    target_lon: 77.3180, 
+    license_id: 'PCB/DEL/2023/83706',
+    company_name: 'Okhla Sewage Treatment Plant',
+    industry_type: 'Sewage Treatment Plant',
+    location_hint: 'Okhla STP Complex',
+    station_code_ref: 'DEL_006',
+    state: 'DELHI',
+    status: 'ACTIVE',
+    valid_upto: '31/12/2026',
+    authorized_limits: {
+      max_discharge_kld: 640000,
+      primary_pollutant: 'Organic Matter'
+    },
+    geolocation: { lat: 28.5470, lon: 77.3180 },
+    compliance_history: {
+      last_inspection: '01/03/2024',
+      bank_guarantee_amt: '1,00,00,000'
+    },
+    distance_upstream_m: 180, 
+    suspicion_score: 0.52,
+    evidence: 'Treatment capacity exceeded during monsoon - overflow suspected.',
+    historical_violations: 2,
+    sentinel_images: []
+  },
+  { 
+    source_lat: 28.5315889, 
+    source_lon: 77.3309392, 
+    target_lat: 28.5380, 
+    target_lon: 77.3380, 
+    license_id: 'PCB/DEL/2020/87388',
+    company_name: 'Kalindi Chemical Industries Cluster',
+    industry_type: 'Chemical Manufacturing',
+    location_hint: 'Kalindi Industrial Estate',
+    station_code_ref: 'DEL_007',
+    state: 'DELHI',
+    status: 'EXPIRED',
+    valid_upto: '15/09/2021',
+    authorized_limits: {
+      max_discharge_kld: 200,
+      primary_pollutant: 'Heavy Metals'
+    },
+    geolocation: { lat: 28.5380, lon: 77.3380 },
+    compliance_history: {
+      last_inspection: '15/09/2021',
+      bank_guarantee_amt: '25,00,000'
+    },
+    distance_upstream_m: 350, 
+    suspicion_score: 0.85,
+    evidence: 'Heavy metals detected in effluent samples.',
+    historical_violations: 6,
+    sentinel_images: []
+  },
 ];
 
 // Dataset export functions
@@ -510,9 +849,12 @@ export function getPollutionSegmentsDataset() {
     data: {
       fields: [
         { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
+        { name: 'date', type: 'string' },
         { name: 'segment_id', type: 'string' },
-        { name: 'segment_name', type: 'string' },
-        { name: 'station_id', type: 'string' },
+        { name: 'stn_code', type: 'string' },
+        { name: 'monitoring_location', type: 'string' },
+        { name: 'type_water_body', type: 'string' },
+        { name: 'state_name', type: 'string' },
         { name: 'start_lat', type: 'real' },
         { name: 'start_lon', type: 'real' },
         { name: 'end_lat', type: 'real' },
@@ -520,16 +862,24 @@ export function getPollutionSegmentsDataset() {
         { name: 'geometry', type: 'geojson' },
         { name: 'severity_score', type: 'real' },
         { name: 'pollution_category', type: 'string' },
+        // CPCB water quality parameters
+        { name: 'temperature_c', type: 'real' },
+        { name: 'dissolved_oxygen_mg_l', type: 'real' },
         { name: 'ph', type: 'real' },
-        { name: 'conductivity', type: 'integer' },
-        { name: 'do_level', type: 'real' },
-        { name: 'turbidity', type: 'integer' }
+        { name: 'conductivity_umho_cm', type: 'integer' },
+        { name: 'bod_mg_l', type: 'real' },
+        { name: 'nitrate_n_mg_l', type: 'real' },
+        { name: 'fecal_coliform_mpn', type: 'integer' },
+        { name: 'total_coliform_mpn', type: 'integer' }
       ],
       rows: pollutionSegmentData.map(row => [
-        row.timestamp, row.segment_id, row.segment_name, row.station_id,
+        row.timestamp, row.date, row.segment_id, row.stn_code,
+        row.monitoring_location, row.type_water_body, row.state_name,
         row.start_lat, row.start_lon, row.end_lat, row.end_lon,
         row.geometry, row.severity_score, row.pollution_category,
-        row.ph, row.conductivity, row.do_level, row.turbidity
+        row.temperature_c, row.dissolved_oxygen_mg_l, row.ph,
+        row.conductivity_umho_cm, row.bod_mg_l, row.nitrate_n_mg_l,
+        row.fecal_coliform_mpn, row.total_coliform_mpn
       ])
     }
   };
@@ -537,31 +887,43 @@ export function getPollutionSegmentsDataset() {
 
 export function getMunicipalStationsDataset() {
   return {
-    info: { id: 'municipal_stations', label: 'Municipal Monitoring Stations' },
+    info: { id: 'municipal_stations', label: 'Water Quality Monitoring Stations' },
     data: {
       fields: [
         { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
-        { name: 'station_id', type: 'string' },
-        { name: 'station_name', type: 'string' },
-        { name: 'lat', type: 'real' },
-        { name: 'lon', type: 'real' },
+        { name: 'date', type: 'string' },
+        { name: 'stn_code', type: 'string' },
+        { name: 'monitoring_location', type: 'string' },
+        { name: 'type_water_body', type: 'string' },
+        { name: 'state_name', type: 'string' },
+        { name: 'latitude', type: 'real' },
+        { name: 'longitude', type: 'real' },
         { name: 'distance_to_river_m', type: 'integer' },
         { name: 'severity_score', type: 'real' },
         { name: 'pollution_category', type: 'string' },
         { name: 'is_anomaly', type: 'boolean' },
         { name: 'alert_level', type: 'string' },
+        // CPCB water quality parameters
+        { name: 'temperature_c', type: 'real' },
+        { name: 'dissolved_oxygen_mg_l', type: 'real' },
         { name: 'ph', type: 'real' },
-        { name: 'conductivity', type: 'integer' },
-        { name: 'do_level', type: 'real' },
-        { name: 'turbidity', type: 'integer' },
-        { name: 'water_temp', type: 'real' },
-        { name: 'do_saturation', type: 'real' }
+        { name: 'conductivity_umho_cm', type: 'integer' },
+        { name: 'bod_mg_l', type: 'real' },
+        { name: 'nitrate_n_mg_l', type: 'real' },
+        { name: 'fecal_coliform_mpn', type: 'integer' },
+        { name: 'total_coliform_mpn', type: 'integer' },
+        // Sentinel satellite images for this station
+        { name: 'sentinel_images', type: 'string' }
       ],
       rows: municipalStationData.map(row => [
-        row.timestamp, row.station_id, row.station_name, row.lat, row.lon,
+        row.timestamp, row.date, row.stn_code, row.monitoring_location,
+        row.type_water_body, row.state_name, row.latitude, row.longitude,
         row.distance_to_river_m, row.severity_score, row.pollution_category,
-        row.is_anomaly, row.alert_level, row.ph, row.conductivity,
-        row.do_level, row.turbidity, row.water_temp, row.do_saturation
+        row.is_anomaly, row.alert_level,
+        row.temperature_c, row.dissolved_oxygen_mg_l, row.ph,
+        row.conductivity_umho_cm, row.bod_mg_l, row.nitrate_n_mg_l,
+        row.fecal_coliform_mpn, row.total_coliform_mpn,
+        JSON.stringify(row.sentinel_images || [])
       ])
     }
   };
@@ -573,16 +935,19 @@ export function getRiverMonitoringPointsDataset() {
     data: {
       fields: [
         { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
+        { name: 'date', type: 'string' },
         { name: 'point_id', type: 'string' },
-        { name: 'station_name', type: 'string' },
-        { name: 'lat', type: 'real' },
-        { name: 'lon', type: 'real' },
+        { name: 'stn_code', type: 'string' },
+        { name: 'monitoring_location', type: 'string' },
+        { name: 'latitude', type: 'real' },
+        { name: 'longitude', type: 'real' },
         { name: 'severity_score', type: 'real' },
         { name: 'pollution_category', type: 'string' },
         { name: 'alert_level', type: 'string' }
       ],
       rows: riverMonitoringPointsData.map(row => [
-        row.timestamp, row.point_id, row.station_name, row.lat, row.lon,
+        row.timestamp, row.date, row.point_id, row.stn_code,
+        row.monitoring_location, row.latitude, row.longitude,
         row.severity_score, row.pollution_category, row.alert_level
       ])
     }
@@ -594,25 +959,39 @@ export function getSuspectLinksDataset() {
     info: { id: 'suspect_links', label: 'Pollution Attribution' },
     data: {
       fields: [
+        // Location fields
         { name: 'source_lat', type: 'real' },
         { name: 'source_lon', type: 'real' },
         { name: 'target_lat', type: 'real' },
         { name: 'target_lon', type: 'real' },
-        { name: 'incident_id', type: 'string' },
-        { name: 'suspect_name', type: 'string' },
-        { name: 'suspect_type', type: 'string' },
+        // PCB license fields (aligned with Municipal Records metadata format)
+        { name: 'license_id', type: 'string' },
+        { name: 'company_name', type: 'string' },
+        { name: 'industry_type', type: 'string' },
+        { name: 'location_hint', type: 'string' },
+        { name: 'station_code_ref', type: 'string' },
+        { name: 'state', type: 'string' },
+        { name: 'status', type: 'string' },
+        { name: 'valid_upto', type: 'string' },
+        { name: 'max_discharge_kld', type: 'integer' },
+        { name: 'primary_pollutant', type: 'string' },
+        { name: 'last_inspection', type: 'string' },
+        { name: 'bank_guarantee_amt', type: 'string' },
+        // Derived analysis fields
         { name: 'distance_upstream_m', type: 'integer' },
         { name: 'suspicion_score', type: 'real' },
-        { name: 'permit_status', type: 'string' },
         { name: 'evidence', type: 'string' },
-        { name: 'last_inspection', type: 'string' },
         { name: 'historical_violations', type: 'integer' },
+        // Satellite imagery references
         { name: 'sentinel_images', type: 'string' }
       ],
       rows: suspectLinksData.map(row => [
         row.source_lat, row.source_lon, row.target_lat, row.target_lon,
-        row.incident_id, row.suspect_name, row.suspect_type, row.distance_upstream_m,
-        row.suspicion_score, row.permit_status, row.evidence, row.last_inspection,
+        row.license_id, row.company_name, row.industry_type, row.location_hint,
+        row.station_code_ref, row.state, row.status, row.valid_upto,
+        row.authorized_limits.max_discharge_kld, row.authorized_limits.primary_pollutant,
+        row.compliance_history.last_inspection, row.compliance_history.bank_guarantee_amt,
+        row.distance_upstream_m, row.suspicion_score, row.evidence,
         row.historical_violations, JSON.stringify(row.sentinel_images)
       ])
     }
