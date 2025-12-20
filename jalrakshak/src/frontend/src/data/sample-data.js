@@ -156,18 +156,70 @@ const riverRouteCoordinates = [
 ];
 
 /**
- * Sensor stations - factory locations that start polluting on Day 3
+ * Calculate distance between two points using Haversine formula
  */
-const sensorStations = [
-  { id: 'STN_001', name: 'Wazirabad Barrage', lat: 28.6689529, lon: 77.2358125, coordIndex: 0, cleanSeverity: 0.08, pollutedSeverity: 0.15, isFactory: false },
-  { id: 'STN_002', name: 'Old Railway Bridge', lat: 28.6591811, lon: 77.2582841, coordIndex: 15, cleanSeverity: 0.10, pollutedSeverity: 0.35, isFactory: true },
-  { id: 'STN_003', name: 'ITO Bridge', lat: 28.6521342, lon: 77.2626936, coordIndex: 20, cleanSeverity: 0.12, pollutedSeverity: 0.55, isFactory: true },
-  { id: 'STN_004', name: 'Nizamuddin Bridge', lat: 28.6015255, lon: 77.2608054, coordIndex: 46, cleanSeverity: 0.10, pollutedSeverity: 0.78, isFactory: true },
-  { id: 'STN_005', name: 'Sarai Kale Khan', lat: 28.5861798, lon: 77.2813296, coordIndex: 51, cleanSeverity: 0.12, pollutedSeverity: 0.88, isFactory: true },
-  { id: 'STN_006', name: 'Okhla Barrage', lat: 28.5444696, lon: 77.3149162, coordIndex: 77, cleanSeverity: 0.10, pollutedSeverity: 0.95, isFactory: true },
-  { id: 'STN_007', name: 'Kalindi Kunj', lat: 28.5315889, lon: 77.3309392, coordIndex: 91, cleanSeverity: 0.12, pollutedSeverity: 0.90, isFactory: true },
-  { id: 'STN_008', name: 'Faridabad Border', lat: 28.485214, lon: 77.3595106, coordIndex: 135, cleanSeverity: 0.10, pollutedSeverity: 0.72, isFactory: false },
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Earth's radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c; // Distance in km
+}
+
+/**
+ * Find the closest point on the river to a given station location
+ * Returns the index and coordinates of the closest river point
+ */
+function findClosestRiverPoint(stationLat, stationLon) {
+  let minDist = Infinity;
+  let closestIdx = 0;
+  
+  for (let i = 0; i < riverRouteCoordinates.length; i++) {
+    const [lon, lat] = riverRouteCoordinates[i];
+    const dist = haversineDistance(stationLat, stationLon, lat, lon);
+    if (dist < minDist) {
+      minDist = dist;
+      closestIdx = i;
+    }
+  }
+  
+  const [closestLon, closestLat] = riverRouteCoordinates[closestIdx];
+  return {
+    coordIndex: closestIdx,
+    river_lat: closestLat,
+    river_lon: closestLon,
+    distance_m: Math.round(minDist * 1000) // Convert to meters
+  };
+}
+
+/**
+ * Municipal monitoring stations - actual station locations on land
+ * Station locations are offset ~3km from the river to show they're on land
+ * The closest river point is calculated dynamically
+ */
+const stationLocations = [
+  { id: 'STN_001', name: 'Wazirabad Barrage', station_lat: 28.6700, station_lon: 77.2050, cleanSeverity: 0.08, pollutedSeverity: 0.15 },
+  { id: 'STN_002', name: 'Old Railway Bridge', station_lat: 28.6600, station_lon: 77.2280, cleanSeverity: 0.10, pollutedSeverity: 0.35 },
+  { id: 'STN_003', name: 'ITO Bridge', station_lat: 28.6530, station_lon: 77.2320, cleanSeverity: 0.12, pollutedSeverity: 0.55 },
+  { id: 'STN_004', name: 'Nizamuddin Bridge', station_lat: 28.6020, station_lon: 77.2300, cleanSeverity: 0.10, pollutedSeverity: 0.78 },
+  { id: 'STN_005', name: 'Sarai Kale Khan', station_lat: 28.5870, station_lon: 77.2500, cleanSeverity: 0.12, pollutedSeverity: 0.88 },
+  { id: 'STN_006', name: 'Okhla Barrage', station_lat: 28.5450, station_lon: 77.2850, cleanSeverity: 0.10, pollutedSeverity: 0.95 },
+  { id: 'STN_007', name: 'Kalindi Kunj', station_lat: 28.5320, station_lon: 77.3000, cleanSeverity: 0.12, pollutedSeverity: 0.90 },
+  { id: 'STN_008', name: 'Faridabad Border', station_lat: 28.4860, station_lon: 77.3280, cleanSeverity: 0.10, pollutedSeverity: 0.72 },
 ];
+
+// Build sensor stations with calculated closest river points
+const sensorStations = stationLocations.map(station => {
+  const closest = findClosestRiverPoint(station.station_lat, station.station_lon);
+  return {
+    ...station,
+    ...closest
+  };
+});
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
@@ -291,12 +343,12 @@ function generatePollutionSegmentData() {
         segment_id: `SEG_${station.id}`,
         segment_name: station.name,
         station_id: station.id,
-        // Start point (for reference)
-        start_lat: station.lat,
-        start_lon: station.lon,
-        // End point (for reference)
-        end_lat: (i < sensorStations.length - 1) ? sensorStations[i + 1].lat : riverRouteCoordinates[riverRouteCoordinates.length - 1][1],
-        end_lon: (i < sensorStations.length - 1) ? sensorStations[i + 1].lon : riverRouteCoordinates[riverRouteCoordinates.length - 1][0],
+        // Start point (river point for this station)
+        start_lat: station.river_lat,
+        start_lon: station.river_lon,
+        // End point (river point for next station)
+        end_lat: (i < sensorStations.length - 1) ? sensorStations[i + 1].river_lat : riverRouteCoordinates[riverRouteCoordinates.length - 1][1],
+        end_lon: (i < sensorStations.length - 1) ? sensorStations[i + 1].river_lon : riverRouteCoordinates[riverRouteCoordinates.length - 1][0],
         // GeoJSON geometry for the line
         geometry: geometry,
         // Pollution metrics (same for entire segment from starting station)
@@ -316,9 +368,10 @@ function generatePollutionSegmentData() {
 const pollutionSegmentData = generatePollutionSegmentData();
 
 /**
- * Sensor Readings with narrative time series
+ * Municipal Station Data - station locations with all sensor readings
+ * These are the actual monitoring station buildings near the river
  */
-function generateSensorReadingsData() {
+function generateMunicipalStationData() {
   const data = [];
   
   const timestamps = [
@@ -351,10 +404,14 @@ function generateSensorReadingsData() {
       
       data.push({
         timestamp: ts,
-        sensor_id: station.id,
-        sensor_name: station.name,
-        lat: station.lat,
-        lon: station.lon,
+        station_id: station.id,
+        station_name: station.name,
+        // Municipal station location (near river bank)
+        lat: station.station_lat,
+        lon: station.station_lon,
+        // Distance to river
+        distance_to_river_m: station.distance_m,
+        // All sensor readings
         severity_score: parseFloat(severity.toFixed(2)),
         pollution_category: category,
         is_anomaly: isAnomaly,
@@ -362,7 +419,11 @@ function generateSensorReadingsData() {
         ph: parseFloat((7.5 - severity * 4.5).toFixed(1)),
         conductivity: Math.round(400 + severity * 3200),
         do_level: parseFloat((7.5 - severity * 7.0).toFixed(1)),
-        turbidity: Math.round(10 + severity * 250)
+        turbidity: Math.round(10 + severity * 250),
+        // Water temperature (simulated)
+        water_temp: parseFloat((22 + severity * 8).toFixed(1)),
+        // Dissolved oxygen percentage
+        do_saturation: parseFloat((95 - severity * 60).toFixed(1))
       });
     });
   });
@@ -370,7 +431,60 @@ function generateSensorReadingsData() {
   return data;
 }
 
-const sensorReadingsData = generateSensorReadingsData();
+/**
+ * River Monitoring Points - points ON the river showing projected readings
+ * These are the closest river points to each municipal station
+ */
+function generateRiverMonitoringPointsData() {
+  const data = [];
+  
+  const timestamps = [
+    { ts: '2024-01-01T00:00:00Z', phase: 0.00 },
+    { ts: '2024-01-01T12:00:00Z', phase: 0.07 },
+    { ts: '2024-01-02T00:00:00Z', phase: 0.14 },
+    { ts: '2024-01-02T12:00:00Z', phase: 0.21 },
+    { ts: '2024-01-03T00:00:00Z', phase: 0.28 },
+    { ts: '2024-01-03T12:00:00Z', phase: 0.35 },
+    { ts: '2024-01-04T00:00:00Z', phase: 0.42 },
+    { ts: '2024-01-04T12:00:00Z', phase: 0.50 },
+    { ts: '2024-01-05T00:00:00Z', phase: 0.57 },
+    { ts: '2024-01-05T12:00:00Z', phase: 0.64 },
+    { ts: '2024-01-06T00:00:00Z', phase: 0.71 },
+    { ts: '2024-01-06T12:00:00Z', phase: 0.78 },
+    { ts: '2024-01-07T00:00:00Z', phase: 0.85 },
+    { ts: '2024-01-07T12:00:00Z', phase: 1.00 },
+  ];
+  
+  timestamps.forEach(({ ts, phase }) => {
+    sensorStations.forEach(station => {
+      const severity = getSeverityForPhase(station, phase);
+      const category = getPollutionCategory(severity);
+      
+      let alertLevel = 'GREEN';
+      if (severity > 0.65) alertLevel = 'RED';
+      else if (severity > 0.45) alertLevel = 'ORANGE';
+      else if (severity > 0.25) alertLevel = 'YELLOW';
+      
+      data.push({
+        timestamp: ts,
+        point_id: `RP_${station.id}`,
+        station_name: station.name,
+        // River point location (ON the river)
+        lat: station.river_lat,
+        lon: station.river_lon,
+        // Pollution data for coloring
+        severity_score: parseFloat(severity.toFixed(2)),
+        pollution_category: category,
+        alert_level: alertLevel
+      });
+    });
+  });
+  
+  return data;
+}
+
+const municipalStationData = generateMunicipalStationData();
+const riverMonitoringPointsData = generateRiverMonitoringPointsData();
 
 /**
  * Suspect Links Data - factories that cause pollution
@@ -421,16 +535,17 @@ export function getPollutionSegmentsDataset() {
   };
 }
 
-export function getSensorReadingsDataset() {
+export function getMunicipalStationsDataset() {
   return {
-    info: { id: 'sensor_readings', label: 'Water Quality Sensors' },
+    info: { id: 'municipal_stations', label: 'Municipal Monitoring Stations' },
     data: {
       fields: [
         { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
-        { name: 'sensor_id', type: 'string' },
-        { name: 'sensor_name', type: 'string' },
+        { name: 'station_id', type: 'string' },
+        { name: 'station_name', type: 'string' },
         { name: 'lat', type: 'real' },
         { name: 'lon', type: 'real' },
+        { name: 'distance_to_river_m', type: 'integer' },
         { name: 'severity_score', type: 'real' },
         { name: 'pollution_category', type: 'string' },
         { name: 'is_anomaly', type: 'boolean' },
@@ -438,12 +553,37 @@ export function getSensorReadingsDataset() {
         { name: 'ph', type: 'real' },
         { name: 'conductivity', type: 'integer' },
         { name: 'do_level', type: 'real' },
-        { name: 'turbidity', type: 'integer' }
+        { name: 'turbidity', type: 'integer' },
+        { name: 'water_temp', type: 'real' },
+        { name: 'do_saturation', type: 'real' }
       ],
-      rows: sensorReadingsData.map(row => [
-        row.timestamp, row.sensor_id, row.sensor_name, row.lat, row.lon,
-        row.severity_score, row.pollution_category, row.is_anomaly, row.alert_level,
-        row.ph, row.conductivity, row.do_level, row.turbidity
+      rows: municipalStationData.map(row => [
+        row.timestamp, row.station_id, row.station_name, row.lat, row.lon,
+        row.distance_to_river_m, row.severity_score, row.pollution_category,
+        row.is_anomaly, row.alert_level, row.ph, row.conductivity,
+        row.do_level, row.turbidity, row.water_temp, row.do_saturation
+      ])
+    }
+  };
+}
+
+export function getRiverMonitoringPointsDataset() {
+  return {
+    info: { id: 'river_monitoring_points', label: 'River Monitoring Points' },
+    data: {
+      fields: [
+        { name: 'timestamp', type: 'timestamp', format: 'YYYY-MM-DDTHH:mm:ssZ' },
+        { name: 'point_id', type: 'string' },
+        { name: 'station_name', type: 'string' },
+        { name: 'lat', type: 'real' },
+        { name: 'lon', type: 'real' },
+        { name: 'severity_score', type: 'real' },
+        { name: 'pollution_category', type: 'string' },
+        { name: 'alert_level', type: 'string' }
+      ],
+      rows: riverMonitoringPointsData.map(row => [
+        row.timestamp, row.point_id, row.station_name, row.lat, row.lon,
+        row.severity_score, row.pollution_category, row.alert_level
       ])
     }
   };
@@ -503,7 +643,12 @@ export function getTimeseriesTimeRange() {
 export function loadAllSampleData() {
   // Use the imported kepler config which has proper filter settings
   return {
-    datasets: [getPollutionSegmentsDataset(), getSensorReadingsDataset(), getSuspectLinksDataset()],
+    datasets: [
+      getPollutionSegmentsDataset(),
+      getMunicipalStationsDataset(),
+      getRiverMonitoringPointsDataset(),
+      getSuspectLinksDataset()
+    ],
     config: keplerConfig,
     options: { autoCreateLayers: false, centerMap: false }
   };
@@ -529,7 +674,8 @@ export default {
   loadAllSampleData,
   getRiverNetworkDataset,
   getPollutionSegmentsDataset,
-  getSensorReadingsDataset,
+  getMunicipalStationsDataset,
+  getRiverMonitoringPointsDataset,
   getSuspectLinksDataset,
   getKeplerConfig,
   getTimeseriesTimeRange,

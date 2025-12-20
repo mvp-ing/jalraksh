@@ -63,12 +63,12 @@
           }
         },
         {
-          "id": "sensor_points_layer",
+          "id": "municipal_stations_layer",
           "type": "point",
           "config": {
-            "dataId": "sensor_readings",
-            "label": "Water Quality Sensors",
-            "color": [255, 255, 255],
+            "dataId": "municipal_stations",
+            "label": "Municipal Monitoring Stations",
+            "color": [34, 211, 238],
             "columns": {
               "lat": "lat",
               "lng": "lon",
@@ -76,35 +76,75 @@
             },
             "isVisible": true,
             "visConfig": {
-              "radius": 40,
+              "radius": 25,
               "fixedRadius": false,
               "opacity": 1.0,
               "outline": true,
-              "thickness": 6,
+              "billboard": true,
+              "thickness": 3,
               "strokeColor": [255, 255, 255],
               "colorRange": {
-                "name": "Alert Levels",
+                "name": "Cyan Markers",
                 "type": "custom",
                 "category": "Custom",
-                "colors": ["#22C55E", "#FACC15", "#F97316", "#EF4444"]
+                "colors": ["#22D3EE", "#06B6D4", "#0891B2"]
               },
-              "radiusRange": [30, 60],
+              "radiusRange": [20, 35],
               "filled": true
             },
             "hidden": false,
             "textLabel": [
               {
                 "field": {
-                  "name": "sensor_name",
+                  "name": "station_name",
                   "type": "string"
                 },
                 "color": [255, 255, 255],
-                "size": 12,
+                "size": 15,
                 "offset": [0, 0],
                 "anchor": "start",
                 "alignment": "center"
               }
             ]
+          },
+          "visualChannels": {
+            "colorField": null,
+            "colorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear"
+          }
+        },
+        {
+          "id": "river_monitoring_points_layer",
+          "type": "point",
+          "config": {
+            "dataId": "river_monitoring_points",
+            "label": "River Monitoring Points",
+            "color": [34, 197, 94],
+            "columns": {
+              "lat": "lat",
+              "lng": "lon",
+              "altitude": null
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 35,
+              "fixedRadius": false,
+              "opacity": 1.0,
+              "outline": true,
+              "thickness": 3,
+              "strokeColor": [255, 255, 255],
+              "colorRange": {
+                "name": "Pollution Severity",
+                "type": "sequential",
+                "category": "Custom",
+                "colors": ["#22C55E", "#84CC16", "#FACC15", "#F97316", "#EF4444", "#DC2626"]
+              },
+              "radiusRange": [25, 45],
+              "filled": true
+            },
+            "hidden": false,
+            "textLabel": []
           },
           "visualChannels": {
             "colorField": {
@@ -168,7 +208,7 @@
           "config": {
             "dataId": "suspect_links",
             "label": "Suspected Factories",
-            "color": [255, 69, 0],
+            "color": [239, 68, 68],
             "columns": {
               "lat": "target_lat",
               "lng": "target_lon",
@@ -176,19 +216,19 @@
             },
             "isVisible": true,
             "visConfig": {
-              "radius": 18,
+              "radius": 25,
               "fixedRadius": false,
-              "opacity": 0.95,
+              "opacity": 1.0,
               "outline": true,
               "thickness": 3,
               "strokeColor": [0, 0, 0],
               "colorRange": {
-                "name": "Suspicion",
+                "name": "Danger Level",
                 "type": "sequential",
                 "category": "Custom",
-                "colors": ["#FEF3C7", "#FCD34D", "#F59E0B", "#DC2626", "#7F1D1D"]
+                "colors": ["#FDE047", "#F59E0B", "#EA580C", "#DC2626", "#991B1B"]
               },
-              "radiusRange": [12, 25],
+              "radiusRange": [18, 35],
               "filled": true
             },
             "hidden": false,
@@ -199,9 +239,9 @@
                   "type": "string"
                 },
                 "color": [255, 255, 255],
-                "size": 11,
-                "offset": [0, 20],
-                "anchor": "middle",
+                "size": 12,
+                "offset": [0, 0],
+                "anchor": "start",
                 "alignment": "center"
               }
             ]
@@ -230,8 +270,22 @@
               {"name": "pollution_category", "format": null},
               {"name": "ph", "format": ".1f"}
             ],
-            "sensor_readings": [
-              {"name": "sensor_name", "format": null},
+            "municipal_stations": [
+              {"name": "station_name", "format": null},
+              {"name": "timestamp", "format": null},
+              {"name": "distance_to_river_m", "format": null},
+              {"name": "severity_score", "format": ".2f"},
+              {"name": "pollution_category", "format": null},
+              {"name": "alert_level", "format": null},
+              {"name": "ph", "format": ".1f"},
+              {"name": "conductivity", "format": null},
+              {"name": "do_level", "format": ".1f"},
+              {"name": "turbidity", "format": null},
+              {"name": "water_temp", "format": ".1f"},
+              {"name": "do_saturation", "format": ".1f"}
+            ],
+            "river_monitoring_points": [
+              {"name": "station_name", "format": null},
               {"name": "timestamp", "format": null},
               {"name": "severity_score", "format": ".2f"},
               {"name": "pollution_category", "format": null},
