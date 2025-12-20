@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "ANDH_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.645727Z",
+    "req_id": "REQ-508509"
+  },
+  "payload": {
+    "record_id": 16,
+    "license_id": "PCB/AND/2021/91941",
+    "company_name": "Chaudhary Fabrics Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Rushikonda Beach,Visakhapatnam",
+    "station_code_ref": "4357",
+    "state": "ANDHRA PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2028",
+    "authorized_limits": {
+      "max_discharge_kld": 527,
+      "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+      "lat": 17.778564,
+      "lon": 83.383933
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Total Dissolved Solids (TDS)",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "7ca9747466ef3eed",
+    "status": "VERIFIED"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "GUJA_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.642589Z",
+    "req_id": "REQ-467509"
+  },
+  "payload": {
+    "record_id": 15,
+    "license_id": "PCB/GUJ/2021/41987",
+    "company_name": "Bedi Motors Pvt Ltd",
+    "industry_type": "Light Engineering / Assembly",
+    "location_hint": "From Narmada Main Canal At Indorahmedabad Highway Bridge Near Village Motikantadi Tal, Godhra, Dist Panchmahal",
+    "station_code_ref": "4421",
+    "state": "GUJARAT",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2030",
+    "authorized_limits": {
+      "max_discharge_kld": 11,
+      "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+      "lat": 22.807443,
+      "lon": 73.432078
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Oil & Grease",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "15298c93cb400777",
+    "status": "VERIFIED"
+  }
+}

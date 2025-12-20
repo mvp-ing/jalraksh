@@ -1,0 +1,40 @@
+{
+  "sys_header": {
+    "api_ver": "2.4.1",
+    "source": "ASSA_PCB_E_GOVERNANCE_GRID",
+    "timestamp": "2025-12-20T09:06:41.705553Z",
+    "req_id": "REQ-593738"
+  },
+  "payload": {
+    "record_id": 35,
+    "license_id": "PCB/ASS/2021/75618",
+    "company_name": "Tara Auto Parts Pvt Ltd",
+    "industry_type": "Light Engineering / Assembly",
+    "location_hint": "Hardoi Pukhuri, Charaidew, Assam",
+    "station_code_ref": "2227",
+    "state": "ASSAM",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2027",
+    "authorized_limits": {
+      "max_discharge_kld": 9,
+      "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+      "lat": 26.948235,
+      "lon": 94.870098
+    },
+    "compliance_history": {
+      "last_inspection": "15/04/2024",
+      "bank_guarantee_amt": "5,00,000"
+    },
+    "search_keywords": [
+      "Consolidated Consent & Authorization (CC&A)",
+      "Oil & Grease",
+      "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+  },
+  "integrity": {
+    "hash": "271ead2413149c95",
+    "status": "VERIFIED"
+  }
+}
