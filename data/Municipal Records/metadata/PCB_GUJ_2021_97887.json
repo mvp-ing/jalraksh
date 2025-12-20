@@ -1,0 +1,24 @@
+{
+    "record_id": 27,
+    "license_id": "PCB/GUJ/2021/97887",
+    "company_name": "Ramakrishnan Steels Pvt Ltd",
+    "industry_type": "Light Engineering",
+    "location_hint": "Tapi Canal At Village Umarwada, Near Gidc Estate Of Panoli.",
+    "station_code_ref": "2074",
+    "state": "GUJARAT",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2030",
+    "authorized_limits": {
+        "max_discharge_kld": 8,
+        "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+        "lat": 21.589322,
+        "lon": 72.973726
+    },
+    "search_keywords": [
+        "Consolidated Consent & Authorization (CC&A)",
+        "Oil & Grease",
+        "E-Waste / General Waste Authorization"
+    ]
+}

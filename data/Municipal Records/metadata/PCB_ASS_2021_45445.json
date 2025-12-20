@@ -1,0 +1,24 @@
+{
+    "record_id": 4,
+    "license_id": "PCB/ASS/2021/45445",
+    "company_name": "Choudhary Auto Pvt Ltd",
+    "industry_type": "Light Engineering",
+    "location_hint": "Ganga Pukhuri, Nalbari (Gordon School), Assam",
+    "station_code_ref": "2221",
+    "state": "ASSAM",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2028",
+    "authorized_limits": {
+        "max_discharge_kld": 9,
+        "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+        "lat": 26.370908,
+        "lon": 91.456422
+    },
+    "search_keywords": [
+        "Consolidated Consent & Authorization (CC&A)",
+        "Oil & Grease",
+        "E-Waste / General Waste Authorization"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "record_id": 10,
+    "license_id": "PCB/MAD/2021/10721",
+    "company_name": "Menon Beverages Pvt Ltd",
+    "industry_type": "Food Packaging",
+    "location_hint": "River Betwa At M/S J.P. Thermal Power, Bina",
+    "station_code_ref": "2108",
+    "state": "MADHYA PRADESH",
+    "status": "EXPIRED",
+    "valid_upto": "31/03/2024",
+    "authorized_limits": {
+        "max_discharge_kld": 10,
+        "primary_pollutant": "Suspended Solids"
+    },
+    "geolocation": {
+        "lat": 24.319306,
+        "lon": 78.123794
+    },
+    "search_keywords": [
+        "Consent Renewal Order",
+        "Suspended Solids",
+        "E-Waste / General Waste Authorization"
+    ]
+}

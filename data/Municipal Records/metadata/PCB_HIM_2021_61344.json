@@ -1,0 +1,24 @@
+{
+    "record_id": 39,
+    "license_id": "PCB/HIM/2021/61344",
+    "company_name": "Oommen Logistics Pvt Ltd",
+    "industry_type": "Cold Storage",
+    "location_hint": "Sainj Nallah (U/S Sainj Water Supply Scheme At Dargi)",
+    "station_code_ref": "4462",
+    "state": "HIMACHAL PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2027",
+    "authorized_limits": {
+        "max_discharge_kld": 15,
+        "primary_pollutant": "Ammonia (Trace)"
+    },
+    "geolocation": {
+        "lat": 31.772831,
+        "lon": 77.296865
+    },
+    "search_keywords": [
+        "Consolidated Consent & Authorization (CC&A)",
+        "Ammonia (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "record_id": 0,
+    "license_id": "PCB/GOA/2021/34201",
+    "company_name": "Minhas Tech Pvt Ltd",
+    "industry_type": "Electronics Assembly",
+    "location_hint": "Canal Downstream Of Cuncolim Indl.Est. Cuncolim, Salcete (Near Railway Bridge)",
+    "station_code_ref": "2266",
+    "state": "GOA",
+    "status": "EXPIRED",
+    "valid_upto": "31/03/2023",
+    "authorized_limits": {
+        "max_discharge_kld": 9,
+        "primary_pollutant": "Heavy Metals (Trace)"
+    },
+    "geolocation": {
+        "lat": 15.164083,
+        "lon": 74.01483
+    },
+    "search_keywords": [
+        "Operation License & Authorization",
+        "Heavy Metals (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "record_id": 22,
+    "license_id": "PCB/GOA/2021/61058",
+    "company_name": "Kuruvilla Dyeing Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Mobor Beach",
+    "station_code_ref": "4017",
+    "state": "GOA",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2029",
+    "authorized_limits": {
+        "max_discharge_kld": 655,
+        "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+        "lat": 15.158062,
+        "lon": 73.941513
+    },
+    "search_keywords": [
+        "Pollution Control Board Order",
+        "Total Dissolved Solids (TDS)",
+        "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+}

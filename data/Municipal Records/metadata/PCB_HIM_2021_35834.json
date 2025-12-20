@@ -1,0 +1,24 @@
+{
+    "record_id": 37,
+    "license_id": "PCB/HIM/2021/35834",
+    "company_name": "Nadig Electronics Pvt Ltd",
+    "industry_type": "Electronics Assembly",
+    "location_hint": "Hurla Nalla D/S Hurla Bridge, Vpo Hurla, Tehsil Bhunter, Dis. Kullu",
+    "station_code_ref": "5253",
+    "state": "HIMACHAL PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2028",
+    "authorized_limits": {
+        "max_discharge_kld": 7,
+        "primary_pollutant": "Heavy Metals (Trace)"
+    },
+    "geolocation": {
+        "lat": NaN,
+        "lon": NaN
+    },
+    "search_keywords": [
+        "Pollution Control Board Order",
+        "Heavy Metals (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}

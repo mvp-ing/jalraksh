@@ -1,0 +1,24 @@
+{
+    "record_id": 46,
+    "license_id": "PCB/AND/2021/56972",
+    "company_name": "Thaman Drugs Pvt Ltd",
+    "industry_type": "Chemical & Pharma Formulation",
+    "location_hint": "Budameru Canal Near Bdg At Nh-5, Keesarapalli (V), Gannavaram (M)",
+    "station_code_ref": "3051",
+    "state": "ANDHRA PRADESH",
+    "status": "EXPIRED",
+    "valid_upto": "31/03/2023",
+    "authorized_limits": {
+        "max_discharge_kld": 73,
+        "primary_pollutant": "Chemical Residue / COD"
+    },
+    "geolocation": {
+        "lat": 16.514731,
+        "lon": 80.77592
+    },
+    "search_keywords": [
+        "Pollution Control Board Order",
+        "Chemical Residue / COD",
+        "Biomedical Waste Authorization"
+    ]
+}

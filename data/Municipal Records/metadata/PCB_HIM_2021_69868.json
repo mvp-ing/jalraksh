@@ -1,0 +1,24 @@
+{
+    "record_id": 23,
+    "license_id": "PCB/HIM/2021/69868",
+    "company_name": "Bajaj Auto Pvt Ltd",
+    "industry_type": "Light Engineering",
+    "location_hint": "River Giri U/S Chailla",
+    "station_code_ref": "4427",
+    "state": "HIMACHAL PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2028",
+    "authorized_limits": {
+        "max_discharge_kld": 3,
+        "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+        "lat": 30.911251,
+        "lon": 77.241754
+    },
+    "search_keywords": [
+        "Consent Renewal Order",
+        "Oil & Grease",
+        "E-Waste / General Waste Authorization"
+    ]
+}

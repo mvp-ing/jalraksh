@@ -1,0 +1,24 @@
+{
+    "record_id": 28,
+    "license_id": "PCB/ASS/2021/39775",
+    "company_name": "Bir Cold Chain Pvt Ltd",
+    "industry_type": "Cold Storage",
+    "location_hint": "Hollunga Beel Near Gai Nadi/ River At Somarajan, Dhema Ji",
+    "station_code_ref": "3787",
+    "state": "ASSAM",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2027",
+    "authorized_limits": {
+        "max_discharge_kld": 14,
+        "primary_pollutant": "Ammonia (Trace)"
+    },
+    "geolocation": {
+        "lat": 27.649246,
+        "lon": 94.693687
+    },
+    "search_keywords": [
+        "Consent Renewal Order",
+        "Ammonia (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}

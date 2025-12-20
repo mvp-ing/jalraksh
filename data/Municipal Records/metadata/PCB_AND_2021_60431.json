@@ -1,0 +1,24 @@
+{
+    "record_id": 20,
+    "license_id": "PCB/AND/2021/60431",
+    "company_name": "Mall Fabrics Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Sea Water, Bay Of Bengal, Kothapatnam Beach",
+    "station_code_ref": "4385",
+    "state": "ANDHRA PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2030",
+    "authorized_limits": {
+        "max_discharge_kld": 178,
+        "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+        "lat": 15.422981,
+        "lon": 80.167108
+    },
+    "search_keywords": [
+        "Consolidated Consent & Authorization (CC&A)",
+        "Total Dissolved Solids (TDS)",
+        "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+}

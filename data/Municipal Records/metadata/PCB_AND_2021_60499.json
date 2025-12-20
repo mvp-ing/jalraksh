@@ -1,0 +1,24 @@
+{
+    "record_id": 49,
+    "license_id": "PCB/AND/2021/60499",
+    "company_name": "Venkataraman Tex Pvt Ltd",
+    "industry_type": "Textile Dyeing & Bleaching",
+    "location_hint": "Sea Waer Bay Of Bengal, After Confluence Of Marine Outfall Of M/S Matrix Laboratories Ltd.Thammavayapalem (V) Pusapatirega (M)",
+    "station_code_ref": "4352",
+    "state": "ANDHRA PRADESH",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2028",
+    "authorized_limits": {
+        "max_discharge_kld": 790,
+        "primary_pollutant": "Total Dissolved Solids (TDS)"
+    },
+    "geolocation": {
+        "lat": 18.032565,
+        "lon": 83.602754
+    },
+    "search_keywords": [
+        "Pollution Control Board Order",
+        "Total Dissolved Solids (TDS)",
+        "Hazardous Waste (Chemical Sludge) Authorization"
+    ]
+}

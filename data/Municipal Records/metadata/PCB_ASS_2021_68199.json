@@ -1,0 +1,24 @@
+{
+    "record_id": 45,
+    "license_id": "PCB/ASS/2021/68199",
+    "company_name": "Kadakia Ice Pvt Ltd",
+    "industry_type": "Cold Storage",
+    "location_hint": "Mahamaya Mandir Pukhuri, Assam",
+    "station_code_ref": "2223",
+    "state": "ASSAM",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2030",
+    "authorized_limits": {
+        "max_discharge_kld": 6,
+        "primary_pollutant": "Ammonia (Trace)"
+    },
+    "geolocation": {
+        "lat": 26.215887,
+        "lon": 90.123836
+    },
+    "search_keywords": [
+        "Pollution Control Board Order",
+        "Ammonia (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}

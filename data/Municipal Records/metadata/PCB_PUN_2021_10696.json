@@ -1,0 +1,24 @@
+{
+    "record_id": 43,
+    "license_id": "PCB/PUN/2021/10696",
+    "company_name": "Gopal Auto Pvt Ltd",
+    "industry_type": "Light Engineering",
+    "location_hint": "River Sutlej At D/S Kiratpur Sahib, Punjab",
+    "station_code_ref": "1814",
+    "state": "PUNJAB",
+    "status": "ACTIVE",
+    "valid_upto": "31/03/2027",
+    "authorized_limits": {
+        "max_discharge_kld": 3,
+        "primary_pollutant": "Oil & Grease"
+    },
+    "geolocation": {
+        "lat": 31.18265,
+        "lon": 76.560779
+    },
+    "search_keywords": [
+        "Consent Renewal Order",
+        "Oil & Grease",
+        "E-Waste / General Waste Authorization"
+    ]
+}

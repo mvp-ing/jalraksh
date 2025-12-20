@@ -1,0 +1,24 @@
+{
+    "record_id": 12,
+    "license_id": "PCB/HIM/2021/72682",
+    "company_name": "Tella Cold Chain Pvt Ltd",
+    "industry_type": "Cold Storage",
+    "location_hint": "Halog Nallah Near Halog Water Supply Scheme",
+    "station_code_ref": "4474",
+    "state": "HIMACHAL PRADESH",
+    "status": "EXPIRED",
+    "valid_upto": "31/03/2023",
+    "authorized_limits": {
+        "max_discharge_kld": 14,
+        "primary_pollutant": "Ammonia (Trace)"
+    },
+    "geolocation": {
+        "lat": 31.430517,
+        "lon": 77.670784
+    },
+    "search_keywords": [
+        "Consolidated Consent & Authorization (CC&A)",
+        "Ammonia (Trace)",
+        "E-Waste / General Waste Authorization"
+    ]
+}
