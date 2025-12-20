@@ -52,5 +52,6 @@ export const CLOUD_PROVIDERS_CONFIGURATION = {
   FOURSQUARE_CLIENT_ID: process.env.FoursquareClientId, // eslint-disable-line
   FOURSQUARE_DOMAIN: process.env.FoursquareDomain, // eslint-disable-line
   FOURSQUARE_API_URL: process.env.FoursquareAPIURL, // eslint-disable-line
-  FOURSQUARE_USER_MAPS_URL: process.env.FoursquareUserMapsURL // eslint-disable-line
+  FOURSQUARE_USER_MAPS_URL: process.env.FoursquareUserMapsURL, // eslint-disable-line
+  GOOGLE_AI_API_KEY: process.env.GoogleAIApiKey // eslint-disable-line
 };

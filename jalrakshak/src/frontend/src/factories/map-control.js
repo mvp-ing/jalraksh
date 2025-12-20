@@ -9,13 +9,11 @@ import styled from 'styled-components';
 import {
   withState,
   MapControlFactory,
-  EffectControlFactory,
   EffectManagerFactory
 } from '@jalrakshak/components';
 import {AiAssistantControlFactory} from '@jalrakshak/ai-assistant';
 
 import {SampleMapPanel} from '../components/map-control/map-control';
-import SqlPanelControlFactory from '../components/map-control/sql-panel-control';
 
 const StyledMapControlPanel = styled.div`
   position: relative;
@@ -58,26 +56,18 @@ const StyledMapControlOverlay = styled.div`
 `;
 
 CustomMapControlFactory.deps = [
-  EffectControlFactory,
   EffectManagerFactory,
-  SqlPanelControlFactory,
   AiAssistantControlFactory,
   ...MapControlFactory.deps
 ];
 function CustomMapControlFactory(
-  EffectControl,
   EffectManager,
-  SqlPanelControl,
   AiAssistantControl,
   ...deps
 ) {
   const MapControl = MapControlFactory(...deps);
-  const actionComponents = [
-    ...(MapControl.defaultActionComponents ?? []),
-    EffectControl,
-    SqlPanelControl,
-    AiAssistantControl
-  ];
+  // Only keep the AI Assistant control, remove all other toolbar icons
+  const actionComponents = [AiAssistantControl];
 
   const CustomMapControl = props => {
     const showEffects = Boolean(props.mapControls?.effect?.active);

@@ -7,7 +7,7 @@ import React, { useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import MapPopoverContentFactory from './map-popover-content';
 import { Pin, ArrowLeft, ArrowRight, CursorPoint } from '../common/icons';
-import { injectIntl, IntlShape , FormattedMessage} from 'react-intl';
+import { injectIntl, IntlShape, FormattedMessage } from 'react-intl';
 
 import { RootContext } from '../context';
 import { parseGeoJsonRawFeature } from '@jalrakshak/layers';
@@ -25,7 +25,7 @@ import {
 } from '@floating-ui/react';
 
 const SELECTABLE_LAYERS: string[] = [LAYER_TYPES.hexagonId, LAYER_TYPES.geojson];
-const MAX_WIDTH = 500;
+const MAX_WIDTH = 600;
 const MAX_HEIGHT = 600;
 
 const StyledMapPopover = styled.div`

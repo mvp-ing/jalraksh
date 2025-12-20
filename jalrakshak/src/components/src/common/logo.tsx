@@ -58,9 +58,9 @@ const JalrakshakLogo = ({
     </LogoSvgWrapper>
     <LogoTitle className="logo__title">
       <LogoName className="logo__name">
-        <a className="logo__link" target="_blank" rel="noopener noreferrer" href={appWebsite}>
+        <span className="logo__link">
           {appName}
-        </a>
+        </span>
       </LogoName>
       {version ? <LogoVersion className="logo__version">{version}</LogoVersion> : null}
     </LogoTitle>
