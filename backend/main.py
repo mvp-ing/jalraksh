@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import get_settings
 from .models.schemas import HealthResponse
-from .routers import alerts, source_trace, factory, classification, fine, push
+from .routers import alerts, source_trace, factory, classification, fine, push, satellite
 
 # Get settings
 settings = get_settings()
@@ -46,6 +46,7 @@ app.include_router(factory.router, prefix=settings.api_prefix)
 app.include_router(classification.router, prefix=settings.api_prefix)
 app.include_router(fine.router, prefix=settings.api_prefix)
 app.include_router(push.router, prefix=settings.api_prefix)
+app.include_router(satellite.router, prefix=settings.api_prefix)
 
 
 @app.get("/", tags=["Root"])
