@@ -16,7 +16,7 @@ import ToolbarItem, { ToolbarItemProps } from '../common/toolbar-item';
 import { UiState } from '@jalrakshak/types';
 import { BaseProps } from '../common/icons';
 import useOnClickOutside from '../hooks/use-on-click-outside';
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 
 type StyledPanelActionProps = {
@@ -314,26 +314,7 @@ function PanelHeaderFactory(
   return class PanelHeader extends Component<PanelHeaderProps> {
     static defaultProps = {
       logoComponent: JalrakshakLogo,
-      actionItems: [
-        {
-          id: 'storage',
-          iconComponent: Db,
-          tooltip: 'tooltip.cloudStorage',
-          onClick: () => {
-            return;
-          },
-          dropdownComponent: CloudStorageDropdown
-        },
-        {
-          id: 'save',
-          iconComponent: Save,
-          onClick: () => {
-            return;
-          },
-          label: 'Share',
-          dropdownComponent: SaveExportDropdown
-        }
-      ]
+      actionItems: []
     };
 
     render() {
@@ -347,7 +328,7 @@ function PanelHeaderFactory(
         hideExportDropdown,
         ...dropdownCallbacks
       } = this.props;
-      let items = actionItems || [];
+      let items = (actionItems || []).filter(Boolean);
 
       // don't render cloud storage icon if onSaveToStorage is not provided
       if (typeof this.props.onSaveToStorage !== 'function') {
@@ -365,7 +346,7 @@ function PanelHeaderFactory(
               />
             )}
             <StyledPanelTopActions>
-              {items.map(item => (
+              {items.length > 0 && items.map(item => (
                 <div
                   className="side-panel__panel-header__right"
                   key={item.id}

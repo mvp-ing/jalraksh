@@ -21,6 +21,7 @@ import {
 import { useIntl } from 'react-intl';
 import { VisState } from '@jalrakshak/schemas';
 import { capitalizeFirstLetter } from '@jalrakshak/utils';
+import ImageCarousel from './image-carousel';
 
 export const StyledLayerName = styled(CenterFlexbox)`
   color: ${props => props.theme.textColorHl};
@@ -244,7 +245,7 @@ const CellInfo = ({
 
 const LayerHoverInfoFactory = () => {
   const LayerHoverInfo = props => {
-    const { data, layer } = props;
+    const { data, layer, fields } = props;
     const intl = useIntl();
     if (!data || !layer) {
       return null;
@@ -254,6 +255,44 @@ const LayerHoverInfoFactory = () => {
       (data.fieldValues && Object.keys(data.fieldValues).length > 0) ||
       (data.wmsFeatureData && data.wmsFeatureData.length > 0) ||
       (props.fieldsToShow && props.fieldsToShow.length > 0);
+
+    // Check if this is the suspect_links layer and extract sentinel images
+    const sentinelImages = useMemo(() => {
+      const dataId = layer.config?.dataId;
+      // Check if this is suspect_links layer (Pollution Attribution)
+      if (dataId !== 'suspect_links' || !fields || !data) {
+        return null;
+      }
+
+      // Find the sentinel_images field index
+      const sentinelFieldIdx = fields.findIndex(f => f.name === 'sentinel_images');
+      if (sentinelFieldIdx < 0) {
+        return null;
+      }
+
+      // Get the value from data
+      let imagesValue: string | string[] | null = null;
+      if (data instanceof DataRow) {
+        imagesValue = data.valueAt(sentinelFieldIdx);
+      } else if (Array.isArray(data)) {
+        imagesValue = data[sentinelFieldIdx];
+      }
+
+      if (!imagesValue) {
+        return null;
+      }
+
+      // Parse JSON string if needed
+      try {
+        if (typeof imagesValue === 'string') {
+          return JSON.parse(imagesValue) as string[];
+        }
+        return imagesValue as string[];
+      } catch (e) {
+        console.warn('Failed to parse sentinel_images:', e);
+        return null;
+      }
+    }, [layer.config?.dataId, fields, data]);
 
     return (
       <div className="map-popover__layer-info">
@@ -282,6 +321,9 @@ const LayerHoverInfoFactory = () => {
           )}
         </StyledTable>
         {hasFieldsToShow && <StyledDivider />}
+        {sentinelImages && sentinelImages.length > 0 && (
+          <ImageCarousel images={sentinelImages} title="Sentinel Satellite Images" />
+        )}
       </div>
     );
   };
