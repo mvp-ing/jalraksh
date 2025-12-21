@@ -188,16 +188,23 @@ async def get_simulation_status(
         exists=os.path.exists(output_dir)
     )
     
+    # If base_url is provided, ensure it ends with slash for concatenation
+    # But we'll handle joining properly
+    base = base_url.rstrip("/") if base_url else ""
+    
     if response.exists:
         # List original frames - return backend API URLs
         original_dir = os.path.join(output_dir, "original_raw")
         if os.path.exists(original_dir):
             for filename in sorted(os.listdir(original_dir)):
                 if filename.endswith('.png'):
-                    # URL via backend API (served by /api/satellite/images/ endpoint)
+                    # Construct URL - either absolute (if base_url provided) or relative
+                    img_path = f"/api/satellite/images/{station_code}/original_raw/{filename}"
+                    full_url = f"{base}{img_path}" if base else img_path
+                    
                     response.original_frames.append(FrameInfo(
                         filename=filename,
-                        url=f"/api/satellite/images/{station_code}/original_raw/{filename}",
+                        url=full_url,
                         date=filename.replace("frame_", "").replace(".png", "")
                     ))
         
@@ -206,9 +213,12 @@ async def get_simulation_status(
         if os.path.exists(simulated_dir):
             for filename in sorted(os.listdir(simulated_dir)):
                 if filename.endswith('.png'):
+                    img_path = f"/api/satellite/images/{station_code}/simulated_raw/{filename}"
+                    full_url = f"{base}{img_path}" if base else img_path
+                    
                     response.simulated_frames.append(FrameInfo(
                         filename=filename,
-                        url=f"/api/satellite/images/{station_code}/simulated_raw/{filename}",
+                        url=full_url,
                         date=filename.replace("frame_", "").replace(".png", "")
                     ))
     

@@ -63,6 +63,7 @@ import GeoCoderPanelFactory from './geocoder-panel';
 import EffectManagerFactory from './effects/effect-manager';
 import DndContextFactory from './dnd-context';
 import { CloudListProvider } from './hooks/use-cloud-list-provider';
+import { InspectorPanel, TraceProvider, SourceTraceOverlay } from './inspector-mode';
 
 import {
   filterObjectByPredicate,
@@ -119,6 +120,10 @@ const GlobalStyle = styled.div`
   .mapboxgl-ctrl .mapboxgl-ctrl-logo {
     display: none;
   }
+
+  &[data-inspector-active='true'] .bottom-widget--container {
+    display: none;
+  }
 `;
 
 type BottomWidgetOuterProps = {
@@ -134,6 +139,35 @@ const BottomWidgetOuter = styled.div<BottomWidgetOuterProps>(
     pointer-events: all;
   }`
 );
+
+type InspectorToggleProps = {
+  isActive?: boolean;
+};
+
+const InspectorToggleButton = styled.button<InspectorToggleProps>`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: ${props => props.isActive ? '#F44336' : 'linear-gradient(135deg, #2196F3 0%, #1976D2 100%)'};
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+`;
 
 export const isViewportDisjointed = props => {
   return (
@@ -421,6 +455,7 @@ type JalrakshakGLBasicProps = {
 type JalrakshakGLProps = JalrakshakState & JalrakshakActions & JalrakshakGLBasicProps;
 type JalrakshakGLCompState = {
   dimensions: { width: number; height: number } | null;
+  inspectorModeActive: boolean;
 };
 
 JalrakshakFactory.deps = [
@@ -456,7 +491,12 @@ function JalrakshakFactory(
     static defaultProps = DEFAULT_JALRAKSHAK_PROPS;
 
     state: JalrakshakGLCompState = {
-      dimensions: null
+      dimensions: null,
+      inspectorModeActive: false
+    };
+
+    _toggleInspectorMode = () => {
+      this.setState(prev => ({ inspectorModeActive: !prev.inspectorModeActive }));
     };
 
     componentDidMount() {
@@ -619,6 +659,7 @@ function JalrakshakFactory(
                     <GlobalStyle
                       className="jalrakshak-gl"
                       id={`jalrakshak-gl__${id}`}
+                      data-inspector-active={this.state.inspectorModeActive}
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -629,12 +670,32 @@ function JalrakshakFactory(
                       ref={this.root}
                     >
                       <NotificationPanel {...notificationPanelFields} />
-                      <DndContext visState={visState}>
-                        {!uiState.readOnly && !readOnly && <SidePanel {...sideFields} />}
-                        <MapsLayout className="maps" mapState={this.props.mapState}>
-                          {mapContainers}
-                        </MapsLayout>
-                      </DndContext>
+                      <TraceProvider>
+                        <DndContext visState={visState}>
+                          {!uiState.readOnly && !readOnly && <SidePanel {...sideFields} />}
+                          <MapsLayout className="maps" mapState={this.props.mapState}>
+                            {mapContainers}
+                            <SourceTraceOverlay
+                              viewState={this.props.mapState}
+                              onViewStateChange={(params) => {
+                                if (this.props.mapStateActions?.updateMap) {
+                                  this.props.mapStateActions.updateMap(params.viewState);
+                                }
+                              }}
+                            />
+                          </MapsLayout>
+                          {this.state.inspectorModeActive && (
+                            <InspectorPanel onClose={this._toggleInspectorMode} />
+                          )}
+                        </DndContext>
+                      </TraceProvider>
+                      {/* Inspector Mode Toggle Button */}
+                      <InspectorToggleButton
+                        onClick={this._toggleInspectorMode}
+                        isActive={this.state.inspectorModeActive}
+                      >
+                        {this.state.inspectorModeActive ? '✕' : '🔍'}
+                      </InspectorToggleButton>
                       {isExportingImage && <PlotContainer {...plotContainerFields} />}
                       {/* 1 geocoder: single mode OR split mode and synced viewports */}
                       {!isViewportDisjointed(this.props) && interactionConfig.geocoder.enabled && (

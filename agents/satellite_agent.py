@@ -10,10 +10,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # import vertexai
-from google.genai import types
-from google.adk.agents.llm_agent import LlmAgent
-from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionService
 
 # Reuse the robust Earth Engine logic we built
 import ee
@@ -26,6 +22,26 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# ==============================================================================
+# OPTIONAL GOOGLE ADK DEPENDENCIES
+# ==============================================================================
+def _load_adk_dependencies():
+    try:
+        from google.genai import types as genai_types
+    except ImportError as exc:
+        raise RuntimeError(
+            "Missing dependency 'google-genai'. Install with `pip install google-genai`."
+        ) from exc
+    try:
+        from google.adk.agents.llm_agent import LlmAgent
+        from google.adk.runners import Runner
+        from google.adk.sessions import InMemorySessionService
+    except ImportError as exc:
+        raise RuntimeError(
+            "Missing dependency 'google-adk'. Install with `pip install google-adk`."
+        ) from exc
+    return genai_types, LlmAgent, Runner, InMemorySessionService
 
 # ==============================================================================
 # EARTH ENGINE TOOL LOGIC (Embedded directly for portability)
@@ -63,6 +79,7 @@ class GEEAuth:
                 default_locations = [
                     os.path.join(agents_dir, 'gee-service-key.json'),  # agents/ folder (where this file is)
                     os.path.join(project_root, 'gee-service-key.json'),
+                    os.path.join(project_root, 'agents', 'gee-service-key.json'),
                     os.path.join(project_root, 'credentials', 'gee-service-key.json'),
                     os.path.join(project_root, 'backend', 'gee-service-key.json'),
                 ]
@@ -317,6 +334,11 @@ class SatelliteAgent:
         self.project_id = project_id
         self.location = location
         self.app_name = "satellite_agent"
+        self._types = None
+        self._Runner = None
+        self._SessionService = None
+        self._adk_error = None
+        self.adk_agent = None
         
         # Initialize Authentication Strategy
         if self.api_key:
@@ -325,6 +347,17 @@ class SatelliteAgent:
             os.environ["GOOGLE_API_KEY"] = self.api_key
         else:
             logger.warning("No API Key or Project ID provided. Agent definitions might fail.")
+
+        try:
+            genai_types, LlmAgent, Runner, InMemorySessionService = _load_adk_dependencies()
+        except RuntimeError as exc:
+            self._adk_error = str(exc)
+            logger.error(self._adk_error)
+            return
+
+        self._types = genai_types
+        self._Runner = Runner
+        self._SessionService = InMemorySessionService
 
         # Initialize ADK LlmAgent with our custom tool
         self.adk_agent = LlmAgent(
@@ -349,8 +382,10 @@ class SatelliteAgent:
 
     async def process_user_request(self, user_id: str, prompt: str) -> Dict[str, Any]:
         """Processes a user request using the ADK runner."""
+        if not self.adk_agent or not self._Runner or not self._SessionService or not self._types:
+            return {"error": self._adk_error or "Satellite agent is not available."}
         
-        session_service = InMemorySessionService()
+        session_service = self._SessionService()
         session_id = f"session_{user_id}_{int(time.time())}"
         
         await session_service.create_session(
@@ -359,13 +394,13 @@ class SatelliteAgent:
             session_id=session_id
         )
         
-        runner = Runner(
+        runner = self._Runner(
             agent=self.adk_agent,
             app_name=self.app_name,
             session_service=session_service
         )
         
-        user_content = types.Content(role='user', parts=[types.Part(text=prompt)])
+        user_content = self._types.Content(role='user', parts=[self._types.Part(text=prompt)])
         
         response_text = ""
         

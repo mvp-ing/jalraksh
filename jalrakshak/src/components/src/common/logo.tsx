@@ -33,13 +33,19 @@ const LogoWrapper = styled.div`
 `;
 
 const LogoSvgWrapper = styled.div`
-  margin-top: 3px;
+  margin-top: 2px;
 `;
 
-const LogoSvg = () => (
-  <svg className="side-panel-logo__logo" width="32px" height="32px" viewBox="0 0 24 24">
-    <path fill="#1FBAD6" d="M12 2L6 11C4 14 4 18 6 20C8 22 11 23 12 23C13 23 16 22 18 20C20 18 20 14 18 11L12 2Z" />
-  </svg>
+const LogoImage = styled.img`
+  width: 32px;
+  height: 32px;
+  display: block;
+`;
+
+const LOGO_SRC = './jalrakshak-logo.png';
+
+const LogoSvg: React.FC<{ alt: string }> = ({ alt }) => (
+  <LogoImage className="side-panel-logo__logo" src={LOGO_SRC} alt={alt} />
 );
 interface JalrakshakLogoProps {
   appName?: string;
@@ -54,7 +60,7 @@ const JalrakshakLogo = ({
 }: JalrakshakLogoProps) => (
   <LogoWrapper className="side-panel-logo">
     <LogoSvgWrapper>
-      <LogoSvg />
+      <LogoSvg alt={`${appName} logo`} />
     </LogoSvgWrapper>
     <LogoTitle className="logo__title">
       <LogoName className="logo__name">

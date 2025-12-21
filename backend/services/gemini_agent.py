@@ -164,10 +164,12 @@ When you have completed your investigation, include "INVESTIGATION COMPLETE" in 
 
         # Initial prompt
         param_text = self._format_parameters(parameters) if parameters else ""
+        water_info = f"Initial water quality readings: {param_text}" if param_text else "Start by getting water quality data from the station."
+        
         initial_prompt = f"""
 Investigate pollution alert {alert_id} at station {station_code}.
 
-{f"Initial water quality readings:\n{param_text}" if param_text else "Start by getting water quality data from the station."}
+{water_info}
 
 Please investigate this alert step by step using the available tools.
 """

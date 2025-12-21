@@ -116,3 +116,12 @@ dmypy.json
 *.swp
 *.swo
 *~
+
+#Images:
+data/satellite_output/
+
+#Datafiles:
+generated_fines/
+
+docs/
+Additional Components/

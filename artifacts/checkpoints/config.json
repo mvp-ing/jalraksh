@@ -1,0 +1,9 @@
+{
+  "input_features": 8,
+  "hidden_dim": 64,
+  "num_gat_layers": 2,
+  "num_heads": 4,
+  "temporal_type": "gru",
+  "num_classes": 5,
+  "dropout": 0.3
+}

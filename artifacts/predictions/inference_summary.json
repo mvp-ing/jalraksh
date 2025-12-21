@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-12-21T05:57:59.611383",
+  "checkpoint": "/Users/manjunathanr/Documents/Personal/jalraksh/artifacts/checkpoints/best_model.pt",
+  "num_stations": 168,
+  "severity_distribution": {
+    "SAFE": 142,
+    "CRITICAL": 21,
+    "MEDIUM": 4,
+    "LOW": 1
+  },
+  "critical_count": 21,
+  "high_count": 0,
+  "medium_count": 4,
+  "low_count": 1,
+  "safe_count": 142,
+  "average_confidence": 0.6191511608305431
+}

@@ -1,0 +1,2880 @@
+{
+  "metadata": {
+    "model_checkpoint": "/Users/manjunathanr/Documents/Personal/jalraksh/artifacts/checkpoints/best_model.pt",
+    "model_epoch": 46,
+    "model_val_loss": 0.11060960590839386,
+    "inference_timestamp": "2025-12-21T05:55:00.959475",
+    "num_stations": 168,
+    "num_windows": 18,
+    "device": "cpu"
+  },
+  "summary": {
+    "severity_distribution": {
+      "SAFE": 134,
+      "LOW": 8,
+      "MEDIUM": 4,
+      "HIGH": 0,
+      "CRITICAL": 22
+    },
+    "high_risk_stations": 22,
+    "average_confidence": 0.6969467401504517
+  },
+  "predictions": [
+    {
+      "station_id": 1013,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.3063,
+        "LOW": 0.6089,
+        "MEDIUM": 0.0579,
+        "HIGH": 0.0158,
+        "CRITICAL": 0.0111
+      },
+      "confidence": 0.6089,
+      "location": "RIVER SUTLEJ AT U/S TATAPANI",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.247458,
+      "longitude": 77.088208
+    },
+    {
+      "station_id": 1014,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.54,
+        "LOW": 0.3502,
+        "MEDIUM": 0.0721,
+        "HIGH": 0.0336,
+        "CRITICAL": 0.0041
+      },
+      "confidence": 0.54,
+      "location": "RIVER SUTLEJ AT U/S SLAPPER",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.421014,
+      "longitude": 76.837836
+    },
+    {
+      "station_id": 1015,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5859,
+        "LOW": 0.2917,
+        "MEDIUM": 0.0783,
+        "HIGH": 0.0394,
+        "CRITICAL": 0.0048
+      },
+      "confidence": 0.5859,
+      "location": "RIVER SUTLEJ AT D/S SLAPPER",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.412833,
+      "longitude": 76.874881
+    },
+    {
+      "station_id": 1016,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.3992,
+        "LOW": 0.0556,
+        "MEDIUM": 0.3529,
+        "HIGH": 0.0651,
+        "CRITICAL": 0.1272
+      },
+      "confidence": 0.3992,
+      "location": "RIVER SUTLEJ AT D/S BHAKHRA",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.425772,
+      "longitude": 76.421883
+    },
+    {
+      "station_id": 1034,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8585,
+        "LOW": 0.0066,
+        "MEDIUM": 0.0424,
+        "HIGH": 0.0842,
+        "CRITICAL": 0.0084
+      },
+      "confidence": 0.8585,
+      "location": "RIVER SANKH AT BOLBA, JHARKHAND",
+      "state": "JHARKHAND",
+      "latitude": 22.460644,
+      "longitude": 84.331716
+    },
+    {
+      "station_id": 1263,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7571,
+        "LOW": 0.0457,
+        "MEDIUM": 0.1162,
+        "HIGH": 0.0569,
+        "CRITICAL": 0.0241
+      },
+      "confidence": 0.7571,
+      "location": "ELANGABEEL SYSTEM (CONNECTED TO R. KOLONG), ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.132906,
+      "longitude": 92.206483
+    },
+    {
+      "station_id": 1479,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6064,
+        "LOW": 0.0348,
+        "MEDIUM": 0.0972,
+        "HIGH": 0.1043,
+        "CRITICAL": 0.1573
+      },
+      "confidence": 0.6064,
+      "location": "WESTERN YAMUNA CANAL AT HAIDERPUR WATER WORKS, DELHI",
+      "state": "DELHI",
+      "latitude": 28.72121,
+      "longitude": 77.139675
+    },
+    {
+      "station_id": 1510,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5159,
+        "LOW": 0.1521,
+        "MEDIUM": 0.2756,
+        "HIGH": 0.0394,
+        "CRITICAL": 0.017
+      },
+      "confidence": 0.5159,
+      "location": "RIVER TONS AT TIUNI (HIMACHAL PRADESH/UTTRA KHAND BORDER)",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.556089,
+      "longitude": 77.777152
+    },
+    {
+      "station_id": 1532,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7496,
+        "LOW": 0.0447,
+        "MEDIUM": 0.1217,
+        "HIGH": 0.0603,
+        "CRITICAL": 0.0236
+      },
+      "confidence": 0.7496,
+      "location": "JAYSAGAR TANK, SIVASAGAR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.953467,
+      "longitude": 94.624919
+    },
+    {
+      "station_id": 1614,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6605,
+        "LOW": 0.0544,
+        "MEDIUM": 0.2293,
+        "HIGH": 0.0474,
+        "CRITICAL": 0.0083
+      },
+      "confidence": 0.6605,
+      "location": "RIVER BETWA NEAR WATER SUPPLY INTAKE WELL , VIDISHA(M.P)",
+      "state": "MADHYA PRADESH",
+      "latitude": 23.541173,
+      "longitude": 77.801938
+    },
+    {
+      "station_id": 1814,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6333,
+        "LOW": 0.1809,
+        "MEDIUM": 0.109,
+        "HIGH": 0.0274,
+        "CRITICAL": 0.0494
+      },
+      "confidence": 0.6333,
+      "location": "RIVER SUTLEJ AT D/S KIRATPUR SAHIB, PUNJAB",
+      "state": "PUNJAB",
+      "latitude": 31.182044,
+      "longitude": 76.563547
+    },
+    {
+      "station_id": 1870,
+      "predicted_severity": "MEDIUM",
+      "severity_index": 2,
+      "probabilities": {
+        "SAFE": 0.4421,
+        "LOW": 0.0165,
+        "MEDIUM": 0.4818,
+        "HIGH": 0.0508,
+        "CRITICAL": 0.0088
+      },
+      "confidence": 0.4818,
+      "location": "SUKHANA NALLAH AT PARWANOO NEAR KALKA BARRIER, EXIT POINT OF H. P.",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.83115,
+      "longitude": 76.967303
+    },
+    {
+      "station_id": 2057,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.2784,
+        "LOW": 0.0576,
+        "MEDIUM": 0.1256,
+        "HIGH": 0.0568,
+        "CRITICAL": 0.4817
+      },
+      "confidence": 0.4817,
+      "location": "AGRA CANAL, MADANPUR KHADAR, DELHI",
+      "state": "DELHI",
+      "latitude": 28.546369,
+      "longitude": 77.312597
+    },
+    {
+      "station_id": 2073,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6234,
+        "LOW": 0.1799,
+        "MEDIUM": 0.138,
+        "HIGH": 0.0243,
+        "CRITICAL": 0.0344
+      },
+      "confidence": 0.6234,
+      "location": "NARMADA MAIN CANAL, NR. VILLAGE. LIMBADIA, DIST. GANDHINAGAR,NARMADA CANAL AT LIMBADIYA",
+      "state": "GUJARAT",
+      "latitude": 23.134936,
+      "longitude": 72.611525
+    },
+    {
+      "station_id": 2074,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5501,
+        "LOW": 0.1838,
+        "MEDIUM": 0.1969,
+        "HIGH": 0.0566,
+        "CRITICAL": 0.0126
+      },
+      "confidence": 0.5501,
+      "location": "TAPI CANAL AT VILLAGE UMARWADA, NEAR GIDC ESTATE OF PANOLI.",
+      "state": "GUJARAT",
+      "latitude": 21.589419,
+      "longitude": 72.975333
+    },
+    {
+      "station_id": 2107,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5597,
+        "LOW": 0.2038,
+        "MEDIUM": 0.1687,
+        "HIGH": 0.0294,
+        "CRITICAL": 0.0384
+      },
+      "confidence": 0.5597,
+      "location": "RIVER BETWA AT U/S AT MAHUTA GHAT, AGASOD, BINA",
+      "state": "MADHYA PRADESH",
+      "latitude": 25.767472,
+      "longitude": 79.331309
+    },
+    {
+      "station_id": 2108,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.472,
+        "LOW": 0.3421,
+        "MEDIUM": 0.1223,
+        "HIGH": 0.0281,
+        "CRITICAL": 0.0354
+      },
+      "confidence": 0.472,
+      "location": "RIVER BETWA AT M/S J.P. THERMAL POWER, BINA",
+      "state": "MADHYA PRADESH",
+      "latitude": 24.317042,
+      "longitude": 78.127198
+    },
+    {
+      "station_id": 2124,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4465,
+        "LOW": 0.0289,
+        "MEDIUM": 0.4403,
+        "HIGH": 0.0693,
+        "CRITICAL": 0.015
+      },
+      "confidence": 0.4465,
+      "location": "RIVER BETWA AT CHARANTIRGHAT, VIDISHA",
+      "state": "MADHYA PRADESH",
+      "latitude": 23.540606,
+      "longitude": 77.802246
+    },
+    {
+      "station_id": 2125,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5514,
+        "LOW": 0.2298,
+        "MEDIUM": 0.1697,
+        "HIGH": 0.0345,
+        "CRITICAL": 0.0145
+      },
+      "confidence": 0.5514,
+      "location": "RIVER BETWA D/S AFTER MIXING OF RIVER BAIS AT VIDISHA",
+      "state": "MADHYA PRADESH",
+      "latitude": 23.550512,
+      "longitude": 77.79947
+    },
+    {
+      "station_id": 2178,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4678,
+        "LOW": 0.2838,
+        "MEDIUM": 0.1477,
+        "HIGH": 0.0209,
+        "CRITICAL": 0.0798
+      },
+      "confidence": 0.4678,
+      "location": "CHIKHALI NALA MEETS GODAVARI RIVER, VILLAGE- CHIKHALI, TALUKA- NASHIK, DISTRICT- NASHIK.",
+      "state": "MAHARASHTRA",
+      "latitude": 18.68309,
+      "longitude": 73.819812
+    },
+    {
+      "station_id": 2205,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7512,
+        "LOW": 0.0424,
+        "MEDIUM": 0.1235,
+        "HIGH": 0.0599,
+        "CRITICAL": 0.0232
+      },
+      "confidence": 0.7512,
+      "location": "MER BEEL AT MADHABPUR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 27.316822,
+      "longitude": 95.212211
+    },
+    {
+      "station_id": 2208,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7563,
+        "LOW": 0.0475,
+        "MEDIUM": 0.1091,
+        "HIGH": 0.0631,
+        "CRITICAL": 0.0239
+      },
+      "confidence": 0.7563,
+      "location": "BORPUKHURI, NAZIRA, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.98035,
+      "longitude": 94.634636
+    },
+    {
+      "station_id": 2209,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7385,
+        "LOW": 0.0431,
+        "MEDIUM": 0.1316,
+        "HIGH": 0.0622,
+        "CRITICAL": 0.0246
+      },
+      "confidence": 0.7385,
+      "location": "GAURISAGAR TANK, GAURISAGAR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.943433,
+      "longitude": 94.539514
+    },
+    {
+      "station_id": 2210,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7438,
+        "LOW": 0.0437,
+        "MEDIUM": 0.1272,
+        "HIGH": 0.0622,
+        "CRITICAL": 0.0232
+      },
+      "confidence": 0.7438,
+      "location": "RAJMAW PUKHURI, JORHAT, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.755125,
+      "longitude": 94.209599
+    },
+    {
+      "station_id": 2211,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7337,
+        "LOW": 0.0449,
+        "MEDIUM": 0.1319,
+        "HIGH": 0.0653,
+        "CRITICAL": 0.0242
+      },
+      "confidence": 0.7337,
+      "location": "PADUMPUKHURI, TEZPUR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.622356,
+      "longitude": 92.792886
+    },
+    {
+      "station_id": 2212,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.75,
+        "LOW": 0.0475,
+        "MEDIUM": 0.1154,
+        "HIGH": 0.0649,
+        "CRITICAL": 0.0221
+      },
+      "confidence": 0.75,
+      "location": "GOPHUR TANK, GOPHUR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.883105,
+      "longitude": 93.615453
+    },
+    {
+      "station_id": 2213,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7417,
+        "LOW": 0.0434,
+        "MEDIUM": 0.1304,
+        "HIGH": 0.0608,
+        "CRITICAL": 0.0237
+      },
+      "confidence": 0.7417,
+      "location": "JAIPAL PUKHURI, SIPAJHAR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.42838,
+      "longitude": 91.889031
+    },
+    {
+      "station_id": 2214,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7531,
+        "LOW": 0.0485,
+        "MEDIUM": 0.1105,
+        "HIGH": 0.0641,
+        "CRITICAL": 0.0238
+      },
+      "confidence": 0.7531,
+      "location": "BATODRAWA SATRA POND, NAGAON, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.331139,
+      "longitude": 92.68575
+    },
+    {
+      "station_id": 2215,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7535,
+        "LOW": 0.0448,
+        "MEDIUM": 0.1098,
+        "HIGH": 0.0675,
+        "CRITICAL": 0.0244
+      },
+      "confidence": 0.7535,
+      "location": "SARAN BEEL, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.233911,
+      "longitude": 92.300531
+    },
+    {
+      "station_id": 2216,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7236,
+        "LOW": 0.0448,
+        "MEDIUM": 0.1374,
+        "HIGH": 0.0678,
+        "CRITICAL": 0.0265
+      },
+      "confidence": 0.7236,
+      "location": "DIGHALI PUKHURI, GUWAHATI, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.187326,
+      "longitude": 91.751182
+    },
+    {
+      "station_id": 2217,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.749,
+        "LOW": 0.049,
+        "MEDIUM": 0.1105,
+        "HIGH": 0.0658,
+        "CRITICAL": 0.0257
+      },
+      "confidence": 0.749,
+      "location": "SUBHAGYA KUNDA POND KAMAKHYA TEMPLE, GUWAHATI, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.166621,
+      "longitude": 91.705616
+    },
+    {
+      "station_id": 2219,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7569,
+        "LOW": 0.0467,
+        "MEDIUM": 0.1091,
+        "HIGH": 0.0639,
+        "CRITICAL": 0.0234
+      },
+      "confidence": 0.7569,
+      "location": "BISHNU PUSKAR PUKHURI OF HAYAGRIB MADHAB TEMPLE, HAJO, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.244314,
+      "longitude": 91.525994
+    },
+    {
+      "station_id": 2221,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7544,
+        "LOW": 0.0493,
+        "MEDIUM": 0.1038,
+        "HIGH": 0.0704,
+        "CRITICAL": 0.0221
+      },
+      "confidence": 0.7544,
+      "location": "GANGA PUKHURI, NALBARI (GORDON SCHOOL), ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.375677,
+      "longitude": 91.454077
+    },
+    {
+      "station_id": 2222,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7571,
+        "LOW": 0.0474,
+        "MEDIUM": 0.1074,
+        "HIGH": 0.066,
+        "CRITICAL": 0.0222
+      },
+      "confidence": 0.7571,
+      "location": "RAJADINIA PUKHURI AT ABHAYAPURI, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.321125,
+      "longitude": 90.660519
+    },
+    {
+      "station_id": 2223,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7644,
+        "LOW": 0.0451,
+        "MEDIUM": 0.1088,
+        "HIGH": 0.0592,
+        "CRITICAL": 0.0225
+      },
+      "confidence": 0.7644,
+      "location": "MAHAMAYA MANDIR PUKHURI, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.213095,
+      "longitude": 90.120341
+    },
+    {
+      "station_id": 2224,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7651,
+        "LOW": 0.0449,
+        "MEDIUM": 0.109,
+        "HIGH": 0.0587,
+        "CRITICAL": 0.0223
+      },
+      "confidence": 0.7651,
+      "location": "RAJAPUKHURI AT GAURIPUR, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.093677,
+      "longitude": 89.960368
+    },
+    {
+      "station_id": 2225,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7514,
+        "LOW": 0.0455,
+        "MEDIUM": 0.1184,
+        "HIGH": 0.0608,
+        "CRITICAL": 0.0239
+      },
+      "confidence": 0.7514,
+      "location": "BASKANDI POND INSIDE THE BASKANDI MADRASA, BASKANDI, ASSAM",
+      "state": "ASSAM",
+      "latitude": 24.808267,
+      "longitude": 92.916244
+    },
+    {
+      "station_id": 2226,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7577,
+        "LOW": 0.0473,
+        "MEDIUM": 0.1095,
+        "HIGH": 0.0617,
+        "CRITICAL": 0.0237
+      },
+      "confidence": 0.7577,
+      "location": "SIVASAGAR TANK (BORPUKHURI) NEAR SIVADOL, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.9919,
+      "longitude": 94.632189
+    },
+    {
+      "station_id": 2227,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7559,
+        "LOW": 0.048,
+        "MEDIUM": 0.1145,
+        "HIGH": 0.0579,
+        "CRITICAL": 0.0237
+      },
+      "confidence": 0.7559,
+      "location": "HARDOI PUKHURI, CHARAIDEW, ASSAM",
+      "state": "ASSAM",
+      "latitude": 26.948914,
+      "longitude": 94.871519
+    },
+    {
+      "station_id": 2265,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.3243,
+        "LOW": 0.4515,
+        "MEDIUM": 0.0963,
+        "HIGH": 0.0258,
+        "CRITICAL": 0.1021
+      },
+      "confidence": 0.4515,
+      "location": "CANAL UP STREAM OF CUNCOLIM INDL.EST. CUNCOLIM, SALCETE (1 KM FROM M/S NICOMENT INDUSTRIES)",
+      "state": "GOA",
+      "latitude": 15.182391,
+      "longitude": 73.990575
+    },
+    {
+      "station_id": 2266,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6019,
+        "LOW": 0.1718,
+        "MEDIUM": 0.1474,
+        "HIGH": 0.0498,
+        "CRITICAL": 0.0291
+      },
+      "confidence": 0.6019,
+      "location": "CANAL DOWNSTREAM OF CUNCOLIM INDL.EST. CUNCOLIM, SALCETE (NEAR RAILWAY BRIDGE)",
+      "state": "GOA",
+      "latitude": 15.16806,
+      "longitude": 74.010058
+    },
+    {
+      "station_id": 2267,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4183,
+        "LOW": 0.3092,
+        "MEDIUM": 0.1325,
+        "HIGH": 0.0181,
+        "CRITICAL": 0.1219
+      },
+      "confidence": 0.4183,
+      "location": "CREEK AT DANDO MOLLO, VELSAO, MAMUGAO",
+      "state": "GOA",
+      "latitude": 15.354489,
+      "longitude": 73.883148
+    },
+    {
+      "station_id": 2268,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.3748,
+        "LOW": 0.4289,
+        "MEDIUM": 0.0987,
+        "HIGH": 0.0207,
+        "CRITICAL": 0.0769
+      },
+      "confidence": 0.4289,
+      "location": "CUMBARJUA CANAL CORLIM(DISCHARGE POINT OF SYNGENTA LIMITED)",
+      "state": "GOA",
+      "latitude": 15.502818,
+      "longitude": 73.949118
+    },
+    {
+      "station_id": 2354,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7132,
+        "LOW": 0.0165,
+        "MEDIUM": 0.0774,
+        "HIGH": 0.176,
+        "CRITICAL": 0.0168
+      },
+      "confidence": 0.7132,
+      "location": "SAMARLA KOTA CANAL,SAMARLA KOTA (V & M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 17.042624,
+      "longitude": 82.166873
+    },
+    {
+      "station_id": 2355,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.178,
+        "LOW": 0.1098,
+        "MEDIUM": 0.0709,
+        "HIGH": 0.0109,
+        "CRITICAL": 0.6303
+      },
+      "confidence": 0.6303,
+      "location": "TULJE BAGH CANAL, TEKRI DRAIN, KAKINADA, EAST GODAVARI",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.854914,
+      "longitude": 82.231328
+    },
+    {
+      "station_id": 2381,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8679,
+        "LOW": 0.0062,
+        "MEDIUM": 0.0379,
+        "HIGH": 0.0802,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.8679,
+      "location": "RIVER BOKARO AT ZARANGDIH BRIDGE",
+      "state": "JHARKHAND",
+      "latitude": 23.770609,
+      "longitude": 85.922067
+    },
+    {
+      "station_id": 2390,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8762,
+        "LOW": 0.0059,
+        "MEDIUM": 0.0356,
+        "HIGH": 0.0747,
+        "CRITICAL": 0.0076
+      },
+      "confidence": 0.8762,
+      "location": "RIVER KONAR AT TENUGHAT DAM",
+      "state": "JHARKHAND",
+      "latitude": 23.780586,
+      "longitude": 85.876131
+    },
+    {
+      "station_id": 2392,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8631,
+        "LOW": 0.0061,
+        "MEDIUM": 0.0399,
+        "HIGH": 0.0829,
+        "CRITICAL": 0.008
+      },
+      "confidence": 0.8631,
+      "location": "RIVER BARAKAR AT MAITHAN DAM",
+      "state": "JHARKHAND",
+      "latitude": 23.785806,
+      "longitude": 86.813612
+    },
+    {
+      "station_id": 2396,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.863,
+        "LOW": 0.006,
+        "MEDIUM": 0.0394,
+        "HIGH": 0.0835,
+        "CRITICAL": 0.0081
+      },
+      "confidence": 0.863,
+      "location": "RIVER JUMAR AT KANKE DAM",
+      "state": "JHARKHAND",
+      "latitude": 23.455233,
+      "longitude": 85.310539
+    },
+    {
+      "station_id": 2401,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7941,
+        "LOW": 0.0172,
+        "MEDIUM": 0.077,
+        "HIGH": 0.072,
+        "CRITICAL": 0.0397
+      },
+      "confidence": 0.7941,
+      "location": "RIVER AJAY AT MASANJORE DAM",
+      "state": "JHARKHAND",
+      "latitude": 24.112461,
+      "longitude": 87.310836
+    },
+    {
+      "station_id": 2621,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6567,
+        "LOW": 0.1076,
+        "MEDIUM": 0.173,
+        "HIGH": 0.0579,
+        "CRITICAL": 0.0048
+      },
+      "confidence": 0.6567,
+      "location": "RIVER GIRI AT D/S YASHWANT NAGAR AFTER CONF. WITH ASHWANI KHAD AT YASHWANT NAGAR- NEAR SHANI MANDIR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.882006,
+      "longitude": 77.211344
+    },
+    {
+      "station_id": 2622,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4751,
+        "LOW": 0.2192,
+        "MEDIUM": 0.2255,
+        "HIGH": 0.0505,
+        "CRITICAL": 0.0297
+      },
+      "confidence": 0.4751,
+      "location": "RIVER GIRI AT U/S CCI MINES AT VILLAGE NADI",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.522537,
+      "longitude": 77.667622
+    },
+    {
+      "station_id": 2623,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5253,
+        "LOW": 0.2046,
+        "MEDIUM": 0.2002,
+        "HIGH": 0.055,
+        "CRITICAL": 0.0149
+      },
+      "confidence": 0.5253,
+      "location": "RIVER GIRI D/S SATAUN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.552658,
+      "longitude": 77.643922
+    },
+    {
+      "station_id": 2789,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4926,
+        "LOW": 0.1871,
+        "MEDIUM": 0.2361,
+        "HIGH": 0.0681,
+        "CRITICAL": 0.0161
+      },
+      "confidence": 0.4926,
+      "location": "NALA AT D/S OF AKLAI MANDIR, VILLAGE- AKLAI, TALUKA- MALSHIRAS, DISTRICT- SOLAPUR.",
+      "state": "MAHARASHTRA",
+      "latitude": 17.89403,
+      "longitude": 75.026582
+    },
+    {
+      "station_id": 2790,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.3405,
+        "LOW": 0.1676,
+        "MEDIUM": 0.1115,
+        "HIGH": 0.0139,
+        "CRITICAL": 0.3665
+      },
+      "confidence": 0.3665,
+      "location": "PIMPAL-PANERI NALA AT RATNAGIRI NEAR FINOLEX INDUSTRIES, VILLAGE- YAHGANIGAON, TALUKA- RATNAGIRI, DISTRICT- RATNAGIRI.",
+      "state": "MAHARASHTRA",
+      "latitude": 16.890396,
+      "longitude": 73.335499
+    },
+    {
+      "station_id": 2951,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5009,
+        "LOW": 0.2083,
+        "MEDIUM": 0.2151,
+        "HIGH": 0.0618,
+        "CRITICAL": 0.0139
+      },
+      "confidence": 0.5009,
+      "location": "RIVER BANAS BISULPUR DAM, TONK, RAJASTHAN",
+      "state": "RAJASTHAN",
+      "latitude": 25.905847,
+      "longitude": 75.463861
+    },
+    {
+      "station_id": 2952,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4994,
+        "LOW": 0.2204,
+        "MEDIUM": 0.2033,
+        "HIGH": 0.0628,
+        "CRITICAL": 0.014
+      },
+      "confidence": 0.4994,
+      "location": "RIVER NEAR NEWTA DAM,JAIPUR,RAJSTHAN",
+      "state": "RAJASTHAN",
+      "latitude": 26.919491,
+      "longitude": 75.930328
+    },
+    {
+      "station_id": 2953,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4945,
+        "LOW": 0.2539,
+        "MEDIUM": 0.1849,
+        "HIGH": 0.0387,
+        "CRITICAL": 0.028
+      },
+      "confidence": 0.4945,
+      "location": "RIVER KALI SINDH AT ANICUT OF M/S CFCL GADEPAN, KOTA, RAJASTHAN",
+      "state": "RAJASTHAN",
+      "latitude": 25.160724,
+      "longitude": 76.22887
+    },
+    {
+      "station_id": 2955,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7295,
+        "LOW": 0.1179,
+        "MEDIUM": 0.1125,
+        "HIGH": 0.0355,
+        "CRITICAL": 0.0046
+      },
+      "confidence": 0.7295,
+      "location": "RIVER CHAMBAL ENTERING IN RAJASTHAN AT GANDHI SAGAR DAM, RAWATBHATA,CHITTORGARH",
+      "state": "RAJASTHAN",
+      "latitude": 24.07656,
+      "longitude": 75.526392
+    },
+    {
+      "station_id": 2956,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4895,
+        "LOW": 0.2503,
+        "MEDIUM": 0.1916,
+        "HIGH": 0.0448,
+        "CRITICAL": 0.0239
+      },
+      "confidence": 0.4895,
+      "location": "RIVER KALI SINDH AT BAROD ROAD BRIDGE, KOTA, RAJASTHAN",
+      "state": "RAJASTHAN",
+      "latitude": 25.393522,
+      "longitude": 76.327061
+    },
+    {
+      "station_id": 3047,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.696,
+        "LOW": 0.0194,
+        "MEDIUM": 0.1208,
+        "HIGH": 0.153,
+        "CRITICAL": 0.0107
+      },
+      "confidence": 0.696,
+      "location": "WATER WORKS- GURGAON",
+      "state": "HARYANA",
+      "latitude": 28.461753,
+      "longitude": 76.971806
+    },
+    {
+      "station_id": 3050,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5369,
+        "LOW": 0.1284,
+        "MEDIUM": 0.1156,
+        "HIGH": 0.0168,
+        "CRITICAL": 0.2022
+      },
+      "confidence": 0.5369,
+      "location": "WATER WORKS- GHAZIABAD",
+      "state": "UTTAR PRADESH",
+      "latitude": 28.643984,
+      "longitude": 77.405794
+    },
+    {
+      "station_id": 3051,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6772,
+        "LOW": 0.0192,
+        "MEDIUM": 0.1191,
+        "HIGH": 0.1729,
+        "CRITICAL": 0.0116
+      },
+      "confidence": 0.6772,
+      "location": "BUDAMERU CANAL NEAR BDG AT NH-5, KEESARAPALLI (V), GANNAVARAM (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.518542,
+      "longitude": 80.77469
+    },
+    {
+      "station_id": 3052,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.645,
+        "LOW": 0.0202,
+        "MEDIUM": 0.1564,
+        "HIGH": 0.1674,
+        "CRITICAL": 0.0109
+      },
+      "confidence": 0.645,
+      "location": "GUNTATHIPPA DRAIN B/C WITH RIVES CANAL AT RAMAVARAPPADU, VIJAYAWADA TOWN",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.525092,
+      "longitude": 80.68445
+    },
+    {
+      "station_id": 3053,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0422,
+        "LOW": 0.0218,
+        "MEDIUM": 0.0157,
+        "HIGH": 0.0038,
+        "CRITICAL": 0.9165
+      },
+      "confidence": 0.9165,
+      "location": "TULIA BAGH DRAIN AT MATLAPALEM (V), VEMULAVADA (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.875379,
+      "longitude": 82.14765
+    },
+    {
+      "station_id": 3054,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4659,
+        "LOW": 0.2221,
+        "MEDIUM": 0.2282,
+        "HIGH": 0.0497,
+        "CRITICAL": 0.0341
+      },
+      "confidence": 0.4659,
+      "location": "RIVER GODAVARI - OUTLET OF ASH POND EFFLUENTS OF M/S.NTPC, RAMAGUNDAM",
+      "state": "TELANGANA",
+      "latitude": 18.758647,
+      "longitude": 79.451014
+    },
+    {
+      "station_id": 3055,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5612,
+        "LOW": 0.1608,
+        "MEDIUM": 0.2035,
+        "HIGH": 0.0621,
+        "CRITICAL": 0.0124
+      },
+      "confidence": 0.5612,
+      "location": "AMBERPET STP (339 MLD) - OUTLET , AMBERPET (V&M), HYDERABAD",
+      "state": "TELANGANA",
+      "latitude": 17.375853,
+      "longitude": 78.529522
+    },
+    {
+      "station_id": 3309,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7238,
+        "LOW": 0.08,
+        "MEDIUM": 0.1496,
+        "HIGH": 0.042,
+        "CRITICAL": 0.0046
+      },
+      "confidence": 0.7238,
+      "location": "RIVER CHAMBAL AT TAL VILLAGE NEAR BRIDGE, UJJAIN",
+      "state": "MADHYA PRADESH",
+      "latitude": 23.725166,
+      "longitude": 75.377851
+    },
+    {
+      "station_id": 3553,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8688,
+        "LOW": 0.0059,
+        "MEDIUM": 0.0384,
+        "HIGH": 0.0791,
+        "CRITICAL": 0.0078
+      },
+      "confidence": 0.8688,
+      "location": "RIVER DAMODAR NEAR TELMUCHO BRIDGE",
+      "state": "JHARKHAND",
+      "latitude": 23.718122,
+      "longitude": 86.201578
+    },
+    {
+      "station_id": 3554,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8735,
+        "LOW": 0.006,
+        "MEDIUM": 0.0371,
+        "HIGH": 0.0759,
+        "CRITICAL": 0.0075
+      },
+      "confidence": 0.8735,
+      "location": "RIVER KONAR NEAR SWANG COAL WASHERY, BOKARO",
+      "state": "JHARKHAND",
+      "latitude": 23.79413,
+      "longitude": 85.863369
+    },
+    {
+      "station_id": 3555,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8725,
+        "LOW": 0.0061,
+        "MEDIUM": 0.0372,
+        "HIGH": 0.0766,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.8725,
+      "location": "RIVER DAMODAR NEAR ZARANGDIH BRIDGE, BOKARO",
+      "state": "JHARKHAND",
+      "latitude": 23.771032,
+      "longitude": 85.913316
+    },
+    {
+      "station_id": 3772,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7518,
+        "LOW": 0.0489,
+        "MEDIUM": 0.109,
+        "HIGH": 0.0661,
+        "CRITICAL": 0.0242
+      },
+      "confidence": 0.7518,
+      "location": "BORPUKHURI AT SONARI",
+      "state": "ASSAM",
+      "latitude": 27.063845,
+      "longitude": 94.954788
+    },
+    {
+      "station_id": 3775,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7073,
+        "LOW": 0.0514,
+        "MEDIUM": 0.1493,
+        "HIGH": 0.0621,
+        "CRITICAL": 0.0298
+      },
+      "confidence": 0.7073,
+      "location": "TENGA PUKHURI AT TENGAPUKHURI",
+      "state": "ASSAM",
+      "latitude": 26.926567,
+      "longitude": 94.821223
+    },
+    {
+      "station_id": 3783,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.77,
+        "LOW": 0.0433,
+        "MEDIUM": 0.1089,
+        "HIGH": 0.0565,
+        "CRITICAL": 0.0213
+      },
+      "confidence": 0.77,
+      "location": "MAGURI BEEL, GUIJAN, TINSUKIA",
+      "state": "ASSAM",
+      "latitude": 27.578879,
+      "longitude": 95.328004
+    },
+    {
+      "station_id": 3787,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7565,
+        "LOW": 0.0437,
+        "MEDIUM": 0.1216,
+        "HIGH": 0.0558,
+        "CRITICAL": 0.0224
+      },
+      "confidence": 0.7565,
+      "location": "HOLLUNGA BEEL NEAR GAI NADI/ RIVER AT SOMARAJAN, DHEMA JI",
+      "state": "ASSAM",
+      "latitude": 27.644285,
+      "longitude": 94.691039
+    },
+    {
+      "station_id": 3798,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7516,
+        "LOW": 0.0442,
+        "MEDIUM": 0.1211,
+        "HIGH": 0.0602,
+        "CRITICAL": 0.0229
+      },
+      "confidence": 0.7516,
+      "location": "SAMAGURI BEEL IN NAGAON DISTRICT",
+      "state": "ASSAM",
+      "latitude": 26.347108,
+      "longitude": 92.68831
+    },
+    {
+      "station_id": 3800,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7658,
+        "LOW": 0.045,
+        "MEDIUM": 0.1082,
+        "HIGH": 0.0585,
+        "CRITICAL": 0.0225
+      },
+      "confidence": 0.7658,
+      "location": "MALINI BEEL NEAR INDUTRIAL AREA AT RAMNAGAR",
+      "state": "ASSAM",
+      "latitude": 24.845637,
+      "longitude": 92.770562
+    },
+    {
+      "station_id": 3804,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.77,
+        "LOW": 0.0433,
+        "MEDIUM": 0.1089,
+        "HIGH": 0.0565,
+        "CRITICAL": 0.0213
+      },
+      "confidence": 0.77,
+      "location": "SON BEEL WATER AT KARIMGANJ",
+      "state": "ASSAM",
+      "latitude": 24.689305,
+      "longitude": 92.432391
+    },
+    {
+      "station_id": 3806,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7599,
+        "LOW": 0.0464,
+        "MEDIUM": 0.1092,
+        "HIGH": 0.0611,
+        "CRITICAL": 0.0234
+      },
+      "confidence": 0.7599,
+      "location": "POND WATER FROM RAMKRISHNA MISSION AT HAILAKANDI",
+      "state": "ASSAM",
+      "latitude": 24.674821,
+      "longitude": 92.561422
+    },
+    {
+      "station_id": 3808,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6891,
+        "LOW": 0.0529,
+        "MEDIUM": 0.1594,
+        "HIGH": 0.0665,
+        "CRITICAL": 0.0321
+      },
+      "confidence": 0.6891,
+      "location": "PARASHALI BEEL AT DEMORIA",
+      "state": "ASSAM",
+      "latitude": 26.135742,
+      "longitude": 92.073475
+    },
+    {
+      "station_id": 3809,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.723,
+        "LOW": 0.0385,
+        "MEDIUM": 0.1299,
+        "HIGH": 0.088,
+        "CRITICAL": 0.0206
+      },
+      "confidence": 0.723,
+      "location": "JORPUKHURI AT UZANBAZAR (UGRATALA TEMPLE)",
+      "state": "ASSAM",
+      "latitude": 26.19194,
+      "longitude": 91.748766
+    },
+    {
+      "station_id": 3812,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.705,
+        "LOW": 0.0428,
+        "MEDIUM": 0.1282,
+        "HIGH": 0.1014,
+        "CRITICAL": 0.0226
+      },
+      "confidence": 0.705,
+      "location": "KAMALPUR BEEL, KAMALPUR",
+      "state": "ASSAM",
+      "latitude": 26.345545,
+      "longitude": 91.677656
+    },
+    {
+      "station_id": 3814,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6808,
+        "LOW": 0.0532,
+        "MEDIUM": 0.159,
+        "HIGH": 0.0746,
+        "CRITICAL": 0.0323
+      },
+      "confidence": 0.6808,
+      "location": "SILSAKO BEEL, CHACHAL, GUWAHATI",
+      "state": "ASSAM",
+      "latitude": 26.185816,
+      "longitude": 91.741047
+    },
+    {
+      "station_id": 3819,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6895,
+        "LOW": 0.053,
+        "MEDIUM": 0.1557,
+        "HIGH": 0.0697,
+        "CRITICAL": 0.0321
+      },
+      "confidence": 0.6895,
+      "location": "SORU SOLA BEEL, PALTAN BAZAR, GUWAHATI",
+      "state": "ASSAM",
+      "latitude": 26.17884,
+      "longitude": 91.752905
+    },
+    {
+      "station_id": 3821,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7581,
+        "LOW": 0.0472,
+        "MEDIUM": 0.1084,
+        "HIGH": 0.0637,
+        "CRITICAL": 0.0226
+      },
+      "confidence": 0.7581,
+      "location": "DIPLAI BEEL AT SILGARA, KOKRAJHAR",
+      "state": "ASSAM",
+      "latitude": 26.236174,
+      "longitude": 90.300305
+    },
+    {
+      "station_id": 3832,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.557,
+        "LOW": 0.2002,
+        "MEDIUM": 0.1759,
+        "HIGH": 0.0325,
+        "CRITICAL": 0.0344
+      },
+      "confidence": 0.557,
+      "location": "RIVER BETWA AT U/S NEAR ROAD BRIDGE ORCHHA",
+      "state": "MADHYA PRADESH",
+      "latitude": 25.393032,
+      "longitude": 78.661879
+    },
+    {
+      "station_id": 3860,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4814,
+        "LOW": 0.2178,
+        "MEDIUM": 0.2221,
+        "HIGH": 0.0562,
+        "CRITICAL": 0.0226
+      },
+      "confidence": 0.4814,
+      "location": "RIVER GIRI D/S CEMENT CORPORATION OF INDIA, RAJBAN AT BANGRAN BRIDGE",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.526326,
+      "longitude": 77.66857
+    },
+    {
+      "station_id": 3867,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6141,
+        "LOW": 0.0332,
+        "MEDIUM": 0.1938,
+        "HIGH": 0.1416,
+        "CRITICAL": 0.0173
+      },
+      "confidence": 0.6141,
+      "location": "SARVARI NALLAH BEFORE CONFLUENCE TO RIVER BEAS",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.959208,
+      "longitude": 77.113219
+    },
+    {
+      "station_id": 3868,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7234,
+        "LOW": 0.0218,
+        "MEDIUM": 0.1137,
+        "HIGH": 0.1301,
+        "CRITICAL": 0.0109
+      },
+      "confidence": 0.7234,
+      "location": "BARAGRAM NALLAH BEFORE CONFLUENCE TO RIVER BEAS",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.138571,
+      "longitude": 77.153347
+    },
+    {
+      "station_id": 3875,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6846,
+        "LOW": 0.0307,
+        "MEDIUM": 0.2477,
+        "HIGH": 0.0323,
+        "CRITICAL": 0.0047
+      },
+      "confidence": 0.6846,
+      "location": "SURAJMUKHI NALLAH U/S WSS GALAYANA D/S OF SHOOLINI UNIVERSITY",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.864266,
+      "longitude": 77.118755
+    },
+    {
+      "station_id": 3876,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.724,
+        "LOW": 0.0218,
+        "MEDIUM": 0.195,
+        "HIGH": 0.0514,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.724,
+      "location": "RIVER GIRI AFTER CONFLUENCE OF ASHWANI RIVER AT VILLAGE MARYOG",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.891819,
+      "longitude": 77.21002
+    },
+    {
+      "station_id": 3877,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7707,
+        "LOW": 0.0318,
+        "MEDIUM": 0.1036,
+        "HIGH": 0.0825,
+        "CRITICAL": 0.0113
+      },
+      "confidence": 0.7707,
+      "location": "RIVER GIRI U/S LWSS AT SAINJ",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.769476,
+      "longitude": 77.306086
+    },
+    {
+      "station_id": 3878,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7681,
+        "LOW": 0.0217,
+        "MEDIUM": 0.1261,
+        "HIGH": 0.0753,
+        "CRITICAL": 0.0089
+      },
+      "confidence": 0.7681,
+      "location": "RIVER GIRI D/S LWSS AT SAINJ",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.785054,
+      "longitude": 77.330491
+    },
+    {
+      "station_id": 3879,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4925,
+        "LOW": 0.1871,
+        "MEDIUM": 0.2361,
+        "HIGH": 0.0681,
+        "CRITICAL": 0.0161
+      },
+      "confidence": 0.4925,
+      "location": "BHATIAN NALLAH U/S BHATIAN VILLAGE, NEAR TVS INDUSTRY, NALAGARH",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.062396,
+      "longitude": 76.681898
+    },
+    {
+      "station_id": 3881,
+      "predicted_severity": "MEDIUM",
+      "severity_index": 2,
+      "probabilities": {
+        "SAFE": 0.2254,
+        "LOW": 0.0409,
+        "MEDIUM": 0.5506,
+        "HIGH": 0.1564,
+        "CRITICAL": 0.0266
+      },
+      "confidence": 0.5506,
+      "location": "BHATIAN NALLAH D/S SARA TEXTILE, NALAGARH",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.030967,
+      "longitude": 76.66358
+    },
+    {
+      "station_id": 3923,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6509,
+        "LOW": 0.0116,
+        "MEDIUM": 0.108,
+        "HIGH": 0.2157,
+        "CRITICAL": 0.0138
+      },
+      "confidence": 0.6509,
+      "location": "GURADIH NALLAH AT PANPOSH",
+      "state": "ODISHA",
+      "latitude": 22.23754,
+      "longitude": 84.803447
+    },
+    {
+      "station_id": 4000,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8692,
+        "LOW": 0.006,
+        "MEDIUM": 0.0376,
+        "HIGH": 0.0796,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.8692,
+      "location": "RIVER GARGA NEAR TELMUCHO BRIDGE",
+      "state": "JHARKHAND",
+      "latitude": 23.7127,
+      "longitude": 86.192737
+    },
+    {
+      "station_id": 4006,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7541,
+        "LOW": 0.0445,
+        "MEDIUM": 0.1219,
+        "HIGH": 0.0568,
+        "CRITICAL": 0.0227
+      },
+      "confidence": 0.7541,
+      "location": "NETAI PUKHURI AT NETAI PUKHURI",
+      "state": "ASSAM",
+      "latitude": 27.208485,
+      "longitude": 94.74042
+    },
+    {
+      "station_id": 4013,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.094,
+        "LOW": 0.0523,
+        "MEDIUM": 0.0379,
+        "HIGH": 0.0068,
+        "CRITICAL": 0.809
+      },
+      "confidence": 0.809,
+      "location": "TIRACOL BEACH",
+      "state": "GOA",
+      "latitude": 15.720857,
+      "longitude": 73.68186
+    },
+    {
+      "station_id": 4014,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0371,
+        "LOW": 0.0187,
+        "MEDIUM": 0.0137,
+        "HIGH": 0.0034,
+        "CRITICAL": 0.9271
+      },
+      "confidence": 0.9271,
+      "location": "MIRAMAR BEACH",
+      "state": "GOA",
+      "latitude": 15.482664,
+      "longitude": 73.807302
+    },
+    {
+      "station_id": 4015,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9598
+      },
+      "confidence": 0.9598,
+      "location": "CALANGUTE BEACH",
+      "state": "GOA",
+      "latitude": 15.531787,
+      "longitude": 73.75851
+    },
+    {
+      "station_id": 4016,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0256,
+        "LOW": 0.0126,
+        "MEDIUM": 0.0091,
+        "HIGH": 0.0025,
+        "CRITICAL": 0.9502
+      },
+      "confidence": 0.9502,
+      "location": "MORJIM BEACH",
+      "state": "GOA",
+      "latitude": 15.629169,
+      "longitude": 73.725747
+    },
+    {
+      "station_id": 4017,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "MOBOR BEACH",
+      "state": "GOA",
+      "latitude": 15.156355,
+      "longitude": 73.944955
+    },
+    {
+      "station_id": 4027,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7567,
+        "LOW": 0.0554,
+        "MEDIUM": 0.1348,
+        "HIGH": 0.0455,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.7567,
+      "location": "RIVER GIRI D/S RAJGARH TOWN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.799381,
+      "longitude": 77.282001
+    },
+    {
+      "station_id": 4028,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.612,
+        "LOW": 0.1703,
+        "MEDIUM": 0.1591,
+        "HIGH": 0.0456,
+        "CRITICAL": 0.013
+      },
+      "confidence": 0.612,
+      "location": "RIVER GIRI D/S KALGIDHAR TRUST, BARU SAHIB",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.760455,
+      "longitude": 77.303572
+    },
+    {
+      "station_id": 4032,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7438,
+        "LOW": 0.0784,
+        "MEDIUM": 0.1153,
+        "HIGH": 0.0576,
+        "CRITICAL": 0.0049
+      },
+      "confidence": 0.7438,
+      "location": "RIVER SUTLEJ U/S KHAIRIAN SOLID WASTE DUMPING SITE BILASPUR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.339444,
+      "longitude": 76.751667
+    },
+    {
+      "station_id": 4033,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6954,
+        "LOW": 0.0896,
+        "MEDIUM": 0.0972,
+        "HIGH": 0.1073,
+        "CRITICAL": 0.0105
+      },
+      "confidence": 0.6954,
+      "location": "RIVER SUTLEJ D/S KHAIRIAN SOLID WASTE DUMPING SITE BILASPUR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.358333,
+      "longitude": 76.760278
+    },
+    {
+      "station_id": 4034,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7186,
+        "LOW": 0.0286,
+        "MEDIUM": 0.0576,
+        "HIGH": 0.1799,
+        "CRITICAL": 0.0153
+      },
+      "confidence": 0.7186,
+      "location": "SAHU NALLAH U/S BHURI SINGH SHEP",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.774166,
+      "longitude": 76.135555
+    },
+    {
+      "station_id": 4035,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7184,
+        "LOW": 0.0287,
+        "MEDIUM": 0.0576,
+        "HIGH": 0.18,
+        "CRITICAL": 0.0154
+      },
+      "confidence": 0.7184,
+      "location": "SAHU NALLAH D/S BHURI SINGH SHEP",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.77,
+      "longitude": 76.188611
+    },
+    {
+      "station_id": 4036,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5056,
+        "LOW": 0.2622,
+        "MEDIUM": 0.1631,
+        "HIGH": 0.0372,
+        "CRITICAL": 0.0319
+      },
+      "confidence": 0.5056,
+      "location": "KUNNI PUL, VILL SAMAHU, PO KUNIHAR, TEHSIL ARKI",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.086917,
+      "longitude": 76.956937
+    },
+    {
+      "station_id": 4083,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8597,
+        "LOW": 0.0062,
+        "MEDIUM": 0.0406,
+        "HIGH": 0.0853,
+        "CRITICAL": 0.0082
+      },
+      "confidence": 0.8597,
+      "location": "RIVER DAMODAR NEAR ROHINI PROJECT, NK AREA, PO-DAKRA, RANCHI",
+      "state": "JHARKHAND",
+      "latitude": 23.68358,
+      "longitude": 85.008402
+    },
+    {
+      "station_id": 4085,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.8735,
+        "LOW": 0.0057,
+        "MEDIUM": 0.0357,
+        "HIGH": 0.0773,
+        "CRITICAL": 0.0077
+      },
+      "confidence": 0.8735,
+      "location": "RIVER JUMAR AT BIT MESRA, RANCHI",
+      "state": "JHARKHAND",
+      "latitude": 23.411517,
+      "longitude": 85.402979
+    },
+    {
+      "station_id": 4334,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7585,
+        "LOW": 0.0455,
+        "MEDIUM": 0.1153,
+        "HIGH": 0.0581,
+        "CRITICAL": 0.0226
+      },
+      "confidence": 0.7585,
+      "location": "THOWRADOLE PUKHURI, THOWRADOLE G.P. DEMOW BLOCK",
+      "state": "ASSAM",
+      "latitude": 27.083481,
+      "longitude": 94.698397
+    },
+    {
+      "station_id": 4337,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6101,
+        "LOW": 0.0601,
+        "MEDIUM": 0.2049,
+        "HIGH": 0.0799,
+        "CRITICAL": 0.0449
+      },
+      "confidence": 0.6101,
+      "location": "KAMALABARI LAKE INSIDE KAMALABARI CHILDREN'S PARK, GELEKY",
+      "state": "ASSAM",
+      "latitude": 26.77465,
+      "longitude": 94.6681
+    },
+    {
+      "station_id": 4349,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER, BAY OF BENGAL, AFTER CONFLUENCE OF MARINE OUTFALL OF M/S.AUROBINDO PHARMA LTD. PYDIBHEEMAVARAM (V), RANASTHALAM (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 18.0783,
+      "longitude": 83.664886
+    },
+    {
+      "station_id": 4352,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WAER BAY OF BENGAL, AFTER CONFLUENCE OF MARINE OUTFALL OF M/S MATRIX LABORATORIES LTD THAMMAYYAPALEM (V) PUSAPATIREGA (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 18.031067,
+      "longitude": 83.602401
+    },
+    {
+      "station_id": 4356,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7417,
+        "LOW": 0.0224,
+        "MEDIUM": 0.097,
+        "HIGH": 0.1287,
+        "CRITICAL": 0.0102
+      },
+      "confidence": 0.7417,
+      "location": "ELERU CANAL, NEAR PHARMA CITY,THADI (V),PARAVADA (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.720398,
+      "longitude": 81.108729
+    },
+    {
+      "station_id": 4357,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0237,
+        "LOW": 0.0115,
+        "MEDIUM": 0.0084,
+        "HIGH": 0.0024,
+        "CRITICAL": 0.954
+      },
+      "confidence": 0.954,
+      "location": "RUSHIKONDA BEACH,VISAKHAPATNAM",
+      "state": "ANDHRA PRADESH",
+      "latitude": 17.782025,
+      "longitude": 83.385284
+    },
+    {
+      "station_id": 4361,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0439,
+        "LOW": 0.0244,
+        "MEDIUM": 0.0168,
+        "HIGH": 0.0039,
+        "CRITICAL": 0.9109
+      },
+      "confidence": 0.9109,
+      "location": "SEA WATER BAY BENGAL, UPPADA BEACH ROAD, KAKINADA",
+      "state": "ANDHRA PRADESH",
+      "latitude": 17.076024,
+      "longitude": 82.335507
+    },
+    {
+      "station_id": 4362,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0225,
+        "LOW": 0.0106,
+        "MEDIUM": 0.0079,
+        "HIGH": 0.0023,
+        "CRITICAL": 0.9567
+      },
+      "confidence": 0.9567,
+      "location": "SEA WATER, BAY OF BENGAL NEAR DEEP WATER PORT, KAKINADA (1KM AWAY FROM JETTY)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.970619,
+      "longitude": 82.280728
+    },
+    {
+      "station_id": 4363,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0289,
+        "LOW": 0.0156,
+        "MEDIUM": 0.0101,
+        "HIGH": 0.0032,
+        "CRITICAL": 0.9422
+      },
+      "confidence": 0.9422,
+      "location": "SEA WATER BAY OF BENGAL NEAR KUMBHABHISHEKAM TEMPALE, KAKINADA",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.957749,
+      "longitude": 82.269867
+    },
+    {
+      "station_id": 4370,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.2444,
+        "LOW": 0.2099,
+        "MEDIUM": 0.0948,
+        "HIGH": 0.0252,
+        "CRITICAL": 0.4257
+      },
+      "confidence": 0.4257,
+      "location": "KRISHNA CANAL AT HANUMAN NAGAR, NEAR SAIBABA TEMPLE, ELURU",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.752674,
+      "longitude": 81.02373
+    },
+    {
+      "station_id": 4371,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0288,
+        "LOW": 0.0144,
+        "MEDIUM": 0.0101,
+        "HIGH": 0.0028,
+        "CRITICAL": 0.9439
+      },
+      "confidence": 0.9439,
+      "location": "SEA WATER, BAY OF BENGAL AFTER CONFLUENCE OF RIVER VASHISTA GODAVARI AT CHINNAMAINAVARILANKA (V), NARSAPUR (M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.319709,
+      "longitude": 81.70582
+    },
+    {
+      "station_id": 4374,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7462,
+        "LOW": 0.0295,
+        "MEDIUM": 0.1317,
+        "HIGH": 0.0845,
+        "CRITICAL": 0.0082
+      },
+      "confidence": 0.7462,
+      "location": "GOSTTA NADI- VELPURU CANAL AT HANUMAN TEMPLE, DOWNSTREAM OF TANUKU TOWN, TANUKU",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.709955,
+      "longitude": 81.547483
+    },
+    {
+      "station_id": 4378,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER, BAY OF BENGAL, MANGINAPUDI BEACH, MACHILIPATNAM (V & M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 16.242517,
+      "longitude": 81.241292
+    },
+    {
+      "station_id": 4383,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER BAY OF BENGAL, FISHING HARBOUR, NIZAMPATNAM (V & M)",
+      "state": "ANDHRA PRADESH",
+      "latitude": 15.877884,
+      "longitude": 80.652347
+    },
+    {
+      "station_id": 4385,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER, BAY OF BENGAL, KOTHAPATNAM BEACH",
+      "state": "ANDHRA PRADESH",
+      "latitude": 15.419125,
+      "longitude": 80.168512
+    },
+    {
+      "station_id": 4386,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER, BAY OF BENGAL, VODAREVU BEACH, CHIRALA",
+      "state": "ANDHRA PRADESH",
+      "latitude": 15.780704,
+      "longitude": 80.411638
+    },
+    {
+      "station_id": 4387,
+      "predicted_severity": "CRITICAL",
+      "severity_index": 4,
+      "probabilities": {
+        "SAFE": 0.0209,
+        "LOW": 0.0097,
+        "MEDIUM": 0.0074,
+        "HIGH": 0.0022,
+        "CRITICAL": 0.9599
+      },
+      "confidence": 0.9599,
+      "location": "SEA WATER, BAY OF BENGAL, KRISHNAPATNAM PORT",
+      "state": "ANDHRA PRADESH",
+      "latitude": 14.252922,
+      "longitude": 80.110153
+    },
+    {
+      "station_id": 4421,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5402,
+        "LOW": 0.2116,
+        "MEDIUM": 0.128,
+        "HIGH": 0.0178,
+        "CRITICAL": 0.1024
+      },
+      "confidence": 0.5402,
+      "location": "FROM NARMADA MAIN CANAL AT INDORAHMEDABAD HIGHWAY BRIDGE NEAR VILLAGE MOTIKANTADI TAL, GODHRA, DIST PANCHMAHAL",
+      "state": "GUJARAT",
+      "latitude": 22.803282,
+      "longitude": 73.42819
+    },
+    {
+      "station_id": 4425,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6493,
+        "LOW": 0.1207,
+        "MEDIUM": 0.1358,
+        "HIGH": 0.087,
+        "CRITICAL": 0.0072
+      },
+      "confidence": 0.6493,
+      "location": "RAW WATER FOR LWSS OF CHURAT NALLAH",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.106236,
+      "longitude": 77.222166
+    },
+    {
+      "station_id": 4426,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.727,
+        "LOW": 0.0186,
+        "MEDIUM": 0.0637,
+        "HIGH": 0.1775,
+        "CRITICAL": 0.0131
+      },
+      "confidence": 0.727,
+      "location": "RAW WATER FOR LWSS OF JAGROTI NALLAH",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.52616,
+      "longitude": 77.132184
+    },
+    {
+      "station_id": 4427,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7807,
+        "LOW": 0.025,
+        "MEDIUM": 0.124,
+        "HIGH": 0.0612,
+        "CRITICAL": 0.0091
+      },
+      "confidence": 0.7807,
+      "location": "RIVER GIRI U/S CHAILLA",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.914863,
+      "longitude": 77.243539
+    },
+    {
+      "station_id": 4430,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.3764,
+        "LOW": 0.519,
+        "MEDIUM": 0.0727,
+        "HIGH": 0.0205,
+        "CRITICAL": 0.0115
+      },
+      "confidence": 0.519,
+      "location": "LIFT NALLAH BEFORE CONFLUENCE TO ASHWANI KHAD NEAR DOGRHA BRIDGE",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.14587,
+      "longitude": 77.103988
+    },
+    {
+      "station_id": 4446,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.2835,
+        "LOW": 0.6433,
+        "MEDIUM": 0.0504,
+        "HIGH": 0.0143,
+        "CRITICAL": 0.0085
+      },
+      "confidence": 0.6433,
+      "location": "RIVER SUTLEJ U/S LANDFILL SITE RAMPUR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.448534,
+      "longitude": 77.63401
+    },
+    {
+      "station_id": 4447,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.3445,
+        "LOW": 0.5745,
+        "MEDIUM": 0.0562,
+        "HIGH": 0.0189,
+        "CRITICAL": 0.006
+      },
+      "confidence": 0.5745,
+      "location": "RIVER STLUJ D/S LANDFILL SITE RAMPUR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.443072,
+      "longitude": 77.627852
+    },
+    {
+      "station_id": 4450,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.2528,
+        "LOW": 0.6643,
+        "MEDIUM": 0.0564,
+        "HIGH": 0.0153,
+        "CRITICAL": 0.0112
+      },
+      "confidence": 0.6643,
+      "location": "RIVER SUTLEJ U/S CONFLUENCE WITH GANVI KHAND",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.547992,
+      "longitude": 77.792487
+    },
+    {
+      "station_id": 4451,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.4462,
+        "LOW": 0.4118,
+        "MEDIUM": 0.1,
+        "HIGH": 0.0177,
+        "CRITICAL": 0.0244
+      },
+      "confidence": 0.4462,
+      "location": "RIVER SUTLEJ D/S CONFLUENCE WITH GANVI KHAND",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.536062,
+      "longitude": 77.777423
+    },
+    {
+      "station_id": 4454,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7267,
+        "LOW": 0.0192,
+        "MEDIUM": 0.0601,
+        "HIGH": 0.1811,
+        "CRITICAL": 0.0129
+      },
+      "confidence": 0.7267,
+      "location": "JARANGLA NALLAH U/S WATER SUPPLY SCHEME",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.530703,
+      "longitude": 76.137886
+    },
+    {
+      "station_id": 4455,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7237,
+        "LOW": 0.0262,
+        "MEDIUM": 0.057,
+        "HIGH": 0.1784,
+        "CRITICAL": 0.0147
+      },
+      "confidence": 0.7237,
+      "location": "KLUIN NALLAH U/S WATER SUPPLY SCHEME",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.565435,
+      "longitude": 76.119305
+    },
+    {
+      "station_id": 4462,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6875,
+        "LOW": 0.0192,
+        "MEDIUM": 0.1283,
+        "HIGH": 0.1555,
+        "CRITICAL": 0.0095
+      },
+      "confidence": 0.6875,
+      "location": "SAINJ NALLAH (U/S SAINJ WATER SUPPLY SCHEME AT DARGI)",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.769067,
+      "longitude": 77.294816
+    },
+    {
+      "station_id": 4463,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7177,
+        "LOW": 0.0199,
+        "MEDIUM": 0.1266,
+        "HIGH": 0.1273,
+        "CRITICAL": 0.0086
+      },
+      "confidence": 0.7177,
+      "location": "DHANESHAR NALLAH (U/S SAINJ WATER SUPPLY SCHEME) NEAR GYASI MATA MANDIR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.772254,
+      "longitude": 77.312634
+    },
+    {
+      "station_id": 4464,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6607,
+        "LOW": 0.0257,
+        "MEDIUM": 0.2622,
+        "HIGH": 0.038,
+        "CRITICAL": 0.0134
+      },
+      "confidence": 0.6607,
+      "location": "ALHI KHAD NEAR INTAKE WSS AT VILL. NOG",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.3725,
+      "longitude": 76.783889
+    },
+    {
+      "station_id": 4466,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7267,
+        "LOW": 0.0192,
+        "MEDIUM": 0.0601,
+        "HIGH": 0.1811,
+        "CRITICAL": 0.0129
+      },
+      "confidence": 0.7267,
+      "location": "JARANGLA NALLAH D/S WATER SUPPLY SCHEME",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.563007,
+      "longitude": 76.121001
+    },
+    {
+      "station_id": 4474,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7269,
+        "LOW": 0.1198,
+        "MEDIUM": 0.0877,
+        "HIGH": 0.0632,
+        "CRITICAL": 0.0024
+      },
+      "confidence": 0.7269,
+      "location": "HALOG NALLAH NEAR HALOG WATER SUPPLY SCHEME",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.430443,
+      "longitude": 77.672045
+    },
+    {
+      "station_id": 4475,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.734,
+        "LOW": 0.0228,
+        "MEDIUM": 0.0867,
+        "HIGH": 0.1414,
+        "CRITICAL": 0.0151
+      },
+      "confidence": 0.734,
+      "location": "MACHADA NALLAH, MAJHOUTI WATER SUPPLY SCHEME NEAR NIRATH",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.914969,
+      "longitude": 76.675416
+    },
+    {
+      "station_id": 4476,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7663,
+        "LOW": 0.0246,
+        "MEDIUM": 0.0862,
+        "HIGH": 0.109,
+        "CRITICAL": 0.0139
+      },
+      "confidence": 0.7663,
+      "location": "MANALSU NALLAH NEAR WATER SUPPLY SCHEME FOR MANALI TOWN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 32.255479,
+      "longitude": 77.187175
+    },
+    {
+      "station_id": 4477,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7497,
+        "LOW": 0.0229,
+        "MEDIUM": 0.0909,
+        "HIGH": 0.124,
+        "CRITICAL": 0.0126
+      },
+      "confidence": 0.7497,
+      "location": "KHALADA NALLAH NEAR WATER SUPPLY SCHEME FOR KULLU TOWN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.975111,
+      "longitude": 77.125025
+    },
+    {
+      "station_id": 4480,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.612,
+        "LOW": 0.1392,
+        "MEDIUM": 0.1927,
+        "HIGH": 0.0443,
+        "CRITICAL": 0.0118
+      },
+      "confidence": 0.612,
+      "location": "SURAJMUKHI NALLAH D/S STP AT U/S OF SHOOLINI UNIVERSITY SAMTI SOLAN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 30.861211,
+      "longitude": 77.123345
+    },
+    {
+      "station_id": 4481,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5388,
+        "LOW": 0.2093,
+        "MEDIUM": 0.1271,
+        "HIGH": 0.0176,
+        "CRITICAL": 0.1071
+      },
+      "confidence": 0.5388,
+      "location": "HATHLI NALLAH LIFT WATER SUPPLY SCHEME FOR MUNICIPAL COUNCIL HAMIRPUR",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.680795,
+      "longitude": 76.514661
+    },
+    {
+      "station_id": 4482,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5382,
+        "LOW": 0.2164,
+        "MEDIUM": 0.128,
+        "HIGH": 0.0179,
+        "CRITICAL": 0.0995
+      },
+      "confidence": 0.5382,
+      "location": "LIFT WATER SUPPLY SCHEME (PANJARAR) AND BHOTA ROPARI & UJHAN",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.614417,
+      "longitude": 76.459929
+    },
+    {
+      "station_id": 4665,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5219,
+        "LOW": 0.2319,
+        "MEDIUM": 0.167,
+        "HIGH": 0.0277,
+        "CRITICAL": 0.0515
+      },
+      "confidence": 0.5219,
+      "location": "RIVER MANERU (TRIBUTARY OF GODAVARI) - OUTLET OF KTPP ASH POND JOINING TO MORANCHA VAGU, CHELPUR (V), GHANPUR (MULUGU) (M), , JAYASHANKAR BHUPALAPALLI DISTRICT",
+      "state": "TELANGANA",
+      "latitude": 18.387251,
+      "longitude": 79.832883
+    },
+    {
+      "station_id": 4861,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6744,
+        "LOW": 0.0198,
+        "MEDIUM": 0.1328,
+        "HIGH": 0.1626,
+        "CRITICAL": 0.0104
+      },
+      "confidence": 0.6744,
+      "location": "NEAR HUDA/ HSVP WATER WORKS, BASAI, GURUGRAM",
+      "state": "HARYANA",
+      "latitude": 28.463819,
+      "longitude": 76.97367
+    },
+    {
+      "station_id": 5253,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7513,
+        "LOW": 0.0227,
+        "MEDIUM": 0.0919,
+        "HIGH": 0.1219,
+        "CRITICAL": 0.0121
+      },
+      "confidence": 0.7513,
+      "location": "HURLA NALLA D/S HURLA BRIDGE, VPO HURLA, TEHSIL BHUNTER, DIS. KULLU",
+      "state": "HIMACHAL PRADESH",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5257,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7205,
+        "LOW": 0.017,
+        "MEDIUM": 0.0611,
+        "HIGH": 0.188,
+        "CRITICAL": 0.0134
+      },
+      "confidence": 0.7205,
+      "location": "KALAM NALLA D/S OF MSW PROCESSING SITE AT CHOWRI, DIST. CHAMBA",
+      "state": "HIMACHAL PRADESH",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5521,
+      "predicted_severity": "LOW",
+      "severity_index": 1,
+      "probabilities": {
+        "SAFE": 0.373,
+        "LOW": 0.5429,
+        "MEDIUM": 0.0586,
+        "HIGH": 0.0213,
+        "CRITICAL": 0.0042
+      },
+      "confidence": 0.5429,
+      "location": "NEAR AZARA RAILWAY STATION, GANAKPARA CHAKARDOI",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5522,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.6682,
+        "LOW": 0.0398,
+        "MEDIUM": 0.1773,
+        "HIGH": 0.0915,
+        "CRITICAL": 0.0232
+      },
+      "confidence": 0.6682,
+      "location": "AT THE CENTER OF DEEPORBEEL",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5617,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7541,
+        "LOW": 0.0495,
+        "MEDIUM": 0.1031,
+        "HIGH": 0.0713,
+        "CRITICAL": 0.0219
+      },
+      "confidence": 0.7541,
+      "location": "JUGIBEEL , GOLAGHAT",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5619,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7656,
+        "LOW": 0.0447,
+        "MEDIUM": 0.109,
+        "HIGH": 0.0584,
+        "CRITICAL": 0.0222
+      },
+      "confidence": 0.7656,
+      "location": "DOLOO LAKE AT CACHAR",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5620,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7685,
+        "LOW": 0.0439,
+        "MEDIUM": 0.109,
+        "HIGH": 0.0574,
+        "CRITICAL": 0.0213
+      },
+      "confidence": 0.7685,
+      "location": "PANIDIHING BIRD SANCTUARY ,SIVASAGAR",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5621,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7693,
+        "LOW": 0.0429,
+        "MEDIUM": 0.1106,
+        "HIGH": 0.0559,
+        "CRITICAL": 0.0212
+      },
+      "confidence": 0.7693,
+      "location": "LAUKHOWABEEL,DHUBRI",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5622,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7545,
+        "LOW": 0.0484,
+        "MEDIUM": 0.1057,
+        "HIGH": 0.0687,
+        "CRITICAL": 0.0227
+      },
+      "confidence": 0.7545,
+      "location": "MAGURI BEEL NEAR BRIDGE,TINSUKIA",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 5623,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7602,
+        "LOW": 0.0438,
+        "MEDIUM": 0.1001,
+        "HIGH": 0.0756,
+        "CRITICAL": 0.0204
+      },
+      "confidence": 0.7602,
+      "location": "HAFLONG LAKE, HAFLONG TOWN",
+      "state": "ASSAM",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "station_id": 20046,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7406,
+        "LOW": 0.0435,
+        "MEDIUM": 0.1306,
+        "HIGH": 0.0615,
+        "CRITICAL": 0.0238
+      },
+      "confidence": 0.7406,
+      "location": "MADURAI",
+      "state": "TAMIL NADU",
+      "latitude": 9.871421,
+      "longitude": 78.104005
+    },
+    {
+      "station_id": 30009,
+      "predicted_severity": "MEDIUM",
+      "severity_index": 2,
+      "probabilities": {
+        "SAFE": 0.1064,
+        "LOW": 0.0266,
+        "MEDIUM": 0.614,
+        "HIGH": 0.2242,
+        "CRITICAL": 0.0288
+      },
+      "confidence": 0.614,
+      "location": "RIVER SUTLEJ AT NANGAL (H.P.)",
+      "state": "HIMACHAL PRADESH",
+      "latitude": 31.407469,
+      "longitude": 76.389551
+    },
+    {
+      "station_id": 30010,
+      "predicted_severity": "MEDIUM",
+      "severity_index": 2,
+      "probabilities": {
+        "SAFE": 0.1519,
+        "LOW": 0.0493,
+        "MEDIUM": 0.4599,
+        "HIGH": 0.31,
+        "CRITICAL": 0.0289
+      },
+      "confidence": 0.4599,
+      "location": "RIVER SUTLEJ AT NOORPUR BEDI ROAD (PUNJAB)",
+      "state": "PUNJAB",
+      "latitude": 31.035309,
+      "longitude": 76.52233
+    },
+    {
+      "station_id": 30023,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.5672,
+        "LOW": 0.1132,
+        "MEDIUM": 0.2664,
+        "HIGH": 0.0435,
+        "CRITICAL": 0.0097
+      },
+      "confidence": 0.5672,
+      "location": "RIVER TONS AT HARIPUR (U.K.)",
+      "state": "UTTARAKHAND",
+      "latitude": 30.517139,
+      "longitude": 77.818659
+    },
+    {
+      "station_id": 30080,
+      "predicted_severity": "SAFE",
+      "severity_index": 0,
+      "probabilities": {
+        "SAFE": 0.7003,
+        "LOW": 0.0353,
+        "MEDIUM": 0.0596,
+        "HIGH": 0.1864,
+        "CRITICAL": 0.0184
+      },
+      "confidence": 0.7003,
+      "location": "RIVER BETWA AT KANJIA ROAD BRIDGE, KANJIA DIST.ASHOK NAGAR (M.P.)",
+      "state": "MADHYA PRADESH",
+      "latitude": 24.398043,
+      "longitude": 78.17802
+    }
+  ]
+}

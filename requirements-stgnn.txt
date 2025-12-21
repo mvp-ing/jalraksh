@@ -1,0 +1,14 @@
+numpy
+pandas
+# Optional: geopandas
+
+# PyTorch and PyTorch Geometric
+torch>=2.0.0
+torch-geometric>=2.4.0
+torch-scatter
+torch-sparse
+
+# Training utilities
+scikit-learn
+tensorboard
+tqdm

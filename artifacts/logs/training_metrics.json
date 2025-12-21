@@ -1,0 +1,108 @@
+{
+  "experiment": {
+    "name": "STGNN Water Quality Severity Prediction",
+    "timestamp": "2025-12-21T05:56:00",
+    "framework": "PyTorch + PyTorch Geometric"
+  },
+  "model": {
+    "architecture": "STGNN (GRU Temporal + GAT Spatial)",
+    "input_features": 8,
+    "hidden_dim": 64,
+    "num_gat_layers": 2,
+    "num_heads": 4,
+    "temporal_type": "gru",
+    "num_classes": 5,
+    "dropout": 0.3,
+    "total_parameters": 198533
+  },
+  "data": {
+    "total_records": 4032,
+    "num_stations": 168,
+    "num_edges": 145,
+    "temporal_steps": 24,
+    "lookback_window": 6,
+    "horizon": 1,
+    "frequency": "30D",
+    "train_samples": 12,
+    "val_samples": 3,
+    "test_samples": 3
+  },
+  "training": {
+    "epochs_run": 25,
+    "max_epochs": 50,
+    "early_stopping_patience": 10,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-5,
+    "optimizer": "AdamW",
+    "scheduler": "CosineAnnealingLR",
+    "loss_function": "FocalLoss (alpha=0.25, gamma=2.0)",
+    "device": "cpu"
+  },
+  "class_distribution": {
+    "train": {
+      "SAFE": {"count": 1373, "percentage": 68.1},
+      "LOW": {"count": 138, "percentage": 6.8},
+      "MEDIUM": {"count": 166, "percentage": 8.2},
+      "HIGH": {"count": 75, "percentage": 3.7},
+      "CRITICAL": {"count": 264, "percentage": 13.1}
+    }
+  },
+  "training_history": {
+    "best_epoch": 15,
+    "best_val_loss": 0.1193,
+    "final_train_loss": 0.0831,
+    "final_val_accuracy": 0.7659
+  },
+  "test_metrics": {
+    "accuracy": 0.7024,
+    "f1_macro": 0.3923,
+    "f1_weighted": 0.7942,
+    "per_class_f1": {
+      "SAFE": 0.8039,
+      "LOW": 0.0759,
+      "MEDIUM": 0.2069,
+      "HIGH": 0.0000,
+      "CRITICAL": 0.8750
+    },
+    "per_class_precision": {
+      "SAFE": 0.68,
+      "LOW": 1.00,
+      "MEDIUM": 0.50,
+      "HIGH": 0.00,
+      "CRITICAL": 0.89
+    },
+    "per_class_recall": {
+      "SAFE": 0.99,
+      "LOW": 0.04,
+      "MEDIUM": 0.13,
+      "HIGH": 0.00,
+      "CRITICAL": 0.86
+    }
+  },
+  "inference_summary": {
+    "timestamp": "2025-12-21T05:57:59",
+    "num_stations_predicted": 168,
+    "severity_distribution": {
+      "SAFE": 142,
+      "LOW": 1,
+      "MEDIUM": 4,
+      "HIGH": 0,
+      "CRITICAL": 21
+    },
+    "average_confidence": 0.619
+  },
+  "artifacts": {
+    "best_model": "artifacts/checkpoints/best_model.pt",
+    "last_model": "artifacts/checkpoints/last_model.pt",
+    "config": "artifacts/checkpoints/config.json",
+    "history": "artifacts/checkpoints/history.json",
+    "predictions": "artifacts/predictions/latest_predictions.csv"
+  },
+  "notes": [
+    "Model performs well on SAFE and CRITICAL classes",
+    "LOW and HIGH classes have low F1 due to class imbalance",
+    "Consider data augmentation or oversampling for minority classes",
+    "MPS device not supported, trained on CPU"
+  ]
+}

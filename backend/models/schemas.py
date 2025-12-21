@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, Field
 
 
@@ -253,6 +253,67 @@ class PushNotificationPayload(BaseModel):
     station_code: Optional[str] = None
     severity: Optional[AlertSeverity] = None
     url: Optional[str] = None
+
+
+# Forecast Models (STGNN-based predictions)
+class ForecastSeverity(str, Enum):
+    """Severity levels from STGNN model prediction."""
+    SAFE = "SAFE"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
+
+
+class ForecastAlert(BaseModel):
+    """Predicted pollution alert from STGNN model."""
+
+    id: str
+    station_id: int
+    station_code: str
+    station_name: str
+    location: str
+    river_cluster: str
+    coordinates: tuple[float, float]  # (lat, lon)
+
+    # Forecast-specific fields
+    forecast_horizon_months: int = Field(ge=1, le=3, description="Months ahead: 1, 2, or 3")
+    predicted_severity: ForecastSeverity
+    severity_index: int = Field(ge=0, le=4, description="0=SAFE, 4=CRITICAL")
+    confidence: float = Field(ge=0.0, le=1.0)
+
+    # Probability distribution across all classes
+    probabilities: dict[str, float]  # {SAFE: 0.1, LOW: 0.2, ...}
+
+    # Alert message
+    alert_message: str  # "Station X will cross limits in Y months with Z% probability"
+
+    # Metadata
+    model_timestamp: datetime
+    data_timestamp: Optional[datetime] = None
+
+
+class ForecastRequest(BaseModel):
+    """Request for pollution forecast."""
+
+    num_stations: int = Field(default=15, ge=10, le=20, description="Number of stations to analyze")
+    horizons: List[int] = Field(default=[1, 2, 3], description="Forecast horizons in months")
+    min_severity: Optional[ForecastSeverity] = Field(
+        default=ForecastSeverity.CRITICAL,
+        description="Minimum severity to return"
+    )
+    random_seed: Optional[int] = Field(None, description="Random seed for reproducibility")
+
+
+class ForecastResponse(BaseModel):
+    """Response from pollution forecast."""
+
+    forecasts: List[ForecastAlert]
+    total_stations_analyzed: int
+    critical_count: int
+    horizons_analyzed: List[int]
+    model_info: dict
+    generated_at: datetime
 
 
 # Health Check
