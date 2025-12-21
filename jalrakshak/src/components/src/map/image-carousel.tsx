@@ -401,11 +401,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                 draggable={false}
               />
             </ZoomableImageWrapper>
-            {scale === 1 && (
+            {/* {scale === 1 && (
               <ZoomHint className="zoom-hint">
                 Scroll to zoom • Double-click to magnify
               </ZoomHint>
-            )}
+            )} */}
           </>
         )}
 
