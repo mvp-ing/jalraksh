@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Copyright Jalraksh
 
-
-
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { CompareType, Field, Merge, TooltipField } from '@jalrakshak/types';
 import { CenterFlexbox } from '../common/styled-components';
@@ -56,31 +54,28 @@ const StyledTable = styled.table`
 `;
 
 const StyledDivider = styled.div`
-  // offset divider to reach popover edge
   margin-left: -14px;
   margin-right: -14px;
   border-bottom: 1px solid ${props => props.theme.panelBorderColor};
 `;
 
-// Satellite Analysis Button Styles
+// Satellite Button
 const SatelliteButtonContainer = styled.div`
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid ${props => props.theme.panelBorderColor};
 `;
 
-const SatelliteButton = styled.button<{ $loading?: boolean }>`
+const SatelliteButton = styled.button`
   width: 100%;
   padding: 10px 16px;
-  background: ${props => props.$loading
-    ? props.theme.panelBackgroundHover
-    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'};
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   border-radius: 8px;
   color: white;
   font-size: 12px;
   font-weight: 600;
-  cursor: ${props => props.$loading ? 'wait' : 'pointer'};
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,19 +93,79 @@ const SatelliteButton = styled.button<{ $loading?: boolean }>`
   }
 `;
 
-const SatelliteIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 10a2 2 0 100-4 2 2 0 000 4z" />
-    <path d="M2 12C2 6.5 6.5 2 12 2s10 4.5 10 10-4.5 10-10 10S2 17.5 2 12z" />
-    <path d="M17.5 6.5L22 2M6.5 17.5L2 22M17.5 17.5L22 22M6.5 6.5L2 2" />
-  </svg>
-);
+// Modal Styles
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+`;
 
-const SpinnerIcon = styled.div`
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
+const ModalContent = styled.div`
+  background: ${props => props.theme.panelBackground};
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid ${props => props.theme.panelBorderColor};
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid ${props => props.theme.panelBorderColor};
+`;
+
+const ModalTitle = styled.h2`
+  margin: 0;
+  font-size: 18px;
+  color: ${props => props.theme.textColorHl};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const CloseButton = styled.button`
+  background: transparent;
+  border: none;
+  color: ${props => props.theme.textColor};
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  
+  &:hover {
+    background: ${props => props.theme.panelBackgroundHover};
+  }
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 20px;
+`;
+
+const Spinner = styled.div`
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-top-color: #667eea;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   
@@ -119,42 +174,171 @@ const SpinnerIcon = styled.div`
   }
 `;
 
-const SimulationResult = styled.div<{ $status: 'success' | 'error' }>`
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: ${props => props.$status === 'success'
-    ? 'rgba(34, 197, 94, 0.1)'
-    : 'rgba(239, 68, 68, 0.1)'};
-  border: 1px solid ${props => props.$status === 'success'
-    ? 'rgba(34, 197, 94, 0.3)'
-    : 'rgba(239, 68, 68, 0.3)'};
-  border-radius: 6px;
-  color: ${props => props.$status === 'success' ? '#22c55e' : '#ef4444'};
-  font-size: 11px;
+const LoadingText = styled.p`
+  color: ${props => props.theme.textColor};
+  font-size: 14px;
+  margin: 0;
 `;
 
-const SimulationImageGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 12px;
-`;
-
-const SimulationImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  border: 1px solid ${props => props.theme.panelBorderColor};
-`;
-
-const ImageLabel = styled.div<{ $variant: 'original' | 'simulated' }>`
+const ErrorMessage = styled.div`
+  padding: 20px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #ef4444;
   text-align: center;
-  padding: 4px;
-  font-size: 10px;
-  font-weight: 600;
-  color: ${props => props.$variant === 'original' ? '#22c55e' : '#f5576c'};
-  text-transform: uppercase;
 `;
+
+const BACKEND_URL = 'http://localhost:8000';
+
+// Satellite Modal Component
+interface SatelliteModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  stationCode: string;
+  stationName: string;
+}
+
+const SatelliteModal: React.FC<SatelliteModalProps> = ({
+  isOpen,
+  onClose,
+  stationCode,
+  stationName
+}) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [images, setImages] = useState<string[]>([]);
+  const [statusMessage, setStatusMessage] = useState<string>('Checking for existing images...');
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const checkAndLoadImages = async () => {
+      setLoading(true);
+      setError(null);
+      setImages([]);
+      setStatusMessage('Checking for existing images...');
+
+      try {
+        // Step 1: Check if images already exist via the status API
+        const statusResponse = await fetch(
+          `${BACKEND_URL}/api/satellite/status/${stationCode}`
+        );
+
+        if (statusResponse.ok) {
+          const statusData = await statusResponse.json();
+
+          // If simulated frames already exist, show them
+          if (statusData.exists && statusData.simulated_frames && statusData.simulated_frames.length > 0) {
+            // Images are served via backend API - prepend BACKEND_URL to relative URLs
+            setImages(statusData.simulated_frames.map((f: any) => `${BACKEND_URL}${f.url}`));
+            setLoading(false);
+            return;
+          }
+        }
+
+        // Step 2: No existing images, call the backend to generate them
+        setStatusMessage('Generating satellite imagery... This may take a moment.');
+
+        const response = await fetch(`${BACKEND_URL}/api/satellite/simulate`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            station_code: stationCode,
+            year: 2023,
+            simulate: true
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Backend returned ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.status === 'error') {
+          throw new Error(data.message);
+        }
+
+        // Step 3: Fetch the status again to get the newly generated image URLs
+        setStatusMessage('Loading generated images...');
+
+        const newStatusResponse = await fetch(
+          `${BACKEND_URL}/api/satellite/status/${stationCode}`
+        );
+
+        if (newStatusResponse.ok) {
+          const newStatusData = await newStatusResponse.json();
+
+          // Get simulated frames URLs (images served via backend API)
+          if (newStatusData.simulated_frames && newStatusData.simulated_frames.length > 0) {
+            setImages(newStatusData.simulated_frames.map((f: any) => `${BACKEND_URL}${f.url}`));
+          } else if (newStatusData.original_frames && newStatusData.original_frames.length > 0) {
+            // Fallback to original if no simulated
+            setImages(newStatusData.original_frames.map((f: any) => `${BACKEND_URL}${f.url}`));
+          } else {
+            throw new Error('No satellite images were generated');
+          }
+        } else {
+          throw new Error('Failed to fetch generated images');
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load satellite images');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAndLoadImages();
+  }, [isOpen, stationCode]);
+
+  if (!isOpen) return null;
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return (
+    <ModalOverlay onClick={handleOverlayClick}>
+      <ModalContent onClick={e => e.stopPropagation()}>
+        <ModalHeader>
+          <ModalTitle>
+            🛰️ Satellite Imagery - {stationName}
+          </ModalTitle>
+          <CloseButton onClick={onClose}>&times;</CloseButton>
+        </ModalHeader>
+
+        {loading && (
+          <LoadingContainer>
+            <Spinner />
+            <LoadingText>{statusMessage}</LoadingText>
+          </LoadingContainer>
+        )}
+
+        {error && (
+          <ErrorMessage>
+            <p style={{ margin: '0 0 10px 0', fontWeight: 600 }}>Error Loading Images</p>
+            <p style={{ margin: 0 }}>{error}</p>
+          </ErrorMessage>
+        )}
+
+        {!loading && !error && images.length > 0 && (
+          <ImageCarousel images={images} title="Simulated Satellite Frames" />
+        )}
+
+        {!loading && !error && images.length === 0 && (
+          <ErrorMessage style={{ color: '#fbbf24', borderColor: 'rgba(251, 191, 36, 0.3)', background: 'rgba(251, 191, 36, 0.1)' }}>
+            <p style={{ margin: 0 }}>No satellite images available for this station yet.</p>
+          </ErrorMessage>
+        )}
+      </ModalContent>
+    </ModalOverlay>
+  );
+};
 
 interface RowProps {
   name: string;
@@ -164,7 +348,6 @@ interface RowProps {
 }
 
 const Row: React.FC<RowProps> = ({ name, value, deltaValue, url }) => {
-  // Set 'url' to 'value' if it looks like a url
   if (!url && value && typeof value === 'string' && value.match(/^http/)) {
     url = value;
   }
@@ -185,8 +368,7 @@ const Row: React.FC<RowProps> = ({ name, value, deltaValue, url }) => {
             <span>{value}</span>
             {notNullorUndefined(deltaValue) ? (
               <span
-                className={`row__delta-value ${deltaValue?.toString().charAt(0) === '+' ? 'positive' : 'negative'
-                  }`}
+                className={`row__delta-value ${deltaValue?.toString().charAt(0) === '+' ? 'positive' : 'negative'}`}
               >
                 {deltaValue}
               </span>
@@ -235,13 +417,11 @@ const EntryInfoRow: React.FC<EntryInfoRowProps> = ({
   const fieldValueAccessor = layer.accessVSFieldValue(field, currentTime);
   const value = fieldValueAccessor(field, data instanceof DataRow ? { index: data._rowIndex } : data);
 
-  // Handle WMS layer data in comparison mode - WMS layers don't have comparable field data
   let primaryValue = null;
   let displayDeltaValue: string | null = null;
 
   if (primaryData) {
     try {
-      // Only calculate primary value if primaryData has a compatible structure
       if (
         primaryData instanceof DataRow ||
         (primaryData && typeof primaryData === 'object' && 'index' in primaryData)
@@ -259,7 +439,6 @@ const EntryInfoRow: React.FC<EntryInfoRowProps> = ({
         });
       }
     } catch (error) {
-      // If there's an error accessing primaryData (e.g., WMS layer data), skip comparison
       primaryValue = null;
     }
   }
@@ -275,7 +454,6 @@ const EntryInfoRow: React.FC<EntryInfoRowProps> = ({
   );
 };
 
-// TODO: supporting comparative value for aggregated cells as well
 const CellInfo = ({
   fieldsToShow,
   data,
@@ -337,136 +515,13 @@ const CellInfo = ({
   );
 };
 
-// Satellite Simulation Component for the tooltip
-interface SatelliteSimulationButtonProps {
-  suspectName: string;
-  lat: number;
-  lon: number;
-}
-
-const BACKEND_URL = 'http://localhost:8000';
-
-const SatelliteSimulationButton: React.FC<SatelliteSimulationButtonProps> = ({
-  suspectName,
-  lat,
-  lon
-}) => {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<{ status: 'success' | 'error'; message: string; images?: { original?: string; simulated?: string } } | null>(null);
-
-  const handleSimulate = useCallback(async () => {
-    setLoading(true);
-    setResult(null);
-
-    try {
-      // For now, we'll use a simplified approach - generate simulation based on coordinates
-      // In a real implementation, this would call the backend with actual station codes
-      const response = await fetch(`${BACKEND_URL}/api/satellite/simulate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          // Use a nearby station code or coordinates
-          // For demo, we'll use a station code that might be near this location
-          station_code: '4085', // Example station code
-          year: 2023,
-          simulate: true
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Backend returned ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.status === 'error') {
-        throw new Error(data.message);
-      }
-
-      // Fetch the generated images
-      const statusResponse = await fetch(
-        `${BACKEND_URL}/api/satellite/status/${data.station_code}?base_url=${encodeURIComponent(BACKEND_URL)}`
-      );
-
-      if (statusResponse.ok) {
-        const statusData = await statusResponse.json();
-        const firstOriginal = statusData.original_frames?.[0]?.url;
-        const firstSimulated = statusData.simulated_frames?.[0]?.url;
-
-        setResult({
-          status: 'success',
-          message: `Generated ${data.total_frames} satellite frames for analysis`,
-          images: {
-            original: firstOriginal,
-            simulated: firstSimulated
-          }
-        });
-      } else {
-        setResult({
-          status: 'success',
-          message: data.message
-        });
-      }
-    } catch (error) {
-      setResult({
-        status: 'error',
-        message: error instanceof Error ? error.message : 'Failed to generate satellite analysis'
-      });
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  return (
-    <SatelliteButtonContainer>
-      <SatelliteButton onClick={handleSimulate} disabled={loading} $loading={loading}>
-        {loading ? (
-          <>
-            <SpinnerIcon />
-            Generating Analysis...
-          </>
-        ) : (
-          <>
-            <SatelliteIcon />
-            🛰️ Generate Satellite Analysis
-          </>
-        )}
-      </SatelliteButton>
-
-      {result && (
-        <>
-          <SimulationResult $status={result.status}>
-            {result.status === 'success' ? '✓' : '✗'} {result.message}
-          </SimulationResult>
-
-          {result.images && (result.images.original || result.images.simulated) && (
-            <SimulationImageGrid>
-              {result.images.original && (
-                <div>
-                  <ImageLabel $variant="original">Original</ImageLabel>
-                  <SimulationImage src={result.images.original} alt="Original satellite view" />
-                </div>
-              )}
-              {result.images.simulated && (
-                <div>
-                  <ImageLabel $variant="simulated">Simulated</ImageLabel>
-                  <SimulationImage src={result.images.simulated} alt="Simulated pollution view" />
-                </div>
-              )}
-            </SimulationImageGrid>
-          )}
-        </>
-      )}
-    </SatelliteButtonContainer>
-  );
-};
-
 const LayerHoverInfoFactory = () => {
   const LayerHoverInfo = props => {
     const { data, layer, fields } = props;
     const intl = useIntl();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedStation, setSelectedStation] = useState<{ code: string; name: string } | null>(null);
+
     if (!data || !layer) {
       return null;
     }
@@ -476,49 +531,12 @@ const LayerHoverInfoFactory = () => {
       (data.wmsFeatureData && data.wmsFeatureData.length > 0) ||
       (props.fieldsToShow && props.fieldsToShow.length > 0);
 
-    // Check if this layer has sentinel_images (works for suspect_links and municipal_stations)
-    const sentinelImages = useMemo(() => {
-      const dataId = layer.config?.dataId;
-      // Check if this layer might have sentinel images
-      const hasImages = dataId === 'suspect_links' || dataId === 'municipal_stations';
-      if (!hasImages || !fields || !data) {
-        return null;
-      }
+    // Check if this is a municipal_stations layer to show the satellite button
+    const isMunicipalStation = layer.config?.dataId === 'municipal_stations';
 
-      // Find the sentinel_images field index
-      const sentinelFieldIdx = fields.findIndex(f => f.name === 'sentinel_images');
-      if (sentinelFieldIdx < 0) {
-        return null;
-      }
-
-      // Get the value from data
-      let imagesValue: string | string[] | null = null;
-      if (data instanceof DataRow) {
-        imagesValue = data.valueAt(sentinelFieldIdx);
-      } else if (Array.isArray(data)) {
-        imagesValue = data[sentinelFieldIdx];
-      }
-
-      if (!imagesValue) {
-        return null;
-      }
-
-      // Parse JSON string if needed
-      try {
-        if (typeof imagesValue === 'string') {
-          return JSON.parse(imagesValue) as string[];
-        }
-        return imagesValue as string[];
-      } catch (e) {
-        console.warn('Failed to parse sentinel_images:', e);
-        return null;
-      }
-    }, [layer.config?.dataId, fields, data]);
-
-    // Extract suspect info for satellite simulation button
-    const suspectInfo = useMemo(() => {
-      const dataId = layer.config?.dataId;
-      if (dataId !== 'suspect_links' || !fields || !data) {
+    // Get station code for the button
+    const stationInfo = useMemo(() => {
+      if (!isMunicipalStation || !fields || !data) {
         return null;
       }
 
@@ -533,59 +551,78 @@ const LayerHoverInfoFactory = () => {
         return null;
       };
 
-      const companyName = getFieldValue('company_name');
-      const targetLat = getFieldValue('target_lat');
-      const targetLon = getFieldValue('target_lon');
+      const stnCode = getFieldValue('stn_code');
+      const monitoringLocation = getFieldValue('monitoring_location');
 
-      if (!companyName || targetLat == null || targetLon == null) {
-        return null;
-      }
+      if (!stnCode) return null;
 
       return {
-        name: String(companyName),
-        lat: Number(targetLat),
-        lon: Number(targetLon)
+        code: String(stnCode),
+        name: String(monitoringLocation || stnCode)
       };
-    }, [layer.config?.dataId, fields, data]);
+    }, [isMunicipalStation, fields, data]);
+
+    const handleOpenSatelliteModal = useCallback(() => {
+      if (stationInfo) {
+        setSelectedStation(stationInfo);
+        setIsModalOpen(true);
+      }
+    }, [stationInfo]);
+
+    const handleCloseModal = useCallback(() => {
+      setIsModalOpen(false);
+      setSelectedStation(null);
+    }, []);
 
     return (
-      <div className="map-popover__layer-info">
-        <StyledLayerName className="map-popover__layer-name">
-          <Layers height="12px" />
-          {props.layer.config.label}
-        </StyledLayerName>
-        {hasFieldsToShow && <StyledDivider />}
-        <StyledTable>
-          {data.wmsFeatureData ? (
-            <tbody>
-              {data.wmsFeatureData.map(({ name, value }, i) => (
-                <Row key={i} name={name} value={value} />
-              ))}
-            </tbody>
-          ) : data.fieldValues ? (
-            <tbody>
-              {data.fieldValues.map(({ labelMessage, value }, i) => (
-                <Row key={i} name={intl.formatMessage({ id: labelMessage })} value={value} />
-              ))}
-            </tbody>
-          ) : props.layer.isAggregated ? (
-            <CellInfo {...props} />
-          ) : (
-            <EntryInfo {...props} />
+      <>
+        <div className="map-popover__layer-info">
+          <StyledLayerName className="map-popover__layer-name">
+            <Layers height="12px" />
+            {props.layer.config.label}
+          </StyledLayerName>
+          {hasFieldsToShow && <StyledDivider />}
+          <StyledTable>
+            {data.wmsFeatureData ? (
+              <tbody>
+                {data.wmsFeatureData.map(({ name, value }, i) => (
+                  <Row key={i} name={name} value={value} />
+                ))}
+              </tbody>
+            ) : data.fieldValues ? (
+              <tbody>
+                {data.fieldValues.map(({ labelMessage, value }, i) => (
+                  <Row key={i} name={intl.formatMessage({ id: labelMessage })} value={value} />
+                ))}
+              </tbody>
+            ) : props.layer.isAggregated ? (
+              <CellInfo {...props} />
+            ) : (
+              <EntryInfo {...props} />
+            )}
+          </StyledTable>
+          {hasFieldsToShow && <StyledDivider />}
+
+          {/* Satellite Button for Municipal Stations */}
+          {stationInfo && (
+            <SatelliteButtonContainer>
+              <SatelliteButton onClick={handleOpenSatelliteModal}>
+                🛰️ View Satellite Imagery
+              </SatelliteButton>
+            </SatelliteButtonContainer>
           )}
-        </StyledTable>
-        {hasFieldsToShow && <StyledDivider />}
-        {sentinelImages && sentinelImages.length > 0 && (
-          <ImageCarousel images={sentinelImages} title="Sentinel Satellite Images" />
-        )}
-        {suspectInfo && (
-          <SatelliteSimulationButton
-            suspectName={suspectInfo.name}
-            lat={suspectInfo.lat}
-            lon={suspectInfo.lon}
+        </div>
+
+        {/* Satellite Modal */}
+        {selectedStation && (
+          <SatelliteModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            stationCode={selectedStation.code}
+            stationName={selectedStation.name}
           />
         )}
-      </div>
+      </>
     );
   };
 
@@ -599,4 +636,3 @@ const LayerHoverInfoFactory = () => {
 };
 
 export default LayerHoverInfoFactory;
-

@@ -33,10 +33,9 @@ logger = logging.getLogger(__name__)
 class Config:
     MAX_CLOUD_PERCENTAGE = 20 
     TIME_STEP_DAYS = 15
-    # Save images to frontend public folder for easy serving
-    # Path relative to project root: jalrakshak/src/frontend/public/satellite
+    # Save images to data folder (served via backend API)
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    BASE_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'jalrakshak', 'src', 'frontend', 'public', 'satellite')
+    BASE_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'data', 'satellite_output')
     MAX_WORKERS = 32
 
 from google.oauth2 import service_account
@@ -58,9 +57,11 @@ class GEEAuth:
                 key_path = os.getenv('GEE_SERVICE_KEY_PATH')
             
             if key_path is None:
-                # Try default locations relative to project root
+                # Try default locations relative to project root and agents folder
                 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                agents_dir = os.path.dirname(os.path.abspath(__file__))
                 default_locations = [
+                    os.path.join(agents_dir, 'gee-service-key.json'),  # agents/ folder (where this file is)
                     os.path.join(project_root, 'gee-service-key.json'),
                     os.path.join(project_root, 'credentials', 'gee-service-key.json'),
                     os.path.join(project_root, 'backend', 'gee-service-key.json'),

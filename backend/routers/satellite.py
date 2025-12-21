@@ -21,9 +21,9 @@ router = APIRouter(
     tags=["Satellite"]
 )
 
-# Path to frontend public satellite folder
+# Path to satellite output folder (served via this API)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-SATELLITE_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'jalrakshak', 'src', 'frontend', 'public', 'satellite')
+SATELLITE_OUTPUT_DIR = os.path.join(PROJECT_ROOT, 'data', 'satellite_output')
 
 
 # ==============================================================================
@@ -173,13 +173,13 @@ async def chat_with_agent(request: ChatRequest):
 @router.get("/status/{station_code}", response_model=SimulationStatusResponse)
 async def get_simulation_status(
     station_code: str,
-    base_url: str = Query(default="", description="Base URL for image serving (empty for frontend-relative)")
+    base_url: str = Query(default="", description="Base URL for image serving (optional)")
 ):
     """
     Get the status of a simulation and list available frames.
     
     Returns URLs to all generated satellite images for a station.
-    Images are served from the frontend public folder.
+    Images are served via the /api/satellite/images/ endpoint.
     """
     output_dir = os.path.join(SATELLITE_OUTPUT_DIR, station_code)
     
@@ -189,15 +189,15 @@ async def get_simulation_status(
     )
     
     if response.exists:
-        # List original frames - return frontend-relative URLs
+        # List original frames - return backend API URLs
         original_dir = os.path.join(output_dir, "original_raw")
         if os.path.exists(original_dir):
             for filename in sorted(os.listdir(original_dir)):
                 if filename.endswith('.png'):
-                    # URL relative to frontend public folder
+                    # URL via backend API (served by /api/satellite/images/ endpoint)
                     response.original_frames.append(FrameInfo(
                         filename=filename,
-                        url=f"/satellite/{station_code}/original_raw/{filename}",
+                        url=f"/api/satellite/images/{station_code}/original_raw/{filename}",
                         date=filename.replace("frame_", "").replace(".png", "")
                     ))
         
@@ -208,7 +208,7 @@ async def get_simulation_status(
                 if filename.endswith('.png'):
                     response.simulated_frames.append(FrameInfo(
                         filename=filename,
-                        url=f"/satellite/{station_code}/simulated_raw/{filename}",
+                        url=f"/api/satellite/images/{station_code}/simulated_raw/{filename}",
                         date=filename.replace("frame_", "").replace(".png", "")
                     ))
     

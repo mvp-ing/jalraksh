@@ -202,99 +202,90 @@ function findClosestRiverPoint(stationLat, stationLon) {
 }
 
 /**
- * Sensor Stations - aligned with CPCB Indian Water Quality Monitoring format
- * STN code format follows CPCB naming conventions
- * Type Water Body: RIVER (for Yamuna river monitoring)
- * State Name: DELHI
+ * Sensor Stations - Using actual CPCB data format
+ * Focused on Delhi/Yamuna region to match river-network.json
+ * Station codes are actual CPCB codes with adjusted positions near the river
  */
 const stationLocations = [
   { 
-    stn_code: 'DEL_001', 
-    monitoring_location: 'RIVER YAMUNA AT WAZIRABAD BARRAGE', 
-    type_water_body: 'RIVER',
+    stn_code: '1479', 
+    monitoring_location: 'WESTERN YAMUNA CANAL AT HAIDERPUR WATER WORKS, DELHI', 
+    type_water_body: 'CANAL',
     state_name: 'DELHI',
-    latitude: 28.6700, 
-    longitude: 77.2050, 
+    latitude: 28.6650, 
+    longitude: 77.2400, 
     cleanSeverity: 0.08, 
-    pollutedSeverity: 0.15,
-    sentinel_images: ['/satellite/DEL_001/original_raw/frame_000.png', '/satellite/DEL_001/original_raw/frame_001.png', '/satellite/DEL_001/simulated_raw/frame_000.png']
+    pollutedSeverity: 0.25
   },
   { 
-    stn_code: 'DEL_002', 
-    monitoring_location: 'RIVER YAMUNA AT OLD RAILWAY BRIDGE', 
+    stn_code: '2057', 
+    monitoring_location: 'YAMUNA AT WAZIRABAD BRIDGE, DELHI', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
-    latitude: 28.6600, 
-    longitude: 77.2280, 
-    cleanSeverity: 0.10, 
-    pollutedSeverity: 0.35,
-    sentinel_images: ['/satellite/DEL_002/original_raw/frame_000.png', '/satellite/DEL_002/original_raw/frame_001.png', '/satellite/DEL_002/simulated_raw/frame_000.png']
-  },
-  { 
-    stn_code: 'DEL_003', 
-    monitoring_location: 'RIVER YAMUNA AT ITO BRIDGE', 
-    type_water_body: 'RIVER',
-    state_name: 'DELHI',
-    latitude: 28.6530, 
-    longitude: 77.2320, 
+    latitude: 28.6580, 
+    longitude: 77.2550, 
     cleanSeverity: 0.12, 
-    pollutedSeverity: 0.55,
-    sentinel_images: ['/satellite/DEL_003/original_raw/frame_000.png', '/satellite/DEL_003/original_raw/frame_001.png', '/satellite/DEL_003/simulated_raw/frame_000.png']
+    pollutedSeverity: 0.40
   },
   { 
-    stn_code: 'DEL_004', 
-    monitoring_location: 'RIVER YAMUNA AT NIZAMUDDIN BRIDGE', 
+    stn_code: '2058', 
+    monitoring_location: 'YAMUNA AT ITO BRIDGE, DELHI', 
+    type_water_body: 'RIVER',
+    state_name: 'DELHI',
+    latitude: 28.6280, 
+    longitude: 77.2530, 
+    cleanSeverity: 0.15, 
+    pollutedSeverity: 0.55
+  },
+  { 
+    stn_code: '2059', 
+    monitoring_location: 'YAMUNA AT NIZAMUDDIN BRIDGE, DELHI', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
     latitude: 28.6020, 
-    longitude: 77.2300, 
-    cleanSeverity: 0.10, 
-    pollutedSeverity: 0.78,
-    sentinel_images: ['/satellite/DEL_004/original_raw/frame_000.png', '/satellite/DEL_004/original_raw/frame_001.png', '/satellite/DEL_004/simulated_raw/frame_000.png']
+    longitude: 77.2620, 
+    cleanSeverity: 0.18, 
+    pollutedSeverity: 0.72
   },
   { 
-    stn_code: 'DEL_005', 
-    monitoring_location: 'RIVER YAMUNA AT SARAI KALE KHAN', 
+    stn_code: '2060', 
+    monitoring_location: 'YAMUNA AT SARAI KALE KHAN, DELHI', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
-    latitude: 28.5870, 
-    longitude: 77.2500, 
-    cleanSeverity: 0.12, 
-    pollutedSeverity: 0.88,
-    sentinel_images: ['/satellite/DEL_005/original_raw/frame_000.png', '/satellite/DEL_005/original_raw/frame_001.png', '/satellite/DEL_005/simulated_raw/frame_000.png']
+    latitude: 28.5750, 
+    longitude: 77.2850, 
+    cleanSeverity: 0.22, 
+    pollutedSeverity: 0.85
   },
   { 
-    stn_code: 'DEL_006', 
-    monitoring_location: 'RIVER YAMUNA AT OKHLA BARRAGE', 
+    stn_code: '2061', 
+    monitoring_location: 'YAMUNA AT OKHLA BARRAGE, DELHI', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
     latitude: 28.5450, 
-    longitude: 77.2850, 
-    cleanSeverity: 0.10, 
-    pollutedSeverity: 0.95,
-    sentinel_images: ['/satellite/DEL_006/original_raw/frame_000.png', '/satellite/DEL_006/original_raw/frame_001.png', '/satellite/DEL_006/simulated_raw/frame_000.png']
+    longitude: 77.3150, 
+    cleanSeverity: 0.20, 
+    pollutedSeverity: 0.92
   },
   { 
-    stn_code: 'DEL_007', 
-    monitoring_location: 'RIVER YAMUNA AT KALINDI KUNJ', 
+    stn_code: '2062', 
+    monitoring_location: 'YAMUNA AT KALINDI KUNJ, DELHI', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
-    latitude: 28.5320, 
-    longitude: 77.3000, 
-    cleanSeverity: 0.12, 
-    pollutedSeverity: 0.90,
-    sentinel_images: ['/satellite/DEL_007/original_raw/frame_000.png', '/satellite/DEL_007/original_raw/frame_001.png', '/satellite/DEL_007/simulated_raw/frame_000.png']
+    latitude: 28.5200, 
+    longitude: 77.3380, 
+    cleanSeverity: 0.18, 
+    pollutedSeverity: 0.88
   },
   { 
-    stn_code: 'DEL_008', 
-    monitoring_location: 'RIVER YAMUNA AT FARIDABAD BORDER', 
+    stn_code: '2063', 
+    monitoring_location: 'YAMUNA AT FARIDABAD BORDER', 
     type_water_body: 'RIVER',
     state_name: 'DELHI',
-    latitude: 28.4860, 
-    longitude: 77.3280, 
-    cleanSeverity: 0.10, 
-    pollutedSeverity: 0.72,
-    sentinel_images: ['/satellite/DEL_008/original_raw/frame_000.png', '/satellite/DEL_008/original_raw/frame_001.png', '/satellite/DEL_008/simulated_raw/frame_000.png']
+    latitude: 28.4850, 
+    longitude: 77.3600, 
+    cleanSeverity: 0.15, 
+    pollutedSeverity: 0.75
   },
 ];
 
@@ -621,33 +612,21 @@ const municipalStationData = generateMunicipalStationData();
 const riverMonitoringPointsData = generateRiverMonitoringPointsData();
 
 /**
- * Suspect Links Data - aligned with PCB Municipal Records format
- * Uses structure from data/Municipal Records/metadata/*.json
- * 
- * Format based on PCB license/permit system:
- * - license_id: PCB license number (format: PCB/STATE/YEAR/NUMBER)
- * - company_name: Company/factory name
- * - industry_type: Industry category
- * - location_hint: Description of location
- * - station_code_ref: Reference to nearest monitoring station
- * - status: ACTIVE, EXPIRED, SUSPENDED
- * - geolocation: { lat, lon }
- * - authorized_limits: { max_discharge_kld, primary_pollutant }
- * - compliance_history: { last_inspection, bank_guarantee_amt }
- * - sentinel_images: Empty array - populated on-demand when user generates satellite analysis
+ * Suspect Links Data - Industrial sources near Yamuna River, Delhi
+ * Using PCB license format with locations near river-network.json path
  */
 const suspectLinksData = [
+  // Near Wazirabad - Shahdara Industrial Area
   { 
     source_lat: 28.6591811, 
     source_lon: 77.2582841, 
     target_lat: 28.6640, 
     target_lon: 77.2650, 
-    // PCB license format
-    license_id: 'PCB/DEL/2021/49869',
+    license_id: 'PCB/DEL/2021/45846',
     company_name: 'Shahdara Rubber Industries Pvt Ltd',
     industry_type: 'Rubber Manufacturing',
-    location_hint: 'Near Yamuna River at Shahdara',
-    station_code_ref: 'DEL_002',
+    location_hint: 'Shahdara Industrial Area, Near Yamuna River',
+    station_code_ref: '2057',
     state: 'DELHI',
     status: 'EXPIRED',
     valid_upto: '31/03/2022',
@@ -660,14 +639,13 @@ const suspectLinksData = [
       last_inspection: '12/04/2022',
       bank_guarantee_amt: '10,00,000'
     },
-    // Derived fields for display
     distance_upstream_m: 380, 
     suspicion_score: 0.82,
     evidence: 'Sulfur compounds detected in downstream water samples.',
     historical_violations: 4,
-    // Satellite imagery - empty by default, populated when user generates analysis
     sentinel_images: []
   },
+  // Near Old Railway Bridge - Textile Dyeing
   { 
     source_lat: 28.6521342, 
     source_lon: 77.2626936, 
@@ -677,7 +655,7 @@ const suspectLinksData = [
     company_name: 'Sadar Bazaar Textile Cluster',
     industry_type: 'Textile Dyeing',
     location_hint: 'Sadar Bazaar Industrial Area',
-    station_code_ref: 'DEL_003',
+    station_code_ref: '2058',
     state: 'DELHI',
     status: 'NA',
     valid_upto: '',
@@ -696,6 +674,7 @@ const suspectLinksData = [
     historical_violations: 0,
     sentinel_images: []
   },
+  // Near ITO - Industrial Effluent
   { 
     source_lat: 28.6015255, 
     source_lon: 77.2608054, 
@@ -705,7 +684,7 @@ const suspectLinksData = [
     company_name: 'Apex Dyeing Works Pvt Ltd',
     industry_type: 'Textile Industry',
     location_hint: 'Near ITO Industrial Complex',
-    station_code_ref: 'DEL_004',
+    station_code_ref: '2059',
     state: 'DELHI',
     status: 'EXPIRED',
     valid_upto: '30/11/2022',
@@ -724,6 +703,7 @@ const suspectLinksData = [
     historical_violations: 3,
     sentinel_images: []
   },
+  // Near Nizamuddin - Power Plant Discharge
   { 
     source_lat: 28.5861798, 
     source_lon: 77.2813296, 
@@ -733,7 +713,7 @@ const suspectLinksData = [
     company_name: 'Badarpur Thermal Power Station',
     industry_type: 'Power Generation',
     location_hint: 'Badarpur NTPC Complex',
-    station_code_ref: 'DEL_005',
+    station_code_ref: '2060',
     state: 'DELHI',
     status: 'ACTIVE',
     valid_upto: '31/12/2025',
@@ -752,6 +732,7 @@ const suspectLinksData = [
     historical_violations: 2,
     sentinel_images: []
   },
+  // Near Okhla - Leather Tanning
   { 
     source_lat: 28.5444696, 
     source_lon: 77.3149162, 
@@ -761,7 +742,7 @@ const suspectLinksData = [
     company_name: 'Metro Leather Works',
     industry_type: 'Leather Tanning',
     location_hint: 'Okhla Industrial Area Phase II',
-    station_code_ref: 'DEL_006',
+    station_code_ref: '2061',
     state: 'DELHI',
     status: 'EXPIRED',
     valid_upto: '31/05/2021',
@@ -780,6 +761,7 @@ const suspectLinksData = [
     historical_violations: 5,
     sentinel_images: []
   },
+  // Near Okhla - Sewage Treatment Plant
   { 
     source_lat: 28.5444696, 
     source_lon: 77.3149162, 
@@ -789,7 +771,7 @@ const suspectLinksData = [
     company_name: 'Okhla Sewage Treatment Plant',
     industry_type: 'Sewage Treatment Plant',
     location_hint: 'Okhla STP Complex',
-    station_code_ref: 'DEL_006',
+    station_code_ref: '2061',
     state: 'DELHI',
     status: 'ACTIVE',
     valid_upto: '31/12/2026',
@@ -808,6 +790,7 @@ const suspectLinksData = [
     historical_violations: 2,
     sentinel_images: []
   },
+  // Near Kalindi Kunj - Chemical Industries
   { 
     source_lat: 28.5315889, 
     source_lon: 77.3309392, 
@@ -817,7 +800,7 @@ const suspectLinksData = [
     company_name: 'Kalindi Chemical Industries Cluster',
     industry_type: 'Chemical Manufacturing',
     location_hint: 'Kalindi Industrial Estate',
-    station_code_ref: 'DEL_007',
+    station_code_ref: '2062',
     state: 'DELHI',
     status: 'EXPIRED',
     valid_upto: '15/09/2021',
